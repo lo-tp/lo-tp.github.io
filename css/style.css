@@ -142,18 +142,18 @@ a:hover,
 a:focus {
   outline: 0;
   text-decoration: none;
-  -webkit-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -moz-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -o-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -ms-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  transition: color 0.25s, convert('#ef5b9c') 0.5s;
+  -webkit-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -moz-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -o-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -ms-transition: color 0.25s, convert('#deab8a') 0.5s;
+  transition: color 0.25s, convert('#deab8a') 0.5s;
 }
 a:hover:before {
-  -webkit-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -moz-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -o-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  -ms-transition: color 0.25s, convert('#ef5b9c') 0.5s;
-  transition: color 0.25s, convert('#ef5b9c') 0.5s;
+  -webkit-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -moz-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -o-transition: color 0.25s, convert('#deab8a') 0.5s;
+  -ms-transition: color 0.25s, convert('#deab8a') 0.5s;
+  transition: color 0.25s, convert('#deab8a') 0.5s;
 }
 input:focus {
   outline: none;
