@@ -7,16 +7,15 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>将vagrant中的本地环境与github pages绑定 | Lotp&#39;s Blog</title>
+    <title>将vagrant中的hexo与github pages绑定 | Lotp&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Lotp">
     
-    <meta name="description" content="本文延续上一篇使用vagrant搭建hexo本地环境继续讲如何将已经搭建好的hexo与github-pages绑定起来
-本文假设你已经拥有了github帐号，并且申请好了github-pages相关项目
+    <meta name="description" content="本文延续上一篇使用vagrant搭建hexo本地环境继续讲如何将已经搭建好的hexo与github-pages绑定起来本文假设你已经拥有了github帐号，并且申请好了github-pages相关项目
 获得Github的ssh访问权限
 参照这篇教程,使物理机获得免输密码访问github账户的权限
-">
+更">
     
     
     
@@ -79,7 +78,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/12/26/将vagrant中的本地环境与github-pages绑定/" title="将vagrant中的本地环境与github pages绑定" itemprop="url">将vagrant中的本地环境与github pages绑定</a>
+      <a href="/2014/12/26/将vagrant中的hexo与github-pages绑定/" title="将vagrant中的hexo与github pages绑定" itemprop="url">将vagrant中的hexo与github pages绑定</a>
   </h1>
   <p class="article-author">By
     
@@ -87,7 +86,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-12-26T05:21:29.000Z" itemprop="datePublished">Dec 26 2014</time>
-    Updated:<time datetime="2014-12-26T05:49:39.000Z" itemprop="dateModified">Dec 26 2014</time>
+    Updated:<time datetime="2014-12-26T06:09:24.000Z" itemprop="dateModified">Dec 26 2014</time>
     
   </p>
 </header>
@@ -96,11 +95,10 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得Github的ssh访问权限"><span class="toc-number">1.</span> <span class="toc-text">获得Github的ssh访问权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改虚拟机配置使虚拟机能共享使用物理机的ssh_key"><span class="toc-number">2.</span> <span class="toc-text">更改虚拟机配置使虚拟机能共享使用物理机的ssh key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改hexo的配置绑定github-pages"><span class="toc-number">3.</span> <span class="toc-text">更改hexo的配置绑定github-pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证账户并定是否成功"><span class="toc-number">4.</span> <span class="toc-text">验证账户并定是否成功</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得Github的ssh访问权限"><span class="toc-number">1.</span> <span class="toc-text">获得Github的ssh访问权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改虚拟机配置使虚拟机能共享使用物理机的ssh_key"><span class="toc-number">2.</span> <span class="toc-text">更改虚拟机配置使虚拟机能共享使用物理机的ssh key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改hexo的配置绑定github-pages"><span class="toc-number">3.</span> <span class="toc-text">更改hexo的配置绑定github-pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证账户绑定是否成功"><span class="toc-number">4.</span> <span class="toc-text">验证账户绑定是否成功</span></a></li></ol>
 		</div>
 		
-		<p>本文延续上一篇<a href="http://lo-tp.github.io/2014/12/20/用vagrant搭建干净的hexo本地环境/" target="_blank" rel="external">使用vagrant搭建hexo本地环境</a>继续讲如何将已经搭建好的hexo与github-pages绑定起来</p>
-<p>本文假设你已经拥有了github帐号，并且申请好了<a href="https://pages.github.com/" target="_blank" rel="external">github-pages</a>相关项目</p>
+		<p>本文延续上一篇<a href="http://lo-tp.github.io/2014/12/20/用vagrant搭建干净的hexo本地环境/" target="_blank" rel="external">使用vagrant搭建hexo本地环境</a>继续讲如何将已经搭建好的hexo与github-pages绑定起来<br>本文假设你已经拥有了github帐号，并且申请好了<a href="https://pages.github.com/" target="_blank" rel="external">github-pages</a>相关项目</p>
 <h3 id="获得Github的ssh访问权限">获得Github的ssh访问权限</h3>
 <p>参照这篇<a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">教程</a>,使物理机获得免输密码访问github账户的权限</p>
 <h3 id="更改虚拟机配置使虚拟机能共享使用物理机的ssh_key">更改虚拟机配置使虚拟机能共享使用物理机的ssh key</h3>
@@ -122,11 +120,8 @@ config.ssh.forward_agent = <span class="constant">true</span>
   <span class="typedef"><span class="keyword">type</span>: github</span>
   repository: git@github.com:lo-tp/lo-tp.github.io.git
 </code></pre><p>将<strong>lo-tp</strong>替换成你的github ID</p>
-<h3 id="验证账户并定是否成功">验证账户并定是否成功</h3>
-<p>在虚拟机下的<code>~/src/</code>目录下执行<code>hexo deploy</code></p>
-<p>成功部署以后，你的hexo博客就已经成功部署到github pages上边了</p>
-<p>打开浏览器输入:<code>yourGithubID.github.io</code></p>
-<p>尽情在你的blog上创作吧</p>
+<h3 id="验证账户绑定是否成功">验证账户绑定是否成功</h3>
+<p>在虚拟机下的<code>~/src/</code>目录下执行<code>hexo deploy</code><br>成功部署以后，你的hexo博客就已经成功部署到github pages上边了<br>打开浏览器输入:<code>yourGithubID.github.io</code><br>尽情在你的blog上创作吧</p>
 <p><strong>PS：部署的过程有一定延时，请耐心等待30分钟左右</strong></p>
   
 	</div>
@@ -142,7 +137,7 @@ config.ssh.forward_agent = <span class="constant">true</span>
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/12/26/将vagrant中的本地环境与github-pages绑定/" data-title="将vagrant中的本地环境与github pages绑定 | Lotp&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/12/26/将vagrant中的hexo与github-pages绑定/" data-title="将vagrant中的hexo与github pages绑定 | Lotp&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -164,7 +159,7 @@ config.ssh.forward_agent = <span class="constant">true</span>
 
 	
 <section class="comment">
-	<div class="ds-thread" data-title="将vagrant中的本地环境与github pages绑定" data-thread-key="将vagrant中的本地环境与github-pages绑定" data-author-key="Lotp" data-url="http://yoursite.com/post/将vagrant中的本地环境与github-pages绑定"></div>
+	<div class="ds-thread" data-title="将vagrant中的hexo与github pages绑定" data-thread-key="将vagrant中的hexo与github-pages绑定" data-author-key="Lotp" data-url="http://yoursite.com/post/将vagrant中的hexo与github-pages绑定"></div>
 </section>
 
 </div>  
@@ -172,7 +167,7 @@ config.ssh.forward_agent = <span class="constant">true</span>
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得Github的ssh访问权限"><span class="toc-number">1.</span> <span class="toc-text">获得Github的ssh访问权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改虚拟机配置使虚拟机能共享使用物理机的ssh_key"><span class="toc-number">2.</span> <span class="toc-text">更改虚拟机配置使虚拟机能共享使用物理机的ssh key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改hexo的配置绑定github-pages"><span class="toc-number">3.</span> <span class="toc-text">更改hexo的配置绑定github-pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证账户并定是否成功"><span class="toc-number">4.</span> <span class="toc-text">验证账户并定是否成功</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得Github的ssh访问权限"><span class="toc-number">1.</span> <span class="toc-text">获得Github的ssh访问权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改虚拟机配置使虚拟机能共享使用物理机的ssh_key"><span class="toc-number">2.</span> <span class="toc-text">更改虚拟机配置使虚拟机能共享使用物理机的ssh key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改hexo的配置绑定github-pages"><span class="toc-number">3.</span> <span class="toc-text">更改hexo的配置绑定github-pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证账户绑定是否成功"><span class="toc-number">4.</span> <span class="toc-text">验证账户绑定是否成功</span></a></li></ol>
   </div>
 
 <div id="asidepart">
