@@ -86,7 +86,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-12-20T07:28:39.000Z" itemprop="datePublished">Dec 20 2014</time>
-    Updated:<time datetime="2014-12-26T06:05:46.000Z" itemprop="dateModified">Dec 26 2014</time>
+    Updated:<time datetime="2014-12-26T06:17:03.000Z" itemprop="dateModified">Dec 26 2014</time>
     
   </p>
 </header>
@@ -137,6 +137,7 @@ npm <span class="keyword">install</span> -g hexo
 <pre><code><span class="built_in">cd</span> ~/src
 hexo . init
 </code></pre><p>之后根据个人需求对<code>_config.yml</code>进行设置<br>具体设置可以参看<a href="http://hexo.io" target="_blank" rel="external">hexo官网</a></p>
+<p>以后进一步使用的过程中<br>凡是要运行<strong>hexo</strong>相关的命令都先ssh到虚拟机里在运行<br>而编辑修改文件则可以在物理机中用你最喜欢的editor（比如vim）<br>因为我们已经为虚拟机和物理机设置了共享的文件夹:<br><code>config.vm.synced_folder &quot;src/&quot;, &quot;/home/vagrant/src/&quot;,create:true</code></p>
 <h3 id="测试hexo">测试hexo</h3>
 <p>hexo自带测试服务器,用于调试以及本地预览博客<br>如果你是按照我给出的vagrantfile安装的虚拟机的话<br>那么你只需要在虚拟机中运行如下两条命令</p>
 <pre><code><span class="title">cd</span> ~/src
