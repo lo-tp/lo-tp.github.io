@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://lo-tp.github.io/initialize-wordpress-with-docker.html" />
+
+    <title>  LOTP's Blog &mdash; Initialize Wordpress with Docker
+</title>
+
+
+
+
+    <link rel="stylesheet" href="http://lo-tp.github.io/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="Lotp">
+    <meta name="description" content="This is a step by step tutorial about how to install wordpress with docker. In this post, I’ll also include some basic modification you’ll need to use wordpress in China. Update: There is a better way to use accomplish this target. Check this post Install Wordpress Pull Images ...">
+  <meta name="tags" contents="Wordpress, Docker, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href="http://lo-tp.github.io"><img src=http://ww3.sinaimg.cn/mw690/005N6Qx8gw1ewt0kld679j305k05kmxk.jpg></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="http://lo-tp.github.io">LOTP's Blog</a>
+      </h1>
+      <h3 class="header-text">It's all about Hack, have fun</h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec" href="/tags.html" target="_blank">Tag</a></li>
+          <li><a class="nodec" href="/categories.html" target="_blank">Categories</a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/initialize-wordpress-with-docker.html" title="Permalink to Initialize Wordpress with Docker">Initialize Wordpress with&nbsp;Docker</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        Thu 08 October 2015
+        <!-- <a class="text-muted" href="/initialize-wordpress-with-docker.html" title="2015-10-08T19:32:00+08:00">Thu 08 October 2015</a> -->
+      </li>
+      <li class="muted">|</li>
+      <li class="post-category">
+        <a href="http://lo-tp.github.io/category/single-articles.html">Single Articles</a>
+      </li>
+      <li class="muted">|</li>
+      <li class="post-tags">
+<a href="tag/wordpress.html"> Wordpress</a><a href="tag/docker.html"> Docker</a>      </li>
+    </ul>
+    <div class="post-content">
+      <p>This is a step by step tutorial about how to install wordpress with docker.
+In this post, I&#8217;ll also include some basic modification you&#8217;ll need to use wordpress in&nbsp;China.</p>
+<hr />
+<p><strong>Update</strong>:</p>
+<p>There is a better way to use accomplish this&nbsp;target.</p>
+<p>Check this <a href="initialize-wordpress-with-docker-compose.html">post</a></p>
+<hr />
+<h2>Install&nbsp;Wordpress</h2>
+<ol>
+<li>
+<p>Pull&nbsp;Images</p>
+<ul>
+<li><code>docker pull mysql</code></li>
+<li><code>docker pull wordpress</code></li>
+</ul>
+</li>
+<li>
+<p>Make and Run Mysql&nbsp;Container</p>
+<p><code>docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress -d mysql:5.7</code></p>
+</li>
+<li>
+<p>Make and Run Worepress&nbsp;Container</p>
+<p><code>docker run -e WORDPRESS_DB_PASSWORD=password -d --name wordpress --link wordpressdb:mysql -p 10.0.0.47:50002:80 -v "/home/lotp/workingSpace/blog/wordpress":/var/www/html  wordpress</code></p>
+</li>
+</ol>
+<h2>Struggle with the&nbsp;Firewall</h2>
+<ol>
+<li>
+<p>Deal with Google&nbsp;Fonts</p>
+<p>Open wp-includes/script-loader.php.
+Search for fonts.googleapis.com.
+Replace <strong>googleapis</strong> with <strong>useso</strong>.</p>
+</li>
+<li>
+<p>Deal with&nbsp;Gravatar</p>
+<p>Add these lines to the end your <em>wp-includes/functions.php</em></p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">junzibuqi_com_gravatar</span><span class="p">(</span> <span class="nx">$avatar</span> <span class="p">)</span> <span class="p">{</span>
+<span class="nx">$avatar</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span> <span class="nx">array</span><span class="p">(</span> <span class="s1">&#39;http://www.gravatar.com&#39;</span><span class="p">,</span> <span class="s1">&#39;http://0.gravatar.com&#39;</span><span class="p">,</span> <span class="s1">&#39;http://1.gravatar.com&#39;</span><span class="p">,</span> <span class="s1">&#39;http://2.gravatar.com&#39;</span> <span class="p">),</span> <span class="s1">&#39;https://secure.gravatar.com&#39;</span><span class="p">,</span> <span class="nx">$avatar</span> <span class="p">);</span><span class="k">return</span> <span class="nx">$avatar</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">&#39;get_avatar&#39;</span><span class="p">,</span> <span class="s1">&#39;junzibuqi_com_gravatar&#39;</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>Also don&#8217;t forget to do some modification to <em>wp-settings.php</em>
+Reverse the order of these two&nbsp;lines.</p>
+<div class="highlight"><pre><span class="nx">require</span> <span class="p">(</span><span class="nx">ABSPATH</span> <span class="p">.</span> <span class="nx">WPINC</span> <span class="p">.</span> <span class="s1">&#39;/functions.php&#39;</span><span class="p">);</span>
+<span class="nx">require</span> <span class="p">(</span><span class="nx">ABSPATH</span> <span class="p">.</span> <span class="nx">WPINC</span> <span class="p">.</span> <span class="s1">&#39;/plugin.php&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h2>Useful&nbsp;Plugin</h2>
+<ol>
+<li>
+<p>Anti&nbsp;Spam</p>
+<p>Captcha by&nbsp;BestWebSoft</p>
+</li>
+</ol>
+<h2>Password</h2>
+<p>TPLctdSvuM)0k$^Vau</p>
+<h2>What You Need to Change about the&nbsp;Settings</h2>
+<ol>
+<li>
+<p>Help! Oops, that page can&#8217;t be found error&nbsp;message</p>
+<p><code>Settings -&gt; Permalink Settings: Switched from "Day and name" to "Default"</code></p>
+</li>
+<li>
+<p>How to Change the Line Height and&nbsp;Spacing</p>
+<p>edit <code>/wp-content/themes/simple-life/style.css</code></p>
+<div class="highlight"><pre><span class="nt">p</span><span class="p">{</span>
+    <span class="k">line-height</span><span class="o">:</span> <span class="m">180%</span><span class="p">;</span>
+    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">0.7em</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+</ol>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      LOTP, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="http://lo-tp.github.io/theme/js/jquery.min.js"></script>
+  <script src="http://lo-tp.github.io/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>

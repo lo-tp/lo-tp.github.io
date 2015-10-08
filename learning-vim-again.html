@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://10.0.0.47:50001/learning-vim-again.html" />
+
+    <title>  LOTP's Blog &mdash; Learning Vim Again
+</title>
+
+
+
+
+    <link rel="stylesheet" href="http://10.0.0.47:50001/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="Lotp">
+    <meta name="description" content="Having been using VIM for several years, I can still find some new VIM tricks. So in order to further improve my editing effiency, I decide to learn Vim again. I’m reading a book named <Practical VIM>,so this series could either be seen as a record of the ...">
+  <meta name="tags" contents="">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href="http://10.0.0.47:50001"><img src=http://ww3.sinaimg.cn/mw690/005N6Qx8gw1ewt0kld679j305k05kmxk.jpg></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="http://10.0.0.47:50001">LOTP's Blog</a>
+      </h1>
+      <h3 class="header-text">It's all about Hack, have fun</h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec" href="/tags.html" target="_blank">Tag</a></li>
+          <li><a class="nodec" href="/categories.html" target="_blank">Categories</a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/learning-vim-again.html" title="Permalink to Learning Vim Again">Learning Vim&nbsp;Again</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/learning-vim-again.html" title="2015-04-02T23:07:00+08:00">Thu 02 April 2015</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="http://10.0.0.47:50001/category/vim.html">Vim</a>
+      </li>
+    </ul>
+    <div class="post-content">
+      <p>Having been using <span class="caps">VIM</span> for several years, I can still find some new <span class="caps">VIM</span> tricks. So in order to further improve my editing effiency, I decide to learn Vim&nbsp;again.</p>
+<p>I&#8217;m reading a book named <strong>&lt;Practical <span class="caps">VIM</span>></strong>,so this series could either be seen as a record of the process of my learning <span class="caps">VIM</span> again or reading notes of that book. Any way, I would feel more than satisfied if these posts could inspire you&nbsp;somehow.</p>
+<p>Now let&#8217;s get down to&nbsp;business. </p>
+<hr />
+<p>Fisrt, I would like to put some commands of <span class="caps">VIM</span> here, these commands are conbination of motion and editing, they are uncommon but&nbsp;useful.</p>
+<p>Depending on which way is better I&#8217;ll explain some of these commands to you with descriptions of their function, and the others with a list of commands of equlvalent&nbsp;function.</p>
+<ol>
+<li><code>^</code>:Go to the first non-blank character of the&nbsp;line</li>
+<li><code>A</code>:$a</li>
+<li><code>C</code>:c$</li>
+<li><code>s</code>:cl</li>
+<li><code>S</code>:^C</li>
+<li><code>I</code>:^i</li>
+</ol>
+<p>Of all the commands above, python programmers will find those connected with <code>^</code> extremely&nbsp;useful.</p>
+<hr />
+<p>Next, I want to talk about search command in <span class="caps">VIM</span>.
+I&#8217;ve been told that I could do a search with <code>f{target}</code> for a long time but I don&#8217;t know I can also use <code>F{target}</code> for a reverse search. By the way if you accidentally skip the target and go to the next match, you can use <code>,</code> to make up. One last thing to say: Both <code>f</code> and <code>F</code> can only be used to search target in one line.
+Talking search, I think <code>*</code> is another powerful technique we should master. With <code>*</code>, you can search the word under cursor in the whole&nbsp;file.</p>
+<p>Besides <code>f{target}</code>, there is another search command which will <strong>Forward to the character before the next occurrence of{target}</strong>. It&#39;s <code>t{target}</code>.</p>
+<p>Image you want to change <strong>I&#8217;ve been expecting you, Mister Bond.</strong> to <strong>I&#8217;ve been expecting you.</strong> Using <code>f{target}</code>, the minimal keystrokes are<code>f,dfd</code>, with <code>t{target}</code>, you only need to type <code>f,dt.</code> instead.</p>
+<p>Don&#39;t look down your nose at the little one keystroke we successfully reduced, what if the original sentence is <strong>I&#8217;ve been expecting you, David&nbsp;Dahood.</strong></p>
+<hr />
+<p>If you ask me what do I like most about <span class="caps">VIM</span>, I would definitely say it&#8217;s the <strong>Text Objects</strong> mechanism.
+Basically, it&#8217;s something with which you can select and edit elements of the file more effectively and conveniently. It&#8217;s difficult to give you an accurate definition of what it is, and instead of that, I&#8217;ll cite one paragraph from &lt;Practical <span class="caps">VIM</span>>.</p>
+<blockquote>
+<p>Text objects allow us to interact with parentheses, quotes, <span class="caps">XML</span> tags, and other common patterns that appear in&nbsp;text. </p>
+</blockquote>
+<p>At this point, I don&#8217;t expect you guys understand what Text Objext is and I figure out that an example may do a better job, so here we&nbsp;go.</p>
+<p>Let&#8217;s see a snippet from a html file:
+<code>&lt;p&gt;Hello my friends&lt;/p&gt;</code></p>
+<p>Now we want to change the content of the tag &#8216;p&#8217; from &#39;Hello my friends&#39; to &#39;how are you&#39;, How can we do&nbsp;it?</p>
+<p>You may say: That&#8217;s easy, using <code>fH</code> to go to the &#39;H&#39;, and then <code>cfs</code>.
+That&#8217;s not bad, but with <span class="caps">VIM</span> some better&nbsp;way.</p>
+<p>Actually we could tell <span class="caps">VIM</span> we want to delete the content of the html tag by <code>dit</code>,and then enter insert mode to do the remaining&nbsp;job.</p>
+<p>By <code>dit</code>, we mean: delete the content of the tag. Here <code>it</code> is a <strong>Text Object</strong> reprenting the content of the&nbsp;tag.</p>
+<p>That&#8217;s pretty cool&nbsp;right?</p>
+<p>In fact, <span class="caps">VIM</span> has way more Text Objects than &#39;it&#39;. Follwing is a list of all the Text Objects you can&nbsp;use.</p>
+<ol>
+<li><code>a) or ab</code>:A pair of&nbsp;(parentheses)</li>
+<li><code>i) or ib</code>:Inside of&nbsp;(parentheses)</li>
+<li><code>a} or aB</code>:A pair of&nbsp;{braces}</li>
+<li><code>i} or iB</code>:Inside of&nbsp;{braces}</li>
+<li><code>a]</code>:A pair of&nbsp;[brackets]</li>
+<li><code>i]</code>:Inside of&nbsp;[brackets]</li>
+<li><code>a&gt;</code>:A pair of &lt;lt;angle&nbsp;brackets&gt;</li>
+<li><code>i&gt;</code>:Inside of &lt;tangle&nbsp;brackets&gt;</li>
+<li><code>a'</code>:A pair of &#8216;single&nbsp;quotes&#8217;</li>
+<li><code>i'</code>:Inside of &#8216;single&nbsp;quotes&#8217;</li>
+<li><code>a"</code>:A pair of &#8220;double&nbsp;quotes&#8221;</li>
+<li><code>i"</code>:Inside of &#8220;double&nbsp;quotes&#8221;</li>
+<li><code>a`</code>:A pair of&nbsp;`backticks`</li>
+<li><code>i`</code>:Inside of&nbsp;`backticks`</li>
+<li><code>at</code>:A pair of&nbsp;&lt;xml&gt;tags&lt;/xml&gt;</li>
+<li><code>it</code>:Inside of&nbsp;&lt;xml&gt;tags&lt;/xml&gt; </li>
+<li><code>aw</code>:A word, including&nbsp;space</li>
+<li><code>iw</code>:Inner word, not including&nbsp;space</li>
+<li><code>as</code>:A sentence, including&nbsp;space</li>
+<li><code>is</code>:Inner sentence, not including&nbsp;space</li>
+<li><code>ap</code>:A paragraph, including&nbsp;space</li>
+<li><code>ip</code>:Inner paragraph, not including&nbsp;space</li>
+</ol>
+<p>Except the delete command, you can also combine text object with many other command like: yank commank <code>y</code>, the select command <code>v</code> etc. And I think it&#8217;s cumbersome to list all these commands out but if you want, you don&#8217;t have to spend a long time to figure out what these commands&nbsp;are.</p>
+<p>And that&#8217;s all for the first post of the <strong>Learning <span class="caps">VIM</span> again series</strong>. Next post is coming&nbsp;soon.</p>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      LOTP, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="http://10.0.0.47:50001/theme/js/jquery.min.js"></script>
+  <script src="http://10.0.0.47:50001/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
