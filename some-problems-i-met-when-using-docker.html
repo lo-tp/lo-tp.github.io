@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="http://lo-tp.github.io/some-problems-i-met-when-using-docker.html" />
 
-    <title>  LOTP's Blog &mdash; Some problems I met when using Docker
+    <title>  LOTP's Blog &mdash; Some Problems I Met When Using Docker
 </title>
 
 
@@ -23,7 +23,7 @@
 
 
     <meta name="author" content="Lotp">
-    <meta name="description" content="Solution to the “client and server don’t have same version (client: 1.14, server: 1.12)” error Install lower version of compose Install higher version of docker Trap about ‘shared directory’ The first synchronization will always synchronize directory within container with the host one. For example In your docker-compose ...">
+    <meta name="description" content="Solutions to the “client and server don’t have same version (client: 1.14, server: 1.12)” error Install lower version of compose Install higher version of docker Trap about ‘shared directory’ The first synchronization will always synchronize directory within container with the host one. For example In your docker-compose ...">
   <meta name="tags" contents="">
 </head>
 
@@ -47,7 +47,7 @@
 </header> <!-- /.header -->  <div class="container">
   <div class="post full-post">
     <h1 class="post-title">
-      <a href="/some-problems-i-met-when-using-docker.html" title="Permalink to Some problems I met when using Docker">Some problems I met when using&nbsp;Docker</a>
+      <a href="/some-problems-i-met-when-using-docker.html" title="Permalink to Some Problems I Met When Using Docker">Some Problems I Met When Using&nbsp;Docker</a>
     </h1>
     <ul class="list-inline">
       <li class="post-date">
@@ -60,7 +60,7 @@
       </li>
     </ul>
     <div class="post-content">
-      <h2>Solution to the &#8220;client and server don&#8217;t have same version (client: 1.14, server: 1.12)&#8221;&nbsp;error</h2>
+      <h2>Solutions to the &#8220;client and server don&#8217;t have same version (client: 1.14, server: 1.12)&#8221;&nbsp;error</h2>
 <ul>
 <li>Install lower version of&nbsp;compose</li>
 <li>Install higher version of&nbsp;docker</li>
@@ -74,8 +74,8 @@ In your docker-compose.yml, you have one line like&nbsp;this:</p>
 </pre></div>
 
 
-<p>When your image is first started, /myApp within container with always be synchronized as ./src in your&nbsp;host.</p>
-<p>Even if it has something different from&nbsp;./src</p>
+<p>When your container is first started, /myApp within container with always be synchronized as ./src in your host.
+Even if it has something different from&nbsp;./src.</p>
     </div>
   </div>
   <hr class="separator">
