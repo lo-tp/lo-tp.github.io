@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode,Bfs,Algorithm," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="Every Day in Life Is a First Time">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lotp's Blog">
-<meta property="og:url" content="http://blog.lotp.xyz/index.html">
+<meta name="description" content="If you come here for a solution to the problem, you are in a wrong place.Because my code for this quiz wasn’t accepted yet and the purpose of this post is to make a summary about what I have learn abo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LeetCode 126, TLE] Word Ladder II">
+<meta property="og:url" content="http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/index.html">
 <meta property="og:site_name" content="Lotp's Blog">
-<meta property="og:description" content="Every Day in Life Is a First Time">
+<meta property="og:description" content="If you come here for a solution to the problem, you are in a wrong place.Because my code for this quiz wasn’t accepted yet and the purpose of this post is to make a summary about what I have learn abo">
+<meta property="og:updated_time" content="2016-11-26T10:41:16.738Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lotp's Blog">
-<meta name="twitter:description" content="Every Day in Life Is a First Time">
+<meta name="twitter:title" content="[LeetCode 126, TLE] Word Ladder II">
+<meta name="twitter:description" content="If you come here for a solution to the problem, you are in a wrong place.Because my code for this quiz wasn’t accepted yet and the purpose of this post is to make a summary about what I have learn abo">
 
 
 
@@ -113,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.lotp.xyz/"/>
+  <link rel="canonical" href="http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/"/>
 
-  <title> Lotp's Blog </title>
+  <title> [LeetCode 126, TLE] Word Ladder II | Lotp's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -136,9 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,9 +214,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -237,10 +236,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/26/Leetcode-126-Word-Ladder-II/" itemprop="url">
-                  [LeetCode 126, TLE] Word Ladder II
-                </a>
+                [LeetCode 126, TLE] Word Ladder II
               
             
           </h1>
@@ -287,9 +283,7 @@
       
 
       
-        
-          
-            <p>If you come here for a solution to the problem, you are in a wrong place.<br>Because <strong>my code for this quiz wasn’t accepted yet</strong> and the purpose of this post is to make a summary about what I have learn about BFS from doing this exercise.<br>I will share my code at the end of this post and any ideas on where my code is wrong are greatly appreciated.</p>
+        <p>If you come here for a solution to the problem, you are in a wrong place.<br>Because <strong>my code for this quiz wasn’t accepted yet</strong> and the purpose of this post is to make a summary about what I have learn about BFS from doing this exercise.<br>I will share my code at the end of this post and any ideas on where my code is wrong are greatly appreciated.</p>
 <h6 id="When-Should-We-Use-BFS"><a href="#When-Should-We-Use-BFS" class="headerlink" title="When Should We Use BFS"></a>When Should We Use BFS</h6><p>When the target is to find the shortest path,BFS is a good choice.<br>If you do not have to find all the shortest paths, then you can stop whenever the first path is found.<br>Otherwise you would have to wait until all the nodes from current layer are processed.</p>
 <h6 id="How-to-Implement-BFS"><a href="#How-to-Implement-BFS" class="headerlink" title="How to Implement BFS"></a>How to Implement BFS</h6><p>Use a queue to store the tree, and take advantage of the FIFO characteristic of queue to implement BFS.</p>
 <h6 id="Optimizations-You-May-Want-To-Use-With-BFS"><a href="#Optimizations-You-May-Want-To-Use-With-BFS" class="headerlink" title="Optimizations You May Want To Use With BFS"></a>Optimizations You May Want To Use With BFS</h6><ol>
@@ -307,462 +301,63 @@
 <hr>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div></pre></td><td class="code"><pre><div class="line">function Queue(first) &#123;</div><div class="line">  this.queue = [&#123;</div><div class="line">    path: [0],</div><div class="line">    word: first,</div><div class="line">  &#125;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">Queue.prototype.enque = function (elements) &#123;</div><div class="line">  this.queue = this.queue.concat(elements);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Queue.prototype.dequeue = function () &#123;</div><div class="line">  return this.queue.pop();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const getDifferenceNum = (source, target) =&gt; &#123;</div><div class="line">  const ret = source.filter((s, i) =&gt; s !== target[i]).length;</div><div class="line">  return ret;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">function Test(begin, end, list) &#123;</div><div class="line">  this.results = [];</div><div class="line">  this.list = [begin, ...list];</div><div class="line">  this.list = this.list.map(s =&gt; s.split(&apos;&apos;));</div><div class="line">  this.end = end.split(&apos;&apos;);</div><div class="line">  this.queue = new Queue(begin.split(&apos;&apos;));</div><div class="line">  this.deep = Number.MAX_SAFE_INTEGER;</div><div class="line">  this.removeRepitition();</div><div class="line">  this.makeAdjacencyMatrix();</div><div class="line">  this.currentLevel = 0;</div><div class="line">  this.currentLevelElements = [];</div><div class="line">  this.usedElements = [];</div><div class="line">&#125;</div><div class="line"></div><div class="line">Test.prototype.makeAdjacencyMatrix = function () &#123;</div><div class="line">  const length = this.list.length;</div><div class="line">  this.adjacency = [];</div><div class="line">  let index = 0;</div><div class="line">  while (index &lt; length) &#123;</div><div class="line">    this.adjacency[index] = [];</div><div class="line">    index += 1;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  index = 0;</div><div class="line">  while (index &lt; length) &#123;</div><div class="line">    let innerIndex = index + 1;</div><div class="line">    while (innerIndex &lt; length) &#123;</div><div class="line">      if (getDifferenceNum(this.list[index], this.list[innerIndex]) === 1) &#123;</div><div class="line">        // making use of the symmetry of the adjacency matrix</div><div class="line">        this.adjacency[index].push(innerIndex);</div><div class="line">        this.adjacency[innerIndex].push(index);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      innerIndex += 1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    index += 1;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Test.prototype.removeRepitition = function () &#123;</div><div class="line">  const hash = &#123;&#125;;</div><div class="line">  const newList = [];</div><div class="line">  this.list.forEach(l =&gt; &#123;</div><div class="line">    if (!hash[l]) &#123;</div><div class="line">      hash[l] = true;</div><div class="line">      newList.push(l);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  this.list = newList;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Test.prototype.findChildren = function (parent) &#123;</div><div class="line">  const currentIndex = parent.path.slice(-1)[0];</div><div class="line">  if (parent.path.length &gt; this.currentLevel) &#123;</div><div class="line">    this.usedElements = this.usedElements.concat(this.currentLevelElements);</div><div class="line">    this.currentLevelElements = [currentIndex];</div><div class="line">    this.currentLevel = parent.path.length;</div><div class="line">  &#125; else &#123;</div><div class="line">    this.currentLevelElements.push(currentIndex);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  const ret = this.adjacency[currentIndex].filter(l =&gt;</div><div class="line">    &#123;</div><div class="line">      return parent.path.find(p =&gt; p === l) === undefined</div><div class="line">        &amp;&amp; this.usedElements.find(p =&gt; p === l) === undefined;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">  return ret.map(r =&gt; (</div><div class="line">    &#123;</div><div class="line">      word: this.list[r],</div><div class="line">      path: [...parent.path, r],</div><div class="line">    &#125;</div><div class="line">    ));</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Test.prototype.findResults = function () &#123;</div><div class="line">  let current = this.queue.dequeue();</div><div class="line">  while (current) &#123;</div><div class="line">    if (current) &#123;</div><div class="line">      if (getDifferenceNum(current.word, this.end) === 1</div><div class="line">          &amp;&amp; current.path.length &lt;= this.deep) &#123;</div><div class="line">        this.deep = current.path.length;</div><div class="line">        this.results.push(current.path);</div><div class="line">      &#125; else if (current.path.length &lt; this.deep) &#123;</div><div class="line">        const children = this.findChildren(current);</div><div class="line">        this.queue.enque(children);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    current = this.queue.dequeue();</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Test.prototype.filterResults = function () &#123;</div><div class="line">  let minLength = Number.MAX_SAFE_INTEGER;</div><div class="line">  this.results.forEach(r =&gt; &#123;</div><div class="line">    if (r.length &lt; minLength) &#123;</div><div class="line">      minLength = r.length;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  this.results = this.results.filter(r =&gt; r.length &lt;= minLength);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Test.prototype.convertResults = function () &#123;</div><div class="line">  this.results = this.results.map(r =&gt; r.map(l =&gt; this.list[l]));</div><div class="line">  this.results.forEach(r =&gt; r.push(this.end.join(&apos;&apos;)));</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var findLadders = function (beginWord, endWord, wordList) &#123;</div><div class="line">  const tem = new Test(beginWord, endWord, wordList);</div><div class="line">  tem.findResults();</div><div class="line">  tem.filterResults();</div><div class="line">  tem.list = tem.list.map(t =&gt; t.join(&apos;&apos;));</div><div class="line">  tem.convertResults();</div><div class="line">  return tem.results;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/" itemprop="url">
-                  How-to-Write-Your-Redux-Action-in-a-More-Concise-Style
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-11-06T06:26:22+00:00" content="2016-11-06">
-              2016-11-06
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/Bfs/" rel="tag">#Bfs</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/Algorithm/" rel="tag">#Algorithm</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Let’s see you are working on a project about article writing and now you are about to write actions to create and update articles.<br>To create an article, you would need an action creator like this.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> createArticle = title =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        type: ARTICLE,</div><div class="line">        operation: CREATE,</div><div class="line">        title</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>When it comes to article updating, you need another action creator.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> updateArticle = ( newTitle, title) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        type: ARTICLE,</div><div class="line">        operation: UPDATE,</div><div class="line">        title,</div><div class="line">        newTitle</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>These two functions looks like each other very much.<br>Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs.</p>
-<p>Of course yes, but you need some extra help.<br>I highly recommend you to read the wiki page of <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="external">functional programming</a> if it’s new to you.<br>Otherwise the following snippets may be very strange to you.</p>
-<p>To do functional programming, you may need some help of libraries such <a href="http://ramdajs.com/" target="_blank" rel="external">Ramda</a>.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> R = <span class="built_in">require</span>(<span class="string">"ramda"</span>);</div><div class="line"><span class="keyword">const</span> actionArg = R.curry((type, operation, newTitle, title)=&gt; (</div><div class="line">  &#123;</div><div class="line">    type, operation, title, newTitle</div><div class="line">  &#125;</div><div class="line">));</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> actionOfArticle = actionArg(ARTICLE);</div></pre></td></tr></table></figure>
-<p>With the above snippet, basically you are defining a function called <code>actionArg</code> that would return another function.<br>The function returned by <code>actionArg</code> would return an object describing the action you are creating.<br>At the last line you are making an article to deal with all the article related stuff.</p>
-<p>Here comes the magic.<br>Now, to create an article, you just need to define an one line function.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> createArticle = actionOfArticle(CREATE,<span class="number">0</span>,R.__)</div></pre></td></tr></table></figure></p>
-<p>Also it becomes easier if you want to update the title of an existing article.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> createArticle = actionOfArticle(UPDATE,R.__,R.__)</div></pre></td></tr></table></figure></p>
-<p>This may not seem useful when you are only dealing with simple actions.<br>But when actions becomes complex, you can save a lot of time by wrting actions in this way.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/" rel="next" title="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
+                <i class="fa fa-chevron-left"></i> How-to-Write-Your-Redux-Action-in-a-More-Concise-Style
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="url">
-                  Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T04:46:00+00:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/swipteToDelete.gif" alt="Swipe To Delete"><br>Drag gesture, like the image above, is a very good interaction model for touch devices.<br>This article is about the implementation of drag gesture on mobile browsers.</p>
-<p>I use react to simplify the code. However you can accomplish it without any framework.</p>
-<p>The basic idea is to make a scrollable widget comprised by two component.<br>The first component is always visible while the second one(named <strong>drag-btn</strong> in this article) can only be seen after scrolling.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;li</div><div class="line">  onClick = &#123;this.props.click.bind(this)&#125;</div><div class="line">  ref = &#123;e=&gt; &#123;</div><div class="line">    this.li = e;</div><div class="line">  &#125;&#125;</div><div class="line">  className = &#123;"menu__item"&#125;</div><div class="line">  onScroll = &#123;this.onScroll&#125;</div><div class="line">&gt;</div><div class="line">  &lt;div</div><div class="line">    className = &#123;"text"&#125;</div><div class="line">  &gt;</div><div class="line">    &lt;text &gt;</div><div class="line">      &#123;this.props.text&#125;</div><div class="line">    &lt;/text&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div</div><div class="line">    ref = &#123;e=&gt; &#123;</div><div class="line">      this.dragBtn = e;</div><div class="line">    &#125;&#125;</div><div class="line">    className = &#123;`drag-btn $&#123;this.props.dragClass[0]&#125;`&#125;</div><div class="line">  &gt;</div><div class="line">    &lt;text&gt;</div><div class="line">      drag</div><div class="line">    &lt;/text&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/li&gt;</div></pre></td></tr></table></figure></p>
-<p>We use <code>onscroll</code> to monitor the scrolling.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">onScroll:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.scroll = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</div><div class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;this.props.dragClass[1]&#125;</span>`</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;this.props.dragClass[0]&#125;</span>`</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
-<p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
-<p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">onTouchEnd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scroll) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</div><div class="line">      <span class="keyword">this</span>.props.drag.bind(<span class="keyword">this</span>)();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.li.scrollLeft = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.scroll = <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>You can check the jsfiddle snippet below to see a working example.<strong>Check it on your phone as no touchend event is emitted on the desktop browser.</strong></p>
-<p>In order to keep it concise, only the most pertinent code was demonstrated in this article.<br>For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers" target="_blank" rel="external">repo</a>.</p>
-<iframe scrolling="no" width="100%" height="300" src="http://jsfiddle.net/nq3qero4/embedded/result,js/light" frameborder="0" allowfullscreen></iframe>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/" itemprop="url">
-                  A Painless Way to Clone an Existing Linux OS to Another Disk
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T09:08:11+00:00" content="2016-08-29">
-              2016-08-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>We all know that installing operation system is a toil.<br><strong>So let’s say no to restinalling OS.</strong><br>Recently, I bought a larger SSD and intended to use it to replace the older one.<br>In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one.<br>Luckily I succeeded.<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/" itemprop="url">
-                  How to Customize Password Resetting Page in Meteor
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T07:24:48+00:00" content="2016-08-29">
-              2016-08-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Meteor Already has a built-in password reset mechanism.<br>Normally, you would use it with the <code>accounts-ui</code> package.<br>But things become tricky when you want to customize the password resetting page.<br>In this article, I will walk you through on how to implement your own password resetting page in Meteor.<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -770,6 +365,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -788,6 +394,15 @@
 
       
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview">
+            Overview
+          </li>
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+        </ul>
       
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
@@ -844,6 +459,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel ">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#When-Should-We-Use-BFS"><span class="nav-number">1.</span> <span class="nav-text">When Should We Use BFS</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#How-to-Implement-BFS"><span class="nav-number">2.</span> <span class="nav-text">How to Implement BFS</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Optimizations-You-May-Want-To-Use-With-BFS"><span class="nav-number">3.</span> <span class="nav-text">Optimizations You May Want To Use With BFS</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#A-Mistake-You-May-Make-When-Using-BFS"><span class="nav-number"></span> <span class="nav-text">A Mistake You May Make When Using BFS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lessons-I-Have-Learnt-about-Javascript"><span class="nav-number"></span> <span class="nav-text">Lessons I Have Learnt about Javascript</span></a></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -947,6 +573,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -963,9 +593,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blog-lotp-xyz';
-      var disqus_identifier = 'index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2016/11/26/Leetcode-126-Word-Ladder-II/';
+      var disqus_title = "[LeetCode 126, TLE] Word Ladder II";
+      var disqus_url = 'http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -976,6 +606,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   
