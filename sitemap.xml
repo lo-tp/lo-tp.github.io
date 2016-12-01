@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/</loc>
+    
+    <lastmod>2016-12-01T07:50:53.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/</loc>
     
     <lastmod>2016-11-26T21:15:11.692Z</lastmod>

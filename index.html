@@ -238,6 +238,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/" itemprop="url">
+                  How to Use Postmessage to Communicate with iframe in React
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-01T06:57:44+00:00" content="2016-12-01">
+              2016-12-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>We all know that we should avert the use of iframe, but sometimes, we have no choice but to use it.<br>This article is about how to use postmessage to communicate with an iframe using React.<br>Assumptions were made that you know what is postmessage and how to use it, so if you are not familiar with it, read this this <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage" target="_blank" rel="external">introduction to postmessage</a> first.<br>At first I want you to know as we need to run js on websites within and outside the child iframe so this method can only be used when you have administration privilege on both sides.</p>
+<p>Let’s see what we can do with this method.</p>
+<p><img src="/images/iframePostmessge.gif" alt="what we can do"></p>
+<p>As you can see, informations about the scrollTop and height of the child iframe is transfered to the parent component so we can tell whether or not the child iframe is scrolled to top or bottom.</p>
+<p>To achieve this, we had to run this javascript inside the website which is shown inside the iframe.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> scrollTop;</div><div class="line">  <span class="keyword">var</span> domain;</div><div class="line">  <span class="keyword">var</span> url;</div><div class="line">  <span class="keyword">var</span> body;</div><div class="line">  <span class="keyword">var</span> target;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sendHeight</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    target.postMessage(&#123; url: url, value: body.scrollHeight, type: <span class="string">'height'</span> &#125;, domain);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sendScrollTop</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    scrollTop = body.scrollTop;</div><div class="line">    target.postMessage(&#123; url: url, value: scrollTop, type: <span class="string">'scrollTop'</span> &#125;, domain);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  body = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>];</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (event.data.type) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="string">'setScroll'</span>:</div><div class="line">        body.scrollTop = event.data.value;</div><div class="line">        scrollTop = event.data.value;</div><div class="line">        url = event.data.url;</div><div class="line">        target = event.source;</div><div class="line">        domain = event.origin;</div><div class="line">        sendHeight();</div><div class="line">        sendScrollTop();</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, receiveMessage);</div><div class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.target.activeElement === body &amp;&amp; scrollTop !== body.scrollTop) &#123;</div><div class="line">      sendScrollTop();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>Basically, the above code does 3 thing.</p>
+<ol>
+<li>Set up a handler listening to the incoming message sent from the parent container through postmessage.</li>
+<li>Set up a handler listening to the scrolling event and send scrollTop to the parent container at appropriate time.</li>
+<li>Send height to the parent container;</li>
+</ol>
+<p>Now let’s move to the parent side.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component, PropTypes &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; setScrollTop, setHeight &#125; <span class="keyword">from</span> <span class="string">'./action'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">container</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.msgHandler = <span class="keyword">this</span>.msgHandler.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.send = <span class="keyword">this</span>.send.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.componentDidMount = <span class="keyword">this</span>.componentDidMount.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.maxScrollTop = <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  send() &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.container &amp;&amp; <span class="keyword">this</span>.container.contentWindow) &#123;</div><div class="line">      <span class="keyword">this</span>.container.contentWindow.postMessage(<span class="keyword">this</span>.data, <span class="string">'*'</span>);</div><div class="line">      <span class="keyword">this</span>.container.scrollTop = <span class="number">20</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.received) &#123;</div><div class="line">      setTimeout(<span class="keyword">this</span>.send, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="keyword">this</span>.previous = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">this</span>.next = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">this</span>.data = &#123;</div><div class="line">      url: <span class="keyword">this</span>.props.content,</div><div class="line">      type: <span class="string">'setScroll'</span>,</div><div class="line">      value: <span class="keyword">this</span>.props.scrollTop,</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">this</span>.send();</div><div class="line">    <span class="keyword">this</span>.reveived = <span class="literal">false</span>;</div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="keyword">this</span>.msgHandler);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  msgHandler(e) &#123;</div><div class="line">    <span class="keyword">if</span> (e.data.url !== <span class="keyword">this</span>.props.content) &#123;</div><div class="line">      <span class="comment">// console.info(e.data.url);</span></div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (e.data.type) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="string">'height'</span>:</div><div class="line">        <span class="keyword">this</span>.maxScrollTop = e.data.value - <span class="keyword">this</span>.container.offsetHeight;</div><div class="line">        <span class="keyword">this</span>.received = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      <span class="keyword">case</span> <span class="string">'scrollTop'</span>:</div><div class="line">        <span class="keyword">this</span>.props.saveScroll(e.data.value);</div><div class="line"></div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div</div><div class="line">        className = 'group'</div><div class="line">      &gt;</div><div class="line">        &lt;h4 &gt;</div><div class="line">          &#123;`Scroll Top:$&#123;this.props.scrollTop&#125;`&#125;</div><div class="line">        &lt;/h4&gt;</div><div class="line">        &lt;button</div><div class="line">          onClick = &#123;() =&gt; alert('wanna go to previous page?')&#125;</div><div class="line">          disabled=&#123;this.props.scrollTop !== 0&#125;</div><div class="line">        &gt;</div><div class="line">          Previous</div><div class="line">        &lt;/button&gt;</div><div class="line">        &lt;iframe</div><div class="line">          ref = &#123;e =&gt; &#123;</div><div class="line">            this.container = e;</div><div class="line">          &#125;&#125;</div><div class="line"></div><div class="line">          src = &#123;this.props.content&#125;</div><div class="line">        /&gt;</div><div class="line">        &lt;button</div><div class="line">          disabled=&#123;this.props.scrollTop &lt; this.maxScrollTop&#125;</div><div class="line">            onClick = &#123;() =&gt; alert('wanna go to next page?')&#125;</div><div class="line">        &gt;</div><div class="line">          Next</div><div class="line">        &lt;/button&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">container.propTypes = &#123;</div><div class="line">  scrollTop: PropTypes.number.isRequired,</div><div class="line">  saveScroll: PropTypes.func.isRequired,</div><div class="line">  content: PropTypes.string.isRequired,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">container.mapStateToProps = state =&gt; (&#123;</div><div class="line">  scrollTop: state.scrollTop,</div><div class="line">  height: state.height,</div><div class="line">  content: 'http://localhost:8080/one.html',</div><div class="line">&#125;);</div><div class="line"></div><div class="line">container.mapDispatchToProps = dispatch =&gt; (&#123;</div><div class="line">  saveScroll: num =&gt; &#123;</div><div class="line">    dispatch(setScrollTop(Math.round(num)));</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  saveHeight: num =&gt; &#123;</div><div class="line">    dispatch(setHeight(num));</div><div class="line">  &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default connect(container.mapStateToProps,</div><div class="line">                       container.mapDispatchToProps,</div><div class="line">                       container.mapMergeProps)(container);</div></pre></td></tr></table></figure></p>
+<p>Firstly, <code>send()</code> is continuously invoked to establish connection with the child iframe in <code>componentDidMount</code> until a reply is recieved.<br>Then monitor the scrollTop and height attribute of the child iframe inside the <code>msgHandler</code>.<br>Having known the scrollTop and height, we can tell if the user scrolls to the top or bottom by comparing those two attributes.</p>
+<h3 id="What-is-Missing-in-This-Article"><a href="#What-is-Missing-in-This-Article" class="headerlink" title="What is Missing in This Article?"></a>What is Missing in This Article?</h3><p>For safety reasons, we should always check the origin of messages in both the parent and child sides, but to keep the article short, I ignored this part.<strong>(Never do this in your production environment)</strong></p>
+<p>If you want to know more about security measures which we should implement when using postmessage, check out this <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage" target="_blank" rel="external">document</a>.</p>
+<hr>
+<p>Full source code were disclosed at this [repo][repo], play with it if you are interested.</p>
+<p>[repo][repo]</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/26/Leetcode-126-Word-Ladder-II/" itemprop="url">
                   [LeetCode 126, TLE] Word Ladder II
                 </a>
@@ -802,7 +920,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -812,7 +930,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
