@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/</loc>
+    
+    <lastmod>2016-12-07T10:37:37.046Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/</loc>
     
     <lastmod>2016-12-01T22:42:57.118Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/</loc>
     
     <lastmod>2016-11-26T21:15:11.692Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/</loc>
-    
-    <lastmod>2016-11-06T08:15:09.691Z</lastmod>
     
   </url>
   

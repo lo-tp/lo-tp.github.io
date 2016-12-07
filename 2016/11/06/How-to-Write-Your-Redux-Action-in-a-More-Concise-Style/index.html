@@ -64,7 +64,7 @@
 <meta property="og:url" content="http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/index.html">
 <meta property="og:site_name" content="Lotp's Blog">
 <meta property="og:description" content="Let’s see you are working on a project about article writing and now you are about to write actions to create and update articles.To create an article, you would need an action creator like this.12345">
-<meta property="og:updated_time" content="2016-11-06T08:15:09.691Z">
+<meta property="og:updated_time" content="2016-12-07T10:37:37.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
 <meta name="twitter:description" content="Let’s see you are working on a project about article writing and now you are about to write actions to create and update articles.To create an article, you would need an action creator like this.12345">
@@ -265,7 +265,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> R = <span class="built_in">require</span>(<span class="string">"ramda"</span>);</div><div class="line"><span class="keyword">const</span> actionArg = R.curry((type, operation, newTitle, title)=&gt; (</div><div class="line">  &#123;</div><div class="line">    type, operation, title, newTitle</div><div class="line">  &#125;</div><div class="line">));</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> actionOfArticle = actionArg(ARTICLE);</div></pre></td></tr></table></figure>
 <p>With the above snippet, basically you are defining a function called <code>actionArg</code> that would return another function.<br>The function returned by <code>actionArg</code> would return an object describing the action you are creating.<br>At the last line you are making an article to deal with all the article related stuff.</p>
 <p>Here comes the magic.<br>Now, to create an article, you just need to define an one line function.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> createArticle = actionOfArticle(CREATE,<span class="number">0</span>,R.__)</div></pre></td></tr></table></figure></p>
-<p>Also it becomes easier if you want to update the title of an existing article.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> createArticle = actionOfArticle(UPDATE,R.__,R.__)</div></pre></td></tr></table></figure></p>
+<p>Also it becomes easier if you want to update the title of an existing article.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> updateArticle = actionOfArticle(UPDATE,R.__,R.__)</div></pre></td></tr></table></figure></p>
 <p>This may not seem useful when you are only dealing with simple actions.<br>But when actions becomes complex, you can save a lot of time by wrting actions in this way.</p>
 
       
