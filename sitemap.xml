@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/</loc>
+    
+    <lastmod>2016-12-10T02:00:31.077Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/</loc>
     
     <lastmod>2016-12-08T02:03:46.008Z</lastmod>

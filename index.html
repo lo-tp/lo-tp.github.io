@@ -212,6 +212,119 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/10/LeetCode-455-AC-Assign-Cookies/" itemprop="url">
+                  [LeetCode 455, AC] Assign Cookies
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-10T01:49:42+00:00" content="2016-12-10">
+              2016-12-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/10/LeetCode-455-AC-Assign-Cookies/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/10/LeetCode-455-AC-Assign-Cookies/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj &gt;= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.</p>
+<p><strong>Note:</strong><br>You may assume the greed factor is always positive. </p>
+<p>You cannot assign more than one cookie to one child.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><p><strong>Input:</strong> [1,2,3], [1,1]</p>
+<p><strong>Output:</strong> 1</p>
+<p><strong>Explanation:</strong> You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3.<br>And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.<br>You need to output 1.</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h4><p><strong>Input:</strong> [1,2], [1,2,3]</p>
+<p><strong>Output:</strong> 2</p>
+<p><strong>Explanation:</strong> You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2.<br>You have 3 cookies and their sizes are big enough to gratify all of the children,<br>You need to output 2.</p>
+<hr>
+<p>This is a typical greedy problem.</p>
+<p>The partial best solution is to find the smallest cookie that could be given to the least greedy child.</p>
+<p>Find partial best solutions in repetition until there is no cooky that could be given to the least greedy child or all children receive a cooky.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Solution</div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">findContentChildren</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; g, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s)</span></span></div><div class="line">  &#123;</div><div class="line">    sort(g.begin(),g.end());</div><div class="line">    sort(s.begin(),s.end());</div><div class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator child = g.begin();</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator cooky = s.begin();</div><div class="line">    <span class="keyword">while</span> (child != g.end() &amp;&amp; cooky != s.end())</div><div class="line">    &#123;</div><div class="line">      <span class="keyword">if</span> (*cooky &gt;= *child)</div><div class="line">      &#123;</div><div class="line">        result += <span class="number">1</span>;</div><div class="line">        child ++;</div><div class="line">      &#125;</div><div class="line">      cooky ++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  Solution s = Solution();</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; children(&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;);</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cookies(&#123;<span class="number">1</span>, <span class="number">1</span>&#125;);</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;s.findContentChildren(children, cookies)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"*******"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; children1(&#123;<span class="number">1</span>, <span class="number">2</span>&#125;);</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cookies1(&#123;<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>&#125;);</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;s.findContentChildren(children1, cookies1)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/" itemprop="url">
                   How to Use Postmessage to Communicate with iframe in React
                 </a>
@@ -893,7 +1006,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -903,7 +1016,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
