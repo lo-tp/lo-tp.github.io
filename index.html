@@ -212,6 +212,121 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/" itemprop="url">
+                  [LeetCode 417, AC] Pacific Atlantic Water Flow
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-13T14:22:33+00:00" content="2016-12-13">
+              2016-12-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.</p>
+<p>Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.</p>
+<p>Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The order of returned grid coordinates does not matter.</li>
+<li>Both m and n are less than 150.</li>
+</ol>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Given the following 5x5 matrix:</div><div class="line"></div><div class="line">  Pacific ~   ~   ~   ~   ~ </div><div class="line">       ~  1   2   2   3  (5) *</div><div class="line">       ~  3   2   3  (4) (4) *</div><div class="line">       ~  2   4  (5)  3   1  *</div><div class="line">       ~ (6) (7)  1   4   5  *</div><div class="line">       ~ (5)  1   1   2   4  *</div><div class="line">          *   *   *   *   * Atlantic</div><div class="line"></div><div class="line">Return:</div><div class="line"></div><div class="line">[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).</div></pre></td></tr></table></figure>
+<hr>
+<p>If you try to do a DFS or BFS on each grid to see if it can reach both Pacific and Atlantic ocean, you will get a time out error.</p>
+<p>Luckily, we can solve this problem if we think in a contrary way.<br>We can deduce which grids can reach Atlantic ocean and which can reach Pacific ocean, then the intersection of the two set is the answer.</p>
+<p>In this way, the number of iterations can be greatly reduced to the sum of of the 4 edges’ grids, thus averting the time out error.</p>
+<p>It’s straightforward to use two vectors to separately store the connectivities of Atlantic ocean and Pacific ocean, but there is an optimization with which you only need one vector to store the same data.That is bit mask( All credits belong to <a href="https://discuss.leetcode.com/topic/62314/very-concise-c-solution-using-dfs-and-bit-mask" target="_blank" rel="external">zyoppy008</a>).<br>Since the data we are trying to maintain are basically two boolean states, two bits in one int are totally enough.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Solution</div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line"></div><div class="line">  <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; pacificAtlantic(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; ret;</div><div class="line">    <span class="built_in">stack</span> &lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; s1;</div><div class="line">    <span class="built_in">stack</span> &lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; s2;</div><div class="line">    <span class="built_in">vector</span> &lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; intermidiate;</div><div class="line">    <span class="keyword">int</span> hSize, vSize;</div><div class="line">    vSize = matrix.size();</div><div class="line">    <span class="keyword">if</span> (vSize)</div><div class="line">    &#123;</div><div class="line">      hSize = matrix[<span class="number">0</span>].size();</div><div class="line">      <span class="keyword">if</span> (hSize)</div><div class="line">      &#123;</div><div class="line">        intermidiate.resize(vSize, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(hSize, <span class="number">0</span>));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; vSize; index++)</div><div class="line">        &#123;</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(index, <span class="number">0</span>));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, INT_MIN));</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(index, hSize - <span class="number">1</span>));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, INT_MIN));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; hSize; index++)</div><div class="line">        &#123;</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">0</span>, index));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, INT_MIN));</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vSize - <span class="number">1</span>, index));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, INT_MIN));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (!s1.empty())</div><div class="line">        &#123;</div><div class="line">          pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pos = s1.top(), meta = s2.top();</div><div class="line">          <span class="keyword">int</span> vPos = pos.first, hPos = pos.second, previousValue = meta.second, flag = meta.first;</div><div class="line">          s1.pop();</div><div class="line">          s2.pop();</div><div class="line">          <span class="keyword">if</span> (vPos &gt;= <span class="number">0</span> &amp;&amp; vPos &lt; vSize &amp;&amp; hPos &gt;= <span class="number">0</span> &amp;&amp; hPos &lt; hSize &amp;&amp; matrix[vPos][hPos] &gt;= previousValue &amp;&amp;</div><div class="line">              (intermidiate[vPos][hPos]&amp;flag) == <span class="number">0</span>)</div><div class="line">          &#123;</div><div class="line">            intermidiate[vPos][hPos] = intermidiate[vPos][hPos] | flag;</div><div class="line">            <span class="keyword">if</span> (intermidiate[vPos][hPos] == <span class="number">3</span>)</div><div class="line">            &#123;</div><div class="line">              <span class="built_in">cout</span> &lt;&lt; vPos &lt;&lt; <span class="string">' '</span> &lt;&lt; hPos &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">              ret.push_back(pos);</div><div class="line">            &#125;</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos - <span class="number">1</span>, hPos));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos + <span class="number">1</span>, hPos));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos, hPos - <span class="number">1</span>));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos, hPos + <span class="number">1</span>));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="built_in">vector</span> &lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; testData = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>&#125;, &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>&#125;, &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>&#125;&#125;;</div><div class="line">  Solution s;</div><div class="line">  s.pacificAtlantic(testData);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/10/LeetCode-455-AC-Assign-Cookies/" itemprop="url">
                   [LeetCode 455, AC] Assign Cookies
                 </a>
@@ -1006,7 +1121,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1016,7 +1131,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

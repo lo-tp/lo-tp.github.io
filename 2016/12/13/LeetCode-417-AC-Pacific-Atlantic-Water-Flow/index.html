@@ -1,0 +1,600 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode,DFS,Bit Operation," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LeetCode 417, AC] Pacific Atlantic Water Flow">
+<meta property="og:url" content="http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/index.html">
+<meta property="og:site_name" content="Lotp's Blog">
+<meta property="og:description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touch">
+<meta property="og:updated_time" content="2016-12-13T15:00:39.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[LeetCode 417, AC] Pacific Atlantic Water Flow">
+<meta name="twitter:description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touch">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/"/>
+
+  <title> [LeetCode 417, AC] Pacific Atlantic Water Flow | Lotp's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lotp's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [LeetCode 417, AC] Pacific Atlantic Water Flow
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-12-13T14:22:33+00:00" content="2016-12-13">
+              2016-12-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.</p>
+<p>Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.</p>
+<p>Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The order of returned grid coordinates does not matter.</li>
+<li>Both m and n are less than 150.</li>
+</ol>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Given the following 5x5 matrix:</div><div class="line"></div><div class="line">  Pacific ~   ~   ~   ~   ~ </div><div class="line">       ~  1   2   2   3  (5) *</div><div class="line">       ~  3   2   3  (4) (4) *</div><div class="line">       ~  2   4  (5)  3   1  *</div><div class="line">       ~ (6) (7)  1   4   5  *</div><div class="line">       ~ (5)  1   1   2   4  *</div><div class="line">          *   *   *   *   * Atlantic</div><div class="line"></div><div class="line">Return:</div><div class="line"></div><div class="line">[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).</div></pre></td></tr></table></figure>
+<hr>
+<p>If you try to do a DFS or BFS on each grid to see if it can reach both Pacific and Atlantic ocean, you will get a time out error.</p>
+<p>Luckily, we can solve this problem if we think in a contrary way.<br>We can deduce which grids can reach Atlantic ocean and which can reach Pacific ocean, then the intersection of the two set is the answer.</p>
+<p>In this way, the number of iterations can be greatly reduced to the sum of of the 4 edges’ grids, thus averting the time out error.</p>
+<p>It’s straightforward to use two vectors to separately store the connectivities of Atlantic ocean and Pacific ocean, but there is an optimization with which you only need one vector to store the same data.That is bit mask( All credits belong to <a href="https://discuss.leetcode.com/topic/62314/very-concise-c-solution-using-dfs-and-bit-mask" target="_blank" rel="external">zyoppy008</a>).<br>Since the data we are trying to maintain are basically two boolean states, two bits in one int are totally enough.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Solution</div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line"></div><div class="line">  <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; pacificAtlantic(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; ret;</div><div class="line">    <span class="built_in">stack</span> &lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; s1;</div><div class="line">    <span class="built_in">stack</span> &lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; s2;</div><div class="line">    <span class="built_in">vector</span> &lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; intermidiate;</div><div class="line">    <span class="keyword">int</span> hSize, vSize;</div><div class="line">    vSize = matrix.size();</div><div class="line">    <span class="keyword">if</span> (vSize)</div><div class="line">    &#123;</div><div class="line">      hSize = matrix[<span class="number">0</span>].size();</div><div class="line">      <span class="keyword">if</span> (hSize)</div><div class="line">      &#123;</div><div class="line">        intermidiate.resize(vSize, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(hSize, <span class="number">0</span>));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; vSize; index++)</div><div class="line">        &#123;</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(index, <span class="number">0</span>));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, INT_MIN));</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(index, hSize - <span class="number">1</span>));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, INT_MIN));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; hSize; index++)</div><div class="line">        &#123;</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">0</span>, index));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, INT_MIN));</div><div class="line">          s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vSize - <span class="number">1</span>, index));</div><div class="line">          s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, INT_MIN));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (!s1.empty())</div><div class="line">        &#123;</div><div class="line">          pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pos = s1.top(), meta = s2.top();</div><div class="line">          <span class="keyword">int</span> vPos = pos.first, hPos = pos.second, previousValue = meta.second, flag = meta.first;</div><div class="line">          s1.pop();</div><div class="line">          s2.pop();</div><div class="line">          <span class="keyword">if</span> (vPos &gt;= <span class="number">0</span> &amp;&amp; vPos &lt; vSize &amp;&amp; hPos &gt;= <span class="number">0</span> &amp;&amp; hPos &lt; hSize &amp;&amp; matrix[vPos][hPos] &gt;= previousValue &amp;&amp;</div><div class="line">              (intermidiate[vPos][hPos]&amp;flag) == <span class="number">0</span>)</div><div class="line">          &#123;</div><div class="line">            intermidiate[vPos][hPos] = intermidiate[vPos][hPos] | flag;</div><div class="line">            <span class="keyword">if</span> (intermidiate[vPos][hPos] == <span class="number">3</span>)</div><div class="line">            &#123;</div><div class="line">              <span class="built_in">cout</span> &lt;&lt; vPos &lt;&lt; <span class="string">' '</span> &lt;&lt; hPos &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">              ret.push_back(pos);</div><div class="line">            &#125;</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos - <span class="number">1</span>, hPos));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos + <span class="number">1</span>, hPos));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos, hPos - <span class="number">1</span>));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">            s1.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(vPos, hPos + <span class="number">1</span>));</div><div class="line">            s2.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(flag, matrix[vPos][hPos]));</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="built_in">vector</span> &lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; testData = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>&#125;, &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>&#125;, &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>&#125;&#125;;</div><div class="line">  Solution s;</div><div class="line">  s.pacificAtlantic(testData);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/DFS/" rel="tag">#DFS</a>
+          
+            <a href="/tags/Bit-Operation/" rel="tag">#Bit Operation</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/10/LeetCode-455-AC-Assign-Cookies/" rel="next" title="[LeetCode 455, AC] Assign Cookies">
+                <i class="fa fa-chevron-left"></i> [LeetCode 455, AC] Assign Cookies
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview sidebar-nav-active" data-target="site-overview">
+            Overview
+          </li>
+          <li class="sidebar-nav-toc" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/portrait.svg"
+               alt="lotp" />
+          <p class="site-author-name" itemprop="name">lotp</p>
+          <p class="site-description motion-element" itemprop="description">Every Day in Life Is a First Time</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lo-tp" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel ">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.</span> <span class="nav-text">Example:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lotp</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blog-lotp-xyz';
+      var disqus_identifier = '2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/';
+      var disqus_title = "[LeetCode 417, AC] Pacific Atlantic Water Flow";
+      var disqus_url = 'http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
