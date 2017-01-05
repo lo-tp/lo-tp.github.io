@@ -212,6 +212,118 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/" itemprop="url">
+                  My First Try at TDD: How I Test Asynchronous Code in Mocha With async/await Syntax
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2017-01-05T13:56:47+00:00" content="2017-01-05">
+              2017-01-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Every body knows that writing unit test is very important during programming.<br>However, it is not an easy job, especially when it comes to <code>asynchronous code</code>.</p>
+<p>Initially, callback has to be used to test <code>asynchronous code</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">'User Profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  it(<span class="string">'can get user profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</div><div class="line">    getProfile(<span class="string">'bulkan'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(err) &#123;</div><div class="line">        done(err)</div><div class="line">      &#125;</div><div class="line">      assert.equal(result.userName, <span class="string">'bulkan'</span>);</div><div class="line">      done();</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>This kind of test could easily turned out to be a <a href="http://callbackhell.com/" target="_blank" rel="external">callback hell</a> when the logic become complex.<br>Thank god, with the advent of <code>promise</code>, testing <code>asynchronous code</code> is not that much depressing now.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">'User Profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  it(<span class="string">'can get user profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</div><div class="line">    getProfile(<span class="string">'bulkan'</span>)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">      assert.equal(result.userName, <span class="string">'bulkan'</span>);</div><div class="line">      done();</div><div class="line">    &#125;)</div><div class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</div><div class="line">      done(err);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Actually manually calling <code>done</code> is not necessary any more in newer version of mocha, as mocha takes care of promise itself pretty well.<br>So the above code can be written as:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">'User Profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  it(<span class="string">'can get user profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> getProfile(<span class="string">'bulkan'</span>)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">      assert.equal(result.userName, <span class="string">'bulkan'</span>);</div><div class="line">    &#125;)</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Now this looks good.<br>However, we won’t be satisfied with this, will we?<br>Take a look at how this code could be further improved with <code>async/await</code>.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">describe(<span class="string">'User Profile'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  it(<span class="string">'can get user profile'</span>, <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> getProfile(<span class="string">'bulkan'</span>);</div><div class="line">    assert.equal(result.userName, <span class="string">'bulkan'</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>In the above snippet, we are taking advantage of of one lovely feature of Async functions:</p>
+<blockquote>
+<p>Async functions always return a promise, no matter whether or not await is invoked.<br>The promise, returned by async function, would resolve with whatever the async function returns, or rejects with whatever the async function throws.<br>With the <code>async/await</code>, testing asynchronous code is nearly identical to testing synchronous code.<br>Cheer!!!</p>
+<hr>
+<h5 id="Caveat"><a href="#Caveat" class="headerlink" title="Caveat"></a>Caveat</h5><p>Every thing comes at a price.<br>Although it is very trendy now, we still need a transpiler like <code>bable</code> to use <code>async/await</code>.<br>What a pity.</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/" itemprop="url">
                   [LeetCode 417, AC] Pacific Atlantic Water Flow
                 </a>
@@ -1121,7 +1233,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1131,7 +1243,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

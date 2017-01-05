@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/</loc>
+    
+    <lastmod>2017-01-05T13:57:21.375Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/</loc>
     
     <lastmod>2016-12-13T15:00:39.070Z</lastmod>
