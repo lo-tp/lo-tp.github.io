@@ -64,7 +64,7 @@
 <meta property="og:url" content="http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/index.html">
 <meta property="og:site_name" content="Lotp's Blog">
 <meta property="og:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
-<meta property="og:updated_time" content="2016-08-29T14:07:00.676Z">
+<meta property="og:updated_time" content="2017-02-07T02:32:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Customize Password Resetting Page in Meteor">
 <meta name="twitter:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
@@ -222,7 +222,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T07:24:48+00:00" content="2016-08-29">
+            <time itemprop="dateCreated" datetime="2016-08-29T07:24:48+08:00" content="2016-08-29">
               2016-08-29
             </time>
           </span>
@@ -263,7 +263,7 @@
 <li>The user click the link to reset password.</li>
 </ol>
 <p>The link would be similiar to this:<code>domainName/#/reset-password/token</code>.<br>When the user click on this link, the default page implemented with <code>Blaze</code> would appear.</p>
-<p>To work around this, you can change the link structure with the following snippet.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Accounts.emailTemplates.resetPassword = &#123;</div><div class="line">  <span class="keyword">from</span>: ()=&gt; <span class="string">"xxxx@test.com"</span>,</div><div class="line">  subject: ()=&gt; <span class="string">"Reset Your Account Password"</span>,</div><div class="line">  text: (user, url)=&gt; &#123;</div><div class="line">    <span class="keyword">const</span> newUrl = url.replace(<span class="string">"#/reset-password"</span>, <span class="string">"setpswd"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">`Hi,Click the Link below to reset your password:\n<span class="subst">$&#123;newUrl&#125;</span>`</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>To work around this, you can change the link structure with the following snippet.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Accounts.emailTemplates.resetPassword = &#123;</div><div class="line">  <span class="attr">from</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"xxxx@test.com"</span>,</div><div class="line">  <span class="attr">subject</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"Reset Your Account Password"</span>,</div><div class="line">  <span class="attr">text</span>: <span class="function">(<span class="params">user, url</span>)=&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> newUrl = url.replace(<span class="string">"#/reset-password"</span>, <span class="string">"setpswd"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">`Hi,Click the Link below to reset your password:\n<span class="subst">$&#123;newUrl&#125;</span>`</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>In this way, the link sent to the user would become <code>domainName/setpswd/token</code>.<br>Now you can write your own version of password resetting page served on this address with whatever framework you like.<br>Then get the <code>token</code> from the the link address mentioned above as well as the new password and you are ready to go.<br>When you are done, invoke <code>Accounts.resetPassword(token, newPassword, [callback])</code> on the client side to reset the password for the user.</p>
 
       
