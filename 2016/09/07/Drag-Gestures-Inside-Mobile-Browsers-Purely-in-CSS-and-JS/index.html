@@ -67,7 +67,7 @@ I use react to simplify the code. Ho">
 <meta property="og:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices.This article is about the implementation of drag gesture on mobile browsers.
 I use react to simplify the code. Ho">
 <meta property="og:image" content="http://blog.lotp.xyz/images/swipteToDelete.gif">
-<meta property="og:updated_time" content="2017-02-07T02:32:27.000Z">
+<meta property="og:updated_time" content="2018-08-12T12:38:39.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
 <meta name="twitter:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices.This article is about the implementation of drag gesture on mobile browsers.
@@ -269,9 +269,7 @@ I use react to simplify the code. Ho">
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">onScroll:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.scroll = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</div><div class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">1</span>]&#125;</span>`</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
 <p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
 <p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">onTouchEnd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scroll) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</div><div class="line">      <span class="keyword">this</span>.props.drag.bind(<span class="keyword">this</span>)();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.li.scrollLeft = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.scroll = <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>You can check the jsfiddle snippet below to see a working example.<strong>Check it on your phone as no touchend event is emitted on the desktop browser.</strong></p>
 <p>In order to keep it concise, only the most pertinent code was demonstrated in this article.<br>For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers" target="_blank" rel="external">repo</a>.</p>
-<iframe scrolling="no" width="100%" height="300" src="http://jsfiddle.net/nq3qero4/embedded/result,js/light" frameborder="0" allowfullscreen></iframe>
 
       
     </div>
@@ -457,7 +455,7 @@ I use react to simplify the code. Ho">
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
