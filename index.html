@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -60,12 +60,13 @@
 
 <meta name="description" content="Every Day in Life Is a First Time">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lotp's Blog">
+<meta property="og:title" content="Lotp&#39;s Blog">
 <meta property="og:url" content="http://blog.lotp.xyz/index.html">
-<meta property="og:site_name" content="Lotp's Blog">
+<meta property="og:site_name" content="Lotp&#39;s Blog">
 <meta property="og:description" content="Every Day in Life Is a First Time">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lotp's Blog">
+<meta name="twitter:title" content="Lotp&#39;s Blog">
 <meta name="twitter:description" content="Every Day in Life Is a First Time">
 
 
@@ -89,7 +90,7 @@
 
   <link rel="canonical" href="http://blog.lotp.xyz/"/>
 
-  <title> Lotp's Blog </title>
+  <title> Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -110,7 +111,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -190,6 +191,130 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/" itemprop="url">
+                  A Simple but Effective Learning Algorithm: MS  Syntax
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-08-12T08:56:00+08:00" content="2018-08-12">
+              2018-08-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/2018/08/learnFast.jpg" alt="Sample Image Added via Markdown"></p>
+<p>Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called <a href="http://www.blueraja.com/blog/477/a-better-spaced-repetition-learning-algorithm-sm2" target="_blank" rel="noopener">SM2+</a>. Based on this algorithm I have written a lib called <a href="https://github.com/lo-tp/sm2-plus" target="_blank" rel="noopener">sm2-plus</a> and I liked it a lot. However, SM2+ has its own problem.</p>
+<p>In this post I will show you what problems SM2+ algorithm has and provide a new algorithm named Memory Scheduler that I find quite helpful in my learning.</p>
+<h3 id="Problem-of-SM2"><a href="#Problem-of-SM2" class="headerlink" title="Problem of SM2+"></a>Problem of SM2+</h3><ul>
+<li>It’s a little bit complex.</li>
+<li>It’s not compatible with the forgetting curve theory. </li>
+</ul>
+<h3 id="Memory-Scheduler-Algorithm"><a href="#Memory-Scheduler-Algorithm" class="headerlink" title="Memory Scheduler Algorithm"></a>Memory Scheduler Algorithm</h3><p>To learn with this algorithm, two arguments have to be fed to it:</p>
+<ul>
+<li>intervals([int]): intervals between each study session.</li>
+<li>scroreToProgressChange([int]): how to update the progress based on the score the user gives when reviewing items</li>
+</ul>
+<p>For one item we want to learn, store two data:</p>
+<ul>
+<li>dueDate(int): the next day scheduled to review this item.</li>
+<li>progress(int): How many times continuously the user has correctly answered this item.</li>
+</ul>
+<p>To reivew an item, the user is asked to chose a score based on how confident he is with the item(the larger, the more confident).</p>
+<p>The answer is deemed as correct only when the score is equal to the length of scroreToProgressChange, and in this circumstance the nextDute is intervals[progress] days after today.</p>
+<p>Otherwise, the answer is deemed as incorrect and the next review is scheduled at tomorrow.</p>
+<p>In both cases, progress should be updated in this way: <code>progress+=scroreToProgressChange[score]</code>.</p>
+<p>Following is a javascript implementation of this algorithm and I have also published it to npm as <a href="https://www.npmjs.com/package/memory-scheduler" target="_blank" rel="noopener">memory-scheduler</a>. If you are not satisfied with the this implementation, send me a PR at this <a href="https://github.com/lo-tp/memory-scheduler" target="_blank" rel="noopener">repo</a>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MS</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(</span><br><span class="line">    intervals = [1, 2, 3, 8, 17],</span><br><span class="line">    scroreToProgressChange = [-3, -1, 1]</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">this</span>.intervals = intervals;</span><br><span class="line">    <span class="keyword">this</span>.scroreToProgressChange = scroreToProgressChange;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get maxProgress() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.intervals.length;</span><br><span class="line">  &#125;</span><br><span class="line">  get correctScore() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.scroreToProgressChange.length - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  calculate(s, &#123; progress &#125;, now) &#123;</span><br><span class="line">    <span class="keyword">const</span> correct = s === <span class="keyword">this</span>.scroreToProgressChange.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> newProgress = progress + <span class="keyword">this</span>.scroreToProgressChange[s];</span><br><span class="line">    <span class="keyword">let</span> dueDate = now + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (correct &amp;&amp; progress &lt; <span class="keyword">this</span>.maxProgress) &#123;</span><br><span class="line">      dueDate = now + <span class="keyword">this</span>.intervals[progress];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      dueDate,</span><br><span class="line">      progress: newProgress &lt; <span class="number">0</span> ? <span class="number">0</span> : newProgress</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  getInitialRecord(now) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      progress: <span class="number">0</span>,</span><br><span class="line">      dueDate: now</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>That’s all I want to say about Memory Scheduler algorithm. As you can see, it’s pretty simple to use. I believe with this algorithm, we can learn better in a faster pace.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1231,7 +1356,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1241,7 +1366,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1417,6 +1542,26 @@
   
 
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 
   
 

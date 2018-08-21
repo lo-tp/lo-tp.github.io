@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Greedy,Algorithm," />
+  <meta name="keywords" content="Learn," />
 
 
 
@@ -58,18 +58,20 @@
 
 
 
-<meta name="description" content="Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a coo">
-<meta name="keywords" content="LeetCode,Greedy,Algorithm">
+<meta name="description" content="Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called SM2+. Base">
+<meta name="keywords" content="Learn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[LeetCode 455, AC] Assign Cookies">
-<meta property="og:url" content="http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/index.html">
+<meta property="og:title" content="A Simple but Effective Learning Algorithm: MS  Syntax">
+<meta property="og:url" content="http://blog.lotp.xyz/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/index.html">
 <meta property="og:site_name" content="Lotp&#39;s Blog">
-<meta property="og:description" content="Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a coo">
+<meta property="og:description" content="Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called SM2+. Base">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-02-07T02:32:27.000Z">
+<meta property="og:image" content="http://blog.lotp.xyz/images/2018/08/learnFast.jpg">
+<meta property="og:updated_time" content="2018-08-20T09:55:48.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[LeetCode 455, AC] Assign Cookies">
-<meta name="twitter:description" content="Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a coo">
+<meta name="twitter:title" content="A Simple but Effective Learning Algorithm: MS  Syntax">
+<meta name="twitter:description" content="Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called SM2+. Base">
+<meta name="twitter:image" content="http://blog.lotp.xyz/images/2018/08/learnFast.jpg">
 
 
 
@@ -90,9 +92,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/"/>
+  <link rel="canonical" href="http://blog.lotp.xyz/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/"/>
 
-  <title> [LeetCode 455, AC] Assign Cookies | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> A Simple but Effective Learning Algorithm: MS  Syntax | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -212,7 +214,7 @@
             
             
               
-                [LeetCode 455, AC] Assign Cookies
+                A Simple but Effective Learning Algorithm: MS  Syntax
               
             
           </h1>
@@ -224,8 +226,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-12-10T01:49:42+08:00" content="2016-12-10">
-              2016-12-10
+            <time itemprop="dateCreated" datetime="2018-08-12T08:56:00+08:00" content="2018-08-12">
+              2018-08-12
             </time>
           </span>
 
@@ -235,8 +237,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/10/LeetCode-455-AC-Assign-Cookies/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/10/LeetCode-455-AC-Assign-Cookies/" itemprop="commentsCount"></span>
+                <a href="/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -259,19 +261,30 @@
       
 
       
-        <p>Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj &gt;= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.</p>
-<p><strong>Note:</strong><br>You may assume the greed factor is always positive. </p>
-<p>You cannot assign more than one cookie to one child.</p>
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><p><strong>Input:</strong> [1,2,3], [1,1]</p>
-<p><strong>Output:</strong> 1</p>
-<p><strong>Explanation:</strong> You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3.<br>And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.<br>You need to output 1.</p>
-<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h4><p><strong>Input:</strong> [1,2], [1,2,3]</p>
-<p><strong>Output:</strong> 2</p>
-<p><strong>Explanation:</strong> You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2.<br>You have 3 cookies and their sizes are big enough to gratify all of the children,<br>You need to output 2.</p>
-<hr>
-<p>This is a typical greedy problem.</p>
-<p>The partial best solution is to find the smallest cookie that could be given to the least greedy child.</p>
-<p>Find partial best solutions in repetition until there is no cooky that could be given to the least greedy child or all children receive a cooky.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Solution</div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">findContentChildren</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; g, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s)</span></span></div><div class="line">  &#123;</div><div class="line">    sort(g.begin(),g.end());</div><div class="line">    sort(s.begin(),s.end());</div><div class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator child = g.begin();</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator cooky = s.begin();</div><div class="line">    <span class="keyword">while</span> (child != g.end() &amp;&amp; cooky != s.end())</div><div class="line">    &#123;</div><div class="line">      <span class="keyword">if</span> (*cooky &gt;= *child)</div><div class="line">      &#123;</div><div class="line">        result += <span class="number">1</span>;</div><div class="line">        child ++;</div><div class="line">      &#125;</div><div class="line">      cooky ++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  Solution s = Solution();</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; children(&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;);</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cookies(&#123;<span class="number">1</span>, <span class="number">1</span>&#125;);</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;s.findContentChildren(children, cookies)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"*******"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; children1(&#123;<span class="number">1</span>, <span class="number">2</span>&#125;);</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cookies1(&#123;<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>&#125;);</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;s.findContentChildren(children1, cookies1)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p><img src="/images/2018/08/learnFast.jpg" alt="Sample Image Added via Markdown"></p>
+<p>Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called <a href="http://www.blueraja.com/blog/477/a-better-spaced-repetition-learning-algorithm-sm2" target="_blank" rel="noopener">SM2+</a>. Based on this algorithm I have written a lib called <a href="https://github.com/lo-tp/sm2-plus" target="_blank" rel="noopener">sm2-plus</a> and I liked it a lot. However, SM2+ has its own problem.</p>
+<p>In this post I will show you what problems SM2+ algorithm has and provide a new algorithm named Memory Scheduler that I find quite helpful in my learning.</p>
+<h3 id="Problem-of-SM2"><a href="#Problem-of-SM2" class="headerlink" title="Problem of SM2+"></a>Problem of SM2+</h3><ul>
+<li>It’s a little bit complex.</li>
+<li>It’s not compatible with the forgetting curve theory. </li>
+</ul>
+<h3 id="Memory-Scheduler-Algorithm"><a href="#Memory-Scheduler-Algorithm" class="headerlink" title="Memory Scheduler Algorithm"></a>Memory Scheduler Algorithm</h3><p>To learn with this algorithm, two arguments have to be fed to it:</p>
+<ul>
+<li>intervals([int]): intervals between each study session.</li>
+<li>scroreToProgressChange([int]): how to update the progress based on the score the user gives when reviewing items</li>
+</ul>
+<p>For one item we want to learn, store two data:</p>
+<ul>
+<li>dueDate(int): the next day scheduled to review this item.</li>
+<li>progress(int): How many times continuously the user has correctly answered this item.</li>
+</ul>
+<p>To reivew an item, the user is asked to chose a score based on how confident he is with the item(the larger, the more confident).</p>
+<p>The answer is deemed as correct only when the score is equal to the length of scroreToProgressChange, and in this circumstance the nextDute is intervals[progress] days after today.</p>
+<p>Otherwise, the answer is deemed as incorrect and the next review is scheduled at tomorrow.</p>
+<p>In both cases, progress should be updated in this way: <code>progress+=scroreToProgressChange[score]</code>.</p>
+<p>Following is a javascript implementation of this algorithm and I have also published it to npm as <a href="https://www.npmjs.com/package/memory-scheduler" target="_blank" rel="noopener">memory-scheduler</a>. If you are not satisfied with the this implementation, send me a PR at this <a href="https://github.com/lo-tp/memory-scheduler" target="_blank" rel="noopener">repo</a>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MS</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(</span><br><span class="line">    intervals = [1, 2, 3, 8, 17],</span><br><span class="line">    scroreToProgressChange = [-3, -1, 1]</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">this</span>.intervals = intervals;</span><br><span class="line">    <span class="keyword">this</span>.scroreToProgressChange = scroreToProgressChange;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get maxProgress() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.intervals.length;</span><br><span class="line">  &#125;</span><br><span class="line">  get correctScore() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.scroreToProgressChange.length - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  calculate(s, &#123; progress &#125;, now) &#123;</span><br><span class="line">    <span class="keyword">const</span> correct = s === <span class="keyword">this</span>.scroreToProgressChange.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> newProgress = progress + <span class="keyword">this</span>.scroreToProgressChange[s];</span><br><span class="line">    <span class="keyword">let</span> dueDate = now + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (correct &amp;&amp; progress &lt; <span class="keyword">this</span>.maxProgress) &#123;</span><br><span class="line">      dueDate = now + <span class="keyword">this</span>.intervals[progress];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      dueDate,</span><br><span class="line">      progress: newProgress &lt; <span class="number">0</span> ? <span class="number">0</span> : newProgress</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  getInitialRecord(now) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      progress: <span class="number">0</span>,</span><br><span class="line">      dueDate: now</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>That’s all I want to say about Memory Scheduler algorithm. As you can see, it’s pretty simple to use. I believe with this algorithm, we can learn better in a faster pace.</p>
 
       
     </div>
@@ -294,11 +307,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
-          
-            <a href="/tags/Greedy/" rel="tag">#Greedy</a>
-          
-            <a href="/tags/Algorithm/" rel="tag">#Algorithm</a>
+            <a href="/tags/Learn/" rel="tag">#Learn</a>
           
         </div>
       
@@ -307,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/" rel="next" title="How to Use Postmessage to Communicate with iframe in React">
-                <i class="fa fa-chevron-left"></i> How to Use Postmessage to Communicate with iframe in React
+              <a href="/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/" rel="next" title="My First Try at TDD: How I Test Asynchronous Code in Mocha With async/await Syntax">
+                <i class="fa fa-chevron-left"></i> My First Try at TDD: How I Test Asynchronous Code in Mocha With async/await Syntax
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/" rel="prev" title="[LeetCode 417, AC] Pacific Atlantic Water Flow">
-                [LeetCode 417, AC] Pacific Atlantic Water Flow <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -442,7 +447,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-number">1.</span> <span class="nav-text">Example 1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-2"><span class="nav-number">2.</span> <span class="nav-text">Example 2:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-of-SM2"><span class="nav-number">1.</span> <span class="nav-text">Problem of SM2+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Scheduler-Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Memory Scheduler Algorithm</span></a></li></ol></div>
             
           </div>
         </section>
@@ -569,9 +574,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blog-lotp-xyz';
-      var disqus_identifier = '2016/12/10/LeetCode-455-AC-Assign-Cookies/';
-      var disqus_title = "[LeetCode 455, AC] Assign Cookies";
-      var disqus_url = 'http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/';
+      var disqus_identifier = '2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/';
+      var disqus_title = "A Simple but Effective Learning Algorithm: MS  Syntax";
+      var disqus_url = 'http://blog.lotp.xyz/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
