@@ -66,12 +66,10 @@
 <meta property="og:site_name" content="Lotp&#39;s Blog">
 <meta property="og:description" content="We all know that installing operation system is a toil.So let’s say no to restinalling OS.Recently, I bought a larger SSD and intended to use it to replace the older one.In order to circumvent all the">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg">
-<meta property="og:updated_time" content="2017-02-07T02:32:27.000Z">
+<meta property="og:updated_time" content="2019-01-20T08:22:52.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Painless Way to Clone an Existing Linux OS to Another Disk">
 <meta name="twitter:description" content="We all know that installing operation system is a toil.So let’s say no to restinalling OS.Recently, I bought a larger SSD and intended to use it to replace the older one.In order to circumvent all the">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg">
 
 
 
@@ -264,7 +262,7 @@
         <p>We all know that installing operation system is a toil.<br><strong>So let’s say no to restinalling OS.</strong><br>Recently, I bought a larger SSD and intended to use it to replace the older one.<br>In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one.<br>Luckily I succeeded.<br><a id="more"></a></p>
 <h3 id="Cautions"><a href="#Cautions" class="headerlink" title="Cautions"></a>Cautions</h3><p>Make sure the size of the destination disk is equal to or larger than the that of the original one.</p>
 <h3 id="Using-dd-To-Clone-the-Disk"><a href="#Using-dd-To-Clone-the-Disk" class="headerlink" title="Using dd To Clone the Disk"></a>Using <code>dd</code> To Clone the Disk</h3><p>Plug in the new disk to your computer and check the corressponding dev files of the disks.<br>In my case, the old disk is <em>/dev/sda</em> and the new disk is <em>/dev/sdb</em>.<br>Run the following command to fully transfer the content(<strong>Please pay extra attention when using dd</strong>).<br><code>dd if=/dev/sda of=/dev/sdb</code>.</p>
-<h3 id="Change-UUID"><a href="#Change-UUID" class="headerlink" title="Change UUID"></a>Change UUID</h3><p>Using <code>dd</code>, the UUID of partitions on the two disks will be the same.<br>This may lead to some conflict, so we have to change the UUID of the partitions on the new disk.<br>In my case, I got two new partitions: sdb1 and sdb2.<br>And I changed UUID using this command:<br><code>tune2fs /dev/sdbX -U `uuidgen` </code>.<br>Now shutdown your PC, install the new disk to the port of the older one and restart your PC to enjoy your new system.</p>
+<h3 id="Change-UUID"><a href="#Change-UUID" class="headerlink" title="Change UUID"></a>Change UUID</h3><p>Using <code>dd</code>, the UUID of partitions on the two disks will be the same.<br>This may lead to some conflict, so we have to change the UUID of the partitions on the new disk.<br>In my case, I got two new partitions: sdb1 and sdb2.<br>And I changed UUID using this command:<br><code>tune2fs /dev/sdbX -U `uuidgen`</code>.<br>Now shutdown your PC, install the new disk to the port of the older one and restart your PC to enjoy your new system.</p>
 <h3 id="Extend-the-Partition-and-File-System-of-the-New-Disk"><a href="#Extend-the-Partition-and-File-System-of-the-New-Disk" class="headerlink" title="Extend the Partition and File System of the New Disk"></a>Extend the Partition and File System of the New Disk</h3><p>With <code>dd</code>, you get an exact copy of your older disk.<br>That is to say, the space of the partition on the new disk is also the same as the older one.<br>You know in most circumstances, we would buy a larger disk to replace the older one.<br>So if we leave it as it is now, there would be a waste disk space.</p>
 <p>Fortunately, we could work around this problem.<br>Boot your PC from the older disk with the new one also on your machine.</p>
 <ol>
@@ -273,11 +271,11 @@
 <li>Use <code>fsck</code> to check everything you’ve done to your partition is ok.</li>
 <li>Use <code>resize2fs</code> to resize the file system.</li>
 </ol>
-<p>If you need furture help about how to extend, check <a href="https://geekpeek.net/resize-filesystem-fdisk-resize2fs/" target="_blank" rel="external">this post</a>.</p>
+<p>If you need furture help about how to extend, check <a href="https://geekpeek.net/resize-filesystem-fdisk-resize2fs/" target="_blank" rel="noopener">this post</a>.</p>
 <h3 id="Repair-Grub"><a href="#Repair-Grub" class="headerlink" title="Repair Grub"></a>Repair Grub</h3><p>If your plan is to use the new disk in a port different to the original one, then there will be some more work to do.</p>
 <p>As I’ve mention before, <code>dd</code> copys every thing from the original disk to the new one exactly.<br>Of no exception is the boot files</p>
-<p>To solve this problem, you’ll have to repair your boot files.<br>Luckily, we can accomplish this mission with the benefit of a software called <em>boot-repair</em> made by some kind people(Cheers).<br>All you have to do is to download the <a href="http://sourceforge.net/projects/boot-repair-cd/" target="_blank" rel="external">image</a> of <em>boot-repair</em> and burn the image to a usb stick to make a bootable usb disk.<br>Boot your computer from the newly created usb disk and a wizard like this would appear.</p>
-<p><img src="http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg" alt="wizard"></p>
+<p>To solve this problem, you’ll have to repair your boot files.<br>Luckily, we can accomplish this mission with the benefit of a software called <em>boot-repair</em> made by some kind people(Cheers).<br>All you have to do is to download the [image][bootRepair] of <em>boot-repair</em> and burn the image to a usb stick to make a bootable usb disk.<br>Boot your computer from the newly created usb disk and a wizard like this would appear.</p>
+<p>![wizard][wizard]<br>[bootRepair]:<a href="http://sourceforge.net/projects/boot-repair-cd/" target="_blank" rel="noopener">http://sourceforge.net/projects/boot-repair-cd/</a><br>[wizard]:<a href="http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg" target="_blank" rel="noopener">http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg</a></p>
 <p>Choose recommended repair and wait for a while.<br>After a quick reboot, your computer would be ready to use with the new disk properly configured.</p>
 
       
@@ -405,7 +403,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -464,7 +462,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -616,7 +614,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

@@ -2,86 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.lotp.xyz/2018/09/24/Problems-I-Met-in-My-First-Flutter-Project/</loc>
+    <loc>http://blog.lotp.xyz/2019/01/20/Reading-Notes-The-Checklist-Manifesto/</loc>
     
-    <lastmod>2018-09-24T08:31:01.923Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/</loc>
-    
-    <lastmod>2018-08-20T09:55:48.399Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/</loc>
-    
-    <lastmod>2018-08-12T12:38:39.549Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.lotp.xyz/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/</loc>
-    
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
+    <lastmod>2019-01-20T15:00:10.755Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.lotp.xyz/tags/index.html</loc>
     
-    <lastmod>2017-02-07T02:32:27.000Z</lastmod>
+    <lastmod>2019-01-20T08:22:52.793Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/11/26/Leetcode-126-Word-Ladder-II/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/12/10/LeetCode-455-AC-Assign-Cookies/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2017/01/05/My-First-Try-at-TDD-How-I-Test-Asynchronous-Code-in-Mocha-With-async-await-Syntax/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2018/08/12/A-Simple-But-Effective-Spaced-Repitition-Algorithm-MS/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/12/01/How-to-Use-Postmessage-to-Communicate-with-iframe-in-React/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.lotp.xyz/2016/12/13/LeetCode-417-AC-Pacific-Atlantic-Water-Flow/</loc>
+    
+    <lastmod>2019-01-20T08:22:52.762Z</lastmod>
     
   </url>
   

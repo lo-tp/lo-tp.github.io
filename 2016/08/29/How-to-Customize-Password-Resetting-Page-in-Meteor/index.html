@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="Lotp&#39;s Blog">
 <meta property="og:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-02-07T02:32:27.000Z">
+<meta property="og:updated_time" content="2019-01-20T08:22:52.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Customize Password Resetting Page in Meteor">
 <meta name="twitter:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
@@ -265,7 +265,7 @@
 <li>The user click the link to reset password.</li>
 </ol>
 <p>The link would be similiar to this:<code>domainName/#/reset-password/token</code>.<br>When the user click on this link, the default page implemented with <code>Blaze</code> would appear.</p>
-<p>To work around this, you can change the link structure with the following snippet.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Accounts.emailTemplates.resetPassword = &#123;</div><div class="line">  <span class="attr">from</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"xxxx@test.com"</span>,</div><div class="line">  <span class="attr">subject</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"Reset Your Account Password"</span>,</div><div class="line">  <span class="attr">text</span>: <span class="function">(<span class="params">user, url</span>)=&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> newUrl = url.replace(<span class="string">"#/reset-password"</span>, <span class="string">"setpswd"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">`Hi,Click the Link below to reset your password:\n<span class="subst">$&#123;newUrl&#125;</span>`</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>To work around this, you can change the link structure with the following snippet.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Accounts.emailTemplates.resetPassword = &#123;</span><br><span class="line">  <span class="keyword">from</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"xxxx@test.com"</span>,</span><br><span class="line">  subject: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"Reset Your Account Password"</span>,</span><br><span class="line">  text: <span class="function">(<span class="params">user, url</span>)=&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> newUrl = url.replace(<span class="string">"#/reset-password"</span>, <span class="string">"setpswd"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi,Click the Link below to reset your password:\n<span class="subst">$&#123;newUrl&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>In this way, the link sent to the user would become <code>domainName/setpswd/token</code>.<br>Now you can write your own version of password resetting page served on this address with whatever framework you like.<br>Then get the <code>token</code> from the the link address mentioned above as well as the new password and you are ready to go.<br>When you are done, invoke <code>Accounts.resetPassword(token, newPassword, [callback])</code> on the client side to reset the password for the user.</p>
 
       
@@ -389,7 +389,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -448,7 +448,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -600,7 +600,24 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   
