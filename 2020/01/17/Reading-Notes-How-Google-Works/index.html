@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="UX," />
+  <meta name="keywords" content="Reading Notes," />
 
 
 
@@ -58,20 +58,18 @@
 
 
 
-<meta name="description" content="Drag gesture, like the image above, is a very good interaction model for touch devices.This article is about the implementation of drag gesture on mobile browsers. I use react to simplify the code. Ho">
-<meta name="keywords" content="UX">
+<meta name="description" content="Definitions Technical insights A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significa">
+<meta name="keywords" content="Reading Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
-<meta property="og:url" content="http://blog.lotp.xyz/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/index.html">
+<meta property="og:title" content="Reading Notes: How Google Works">
+<meta property="og:url" content="http://blog.lotp.xyz/2020/01/17/Reading-Notes-How-Google-Works/index.html">
 <meta property="og:site_name" content="Lotp&#39;s Blog">
-<meta property="og:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices.This article is about the implementation of drag gesture on mobile browsers. I use react to simplify the code. Ho">
+<meta property="og:description" content="Definitions Technical insights A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significa">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://blog.lotp.xyz/images/swipteToDelete.gif">
-<meta property="og:updated_time" content="2019-01-20T08:22:52.762Z">
+<meta property="og:updated_time" content="2020-02-01T03:16:35.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
-<meta name="twitter:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices.This article is about the implementation of drag gesture on mobile browsers. I use react to simplify the code. Ho">
-<meta name="twitter:image" content="http://blog.lotp.xyz/images/swipteToDelete.gif">
+<meta name="twitter:title" content="Reading Notes: How Google Works">
+<meta name="twitter:description" content="Definitions Technical insights A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significa">
 
 
 
@@ -92,9 +90,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.lotp.xyz/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/"/>
+  <link rel="canonical" href="http://blog.lotp.xyz/2020/01/17/Reading-Notes-How-Google-Works/"/>
 
-  <title> Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Reading Notes: How Google Works | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -214,7 +212,7 @@
             
             
               
-                Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS
+                Reading Notes: How Google Works
               
             
           </h1>
@@ -226,8 +224,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T04:46:00+08:00" content="2016-09-07">
-              2016-09-07
+            <time itemprop="dateCreated" datetime="2020-01-17T20:30:00+08:00" content="2020-01-17">
+              2020-01-17
             </time>
           </span>
 
@@ -237,8 +235,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="commentsCount"></span>
+                <a href="/2020/01/17/Reading-Notes-How-Google-Works/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/17/Reading-Notes-How-Google-Works/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -261,14 +259,67 @@
       
 
       
-        <p><img src="/images/swipteToDelete.gif" alt="Swipe To Delete"><br>Drag gesture, like the image above, is a very good interaction model for touch devices.<br>This article is about the implementation of drag gesture on mobile browsers.</p>
-<p>I use react to simplify the code. However you can accomplish it without any framework.</p>
-<p>The basic idea is to make a scrollable widget comprised by two component.<br>The first component is always visible while the second one(named <strong>drag-btn</strong> in this article) can only be seen after scrolling.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;li</span><br><span class="line">  onClick = &#123;<span class="keyword">this</span>.props.click.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">  ref = &#123;e=&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.li = e;</span><br><span class="line">  &#125;&#125;</span><br><span class="line">  className = &#123;<span class="string">"menu__item"</span>&#125;</span><br><span class="line">  onScroll = &#123;<span class="keyword">this</span>.onScroll&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    className = &#123;<span class="string">"text"</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text &gt;</span><br><span class="line">      &#123;<span class="keyword">this</span>.props.text&#125;</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    ref = &#123;e=&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn = e;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">    className = &#123;<span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text&gt;</span><br><span class="line">      drag</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/li&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>We use <code>onscroll</code> to monitor the scrolling.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">onScroll:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">1</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-<p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
-<p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">onTouchEnd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scroll) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.props.drag.bind(<span class="keyword">this</span>)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.li.scrollLeft = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>In order to keep it concise, only the most pertinent code was demonstrated in this article.<br>For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers" target="_blank" rel="noopener">repo</a>.</p>
+        <h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
+<li><p>Technical insights</p>
+<p>A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.</p>
+</li>
+<li><p>What is a good product</p>
+<p>The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.</p>
+</li>
+<li><p>A Successful Product Is The One Fails To Fail</p>
+</li>
+<li><p>Elevator Pitch</p>
+<p>Elevator pitch” is venture capital–speak for “you have thirty seconds to impress me with your business idea.”</p>
+<p>Elevator pitch should explain what you are working on, the technical insight that’s driving it, how you are measuring your success (particularly customer benefit), and perhaps how it fits into the big picture.</p>
+</li>
+<li><p>The 70/20/10 Rule</p>
+<p>70 percent of resources dedicated to the core business, 20 percent on emerging, and 10 percent on new.</p>
+</li>
+<li><p>Jobs attractive to the Smart Creatives</p>
+<p>Flying an F-16 at Mach 2 over a boulder-strewn landscape, two meters off the ground. Plus, if you crash it’s just like a video game at the arcade, and we have lots of quarters.”</p>
+</li>
+<li><p>Hippo(the Highest-Paid Person’s Opinion)</p>
+</li>
+</ul>
+<h2 id="Suggestions-From-Google"><a href="#Suggestions-From-Google" class="headerlink" title="Suggestions From Google"></a>Suggestions From Google</h2><ul>
+<li><p>Process Is A Friend To Small Companies But An Enemy To Big Ones</p>
+<p>Process is a great thing. It is the art and science of taking something that needs to be done and reducing it to a documented set of steps, often supported by information tools and systems. With process comes scale; you absolutely need process to grow a company profitably.</p>
+<p>At some point, though, process starts to take over. It becomes so entrenched that it can trump common sense and cause executives to, as our head of business operations, Kristen Gil, says, “lose muscle memory.” People stop thinking and instead just depend on the process to make decisions for them.</p>
+<p>The antidote to these issues is to break your own processes. This usually requires “air cover” from a senior leader in the company, someone who says it’s OK not to follow the rules and has the power and authority to fend off the antibodies who will attack the rule-breaker.</p>
+</li>
+<li><p>BU(Business Unit) is not a good thing</p>
+<p>We believe in staying functionally organized—with separate departments such as engineering, products, finance, and sales reporting directly to the CEO—as long as possible, because organizing around business divisions or product lines can lead to the formation of silos, which usually stifle the free flow of information and people. Having separate P&amp;Ls seems like a good way to measure performance, but it can have the unfortunate side effect of skewing behavior:<br>The leaders of a business unit are motivated to prioritize their unit’s P&amp;L over the company’s.</p>
+</li>
+<li><p>Googles’ overall strategy</p>
+<p>Bet on technical insights that help solve a big problem in a novel way, optimize for scale, not for revenue, and let great products grow the market for everyone.</p>
+</li>
+<li><p>Hire no incorrect people rather than hiring more correct people</p>
+<p>This is why we would rather our hiring process generate more false negatives (people we should have hired but didn’t) than false positives (we shouldn’t have hired, but did).</p>
+</li>
+<li><p>Checklist for Meeting Organizers</p>
+<ul>
+<li>Every Meeting need a owner</li>
+<li>Every meeting should have a clear purpose</li>
+<li>Meeting need a clear time-box</li>
+<li>Owners’ responsibilities before the metting are to schedue the time and let all attendances know in advance. After the meeting the owner is expected to sumaarize the decisions or conclusions reached at the metting.</li>
+</ul>
+</li>
+<li>How to End an Argument: <ul>
+<li>Say that You are both right</li>
+<li>Then, after reassuring the argument’s losers and articulating what needs to be done, the decision-maker must ensure that every loser does one of two things: disagree but commit, or escalate publicly.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Mottos"><a href="#Mottos" class="headerlink" title="Mottos"></a>Mottos</h2><ul>
+<li><p>Never stop learning</p>
+<p>Henry Ford said that “anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young. The greatest thing in life is to keep your mind young.”</p>
+</li>
+<li><p>Incrementalism Leads To Irrelevance</p>
+<p>It’s also true that many companies get comfortable doing what they have always done, with a few incremental changes. This kind of incrementalism leads to irrelevance over time, especially in technology, because change tends to be revolutionary not evolutionary.</p>
+</li>
+<li><p>Googlers also work on the weekend like when doing 20 percent project</p>
+</li>
+</ul>
 
       
     </div>
@@ -291,7 +342,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/UX/" rel="tag">#UX</a>
+            <a href="/tags/Reading-Notes/" rel="tag">#Reading Notes</a>
           
         </div>
       
@@ -300,17 +351,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/" rel="next" title="A Painless Way to Clone an Existing Linux OS to Another Disk">
-                <i class="fa fa-chevron-left"></i> A Painless Way to Clone an Existing Linux OS to Another Disk
+              <a href="/2019/01/20/Reading-Notes-The-Checklist-Manifesto/" rel="next" title="Reading Notes: The Checklist Manifesto">
+                <i class="fa fa-chevron-left"></i> Reading Notes: The Checklist Manifesto
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/06/How-to-Write-Your-Redux-Action-in-a-More-Concise-Style/" rel="prev" title="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
-                How-to-Write-Your-Redux-Action-in-a-More-Concise-Style <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,7 +482,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definitions"><span class="nav-number">1.</span> <span class="nav-text">Definitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Suggestions-From-Google"><span class="nav-number">2.</span> <span class="nav-text">Suggestions From Google</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mottos"><span class="nav-number">3.</span> <span class="nav-text">Mottos</span></a></li></ol></div>
             
           </div>
         </section>
@@ -562,9 +609,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blog-lotp-xyz';
-      var disqus_identifier = '2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/';
-      var disqus_title = "Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS";
-      var disqus_url = 'http://blog.lotp.xyz/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/';
+      var disqus_identifier = '2020/01/17/Reading-Notes-How-Google-Works/';
+      var disqus_title = "Reading Notes: How Google Works";
+      var disqus_url = 'http://blog.lotp.xyz/2020/01/17/Reading-Notes-How-Google-Works/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
