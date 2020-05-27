@@ -213,6 +213,114 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="url">
+                  Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T04:46:00+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/swipteToDelete.gif" alt="Swipe To Delete"><br>Drag gesture, like the image above, is a very good interaction model for touch devices.<br>This article is about the implementation of drag gesture on mobile browsers.</p>
+<p>I use react to simplify the code. However you can accomplish it without any framework.</p>
+<p>The basic idea is to make a scrollable widget comprised by two component.<br>The first component is always visible while the second one(named <strong>drag-btn</strong> in this article) can only be seen after scrolling.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;li</span><br><span class="line">  onClick = &#123;<span class="keyword">this</span>.props.click.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">  ref = &#123;e=&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.li = e;</span><br><span class="line">  &#125;&#125;</span><br><span class="line">  className = &#123;<span class="string">"menu__item"</span>&#125;</span><br><span class="line">  onScroll = &#123;<span class="keyword">this</span>.onScroll&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    className = &#123;<span class="string">"text"</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text &gt;</span><br><span class="line">      &#123;<span class="keyword">this</span>.props.text&#125;</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    ref = &#123;e=&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn = e;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">    className = &#123;<span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text&gt;</span><br><span class="line">      drag</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/li&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>We use <code>onscroll</code> to monitor the scrolling.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">onScroll:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">1</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
+<p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">onTouchEnd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scroll) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.props.drag.bind(<span class="keyword">this</span>)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.li.scrollLeft = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>In order to keep it concise, only the most pertinent code was demonstrated in this article.<br>For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers" target="_blank" rel="noopener">repo</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/" itemprop="url">
                   A Painless Way to Clone an Existing Linux OS to Another Disk
                 </a>
@@ -443,7 +551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -453,7 +561,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

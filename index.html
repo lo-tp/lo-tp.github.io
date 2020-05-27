@@ -213,6 +213,139 @@
             
               
                 
+                <a class="post-title-link" href="/2020/05/25/LeetCode-233-Number-of-Digit-One/" itemprop="url">
+                  [LeetCode 233, AC] Number of Digit One Done With DP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2020-05-25T19:39:16+08:00" content="2020-05-25">
+              2020-05-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2020/05/25/LeetCode-233-Number-of-Digit-One/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/25/LeetCode-233-Number-of-Digit-One/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
+
+Example:
+
+Input: 13
+Output: 6 
+Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
+</code></pre><p>Let’s try to solve <a href="https://leetcode.com/problems/number-of-digit-one/" target="_blank" rel="noopener">this problem</a> by dividing it into smaller quizzes:</p>
+<p>For example, to caculate the result for 2954:</p>
+<ul>
+<li>count(2954)=count(2000)+count(954)</li>
+<li>count(954)=count(900)+count(54)</li>
+<li>count(54)=count(50)+count(4)</li>
+</ul>
+<p>Now we got the conclusion that <code>count(2954)=count(2000)+count(900)+count(50)+count(4)</code>, which is leading us to the question of how to get <code>count(i*10^j)</code></p>
+<p>To calculate <code>count(i*10^j)</code>, we separate the ‘1’s we are looking for into two groups:</p>
+<ul>
+<li>1s appearing in the highest digit, like the first ‘1’ in the number 1111.<ul>
+<li>For numbers starting with 1, this part is the lower part number plus one. Let’s take 1599 as an example. From 1000 to 1599 we got 599+1=600 ‘1’s at the highest digit.</li>
+<li>For numbers not starting with 1, this part is always <code>10^math.floor(log10(number))</code>. Like for 2000, from 1000 to 1999 we got 1000 ‘1’ which is equal to 10^3. </li>
+</ul>
+</li>
+<li>1s appearing in the lower digits, like the last 3 ‘1’s in the number 1111.<br>  The formula to calulate this part is: <code>(highest digit) * count(10^math.floor(log10(number)-1))</code>. Like for 3000, the result is 3*count(999)</li>
+</ul>
+<p>At this point, the last puzzle we need to solve is to find a way to calculate count(10^n-1). Let’s take a look at some examples:</p>
+<ul>
+<li>For number ranging from 1-99 we got 1 one.</li>
+<li>For number ranging from 1-999 we got 20 ones.</li>
+<li>For number ranging from 1-9999 we got 300 ones.</li>
+</ul>
+<p>After some observations, we can see <code>count(10^n-1)=count(10^(n-1)-1)*10+10^(n-1)</code>. Combining this with an initial case of <code>count(9)=1</code>, we can extrapolate that <code>count(10^n-1)=n*10^(n-1)</code>.</p>
+<p>With all these deductions in mind, we can finally solve the original problem with DP.<br>I implemente this idea with the help of stack to avoid recursion and below is the code</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log10</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countDigitOne</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        ord_0, res, t = ord(<span class="string">'0'</span>), <span class="number">0</span>, [</span><br><span class="line">            (i+<span class="number">1</span>)*<span class="number">10</span>**i <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, int(log10(n)))]</span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            te, tem = list(str(n)), int(log10(n))<span class="number">-1</span></span><br><span class="line">            tmp, te[<span class="number">0</span>] = ord(te[<span class="number">0</span>])-ord_0, <span class="string">'0'</span></span><br><span class="line">            n = int(<span class="string">''</span>.join(te))</span><br><span class="line">            <span class="keyword">if</span> tem &gt;= <span class="number">0</span>:</span><br><span class="line">                res += tmp*t[tem]</span><br><span class="line">                res += n+<span class="number">1</span> <span class="keyword">if</span> tmp == <span class="number">1</span> <span class="keyword">else</span> <span class="number">10</span>**(tem+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2020/01/17/Reading-Notes-How-Google-Works/" itemprop="url">
                   Reading Notes: How Google Works
                 </a>
@@ -1282,114 +1415,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="url">
-                  Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T04:46:00+08:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/Drag-Gestures-Inside-Mobile-Browsers-Purely-in-CSS-and-JS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/swipteToDelete.gif" alt="Swipe To Delete"><br>Drag gesture, like the image above, is a very good interaction model for touch devices.<br>This article is about the implementation of drag gesture on mobile browsers.</p>
-<p>I use react to simplify the code. However you can accomplish it without any framework.</p>
-<p>The basic idea is to make a scrollable widget comprised by two component.<br>The first component is always visible while the second one(named <strong>drag-btn</strong> in this article) can only be seen after scrolling.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;li</span><br><span class="line">  onClick = &#123;<span class="keyword">this</span>.props.click.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">  ref = &#123;e=&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.li = e;</span><br><span class="line">  &#125;&#125;</span><br><span class="line">  className = &#123;<span class="string">"menu__item"</span>&#125;</span><br><span class="line">  onScroll = &#123;<span class="keyword">this</span>.onScroll&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    className = &#123;<span class="string">"text"</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text &gt;</span><br><span class="line">      &#123;<span class="keyword">this</span>.props.text&#125;</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    ref = &#123;e=&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn = e;</span><br><span class="line">    &#125;&#125;</span><br><span class="line">    className = &#123;<span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;text&gt;</span><br><span class="line">      drag</span><br><span class="line">    &lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/li&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>We use <code>onscroll</code> to monitor the scrolling.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">onScroll:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">1</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.dragBtn.className = <span class="string">`drag-btn <span class="subst">$&#123;<span class="keyword">this</span>.props.dragClass[<span class="number">0</span>]&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-<p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
-<p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">onTouchEnd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.scroll) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.li.scrollLeft &gt; <span class="keyword">this</span>.scrollThreshhold) &#123;</span><br><span class="line">      <span class="keyword">this</span>.props.drag.bind(<span class="keyword">this</span>)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.li.scrollLeft = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.scroll = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>In order to keep it concise, only the most pertinent code was demonstrated in this article.<br>For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers" target="_blank" rel="noopener">repo</a>.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1435,7 +1460,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1445,7 +1470,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
