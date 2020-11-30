@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Meteor," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -58,18 +58,22 @@
 
 
 
-<meta name="description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
-<meta name="keywords" content="Meteor">
+<meta name="description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Customize Password Resetting Page in Meteor">
-<meta property="og:url" content="http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/index.html">
+<meta property="og:title" content="Speed Up Your Git Merge Flow With &#39;git rerere&#39;">
+<meta property="og:url" content="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/index.html">
 <meta property="og:site_name" content="Lotp&#39;s Blog">
-<meta property="og:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
+<meta property="og:description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-20T08:22:52.762Z">
+<meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/1.png">
+<meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/2.png">
+<meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/3.png">
+<meta property="og:updated_time" content="2020-11-30T05:40:59.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Customize Password Resetting Page in Meteor">
-<meta name="twitter:description" content="Meteor Already has a built-in password reset mechanism.Normally, you would use it with the accounts-ui package.But things become tricky when you want to customize the password resetting page.In this a">
+<meta name="twitter:title" content="Speed Up Your Git Merge Flow With &#39;git rerere&#39;">
+<meta name="twitter:description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
+<meta name="twitter:image" content="http://blog.lotp.xyz/images/2020/rerere/1.png">
 
 
 
@@ -90,9 +94,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/"/>
+  <link rel="canonical" href="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/"/>
 
-  <title> How to Customize Password Resetting Page in Meteor | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Speed Up Your Git Merge Flow With 'git rerere' | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -212,7 +216,7 @@
             
             
               
-                How to Customize Password Resetting Page in Meteor
+                Speed Up Your Git Merge Flow With 'git rerere'
               
             
           </h1>
@@ -224,8 +228,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T07:24:48+08:00" content="2016-08-29">
-              2016-08-29
+            <time itemprop="dateCreated" datetime="2020-11-30T14:29:00+08:00" content="2020-11-30">
+              2020-11-30
             </time>
           </span>
 
@@ -235,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/" itemprop="commentsCount"></span>
+                <a href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -259,14 +263,9 @@
       
 
       
-        <p>Meteor Already has a built-in password reset mechanism.<br>Normally, you would use it with the <code>accounts-ui</code> package.<br>But things become tricky when you want to customize the password resetting page.<br>In this article, I will walk you through on how to implement your own password resetting page in Meteor.<br><a id="more"></a><br>Typically, the resetting procedure is like this:</p>
-<ol>
-<li>Use <code>Accounts.sendResetPasswordEmail</code> to send an email containing a link to the user.</li>
-<li>The user click the link to reset password.</li>
-</ol>
-<p>The link would be similiar to this:<code>domainName/#/reset-password/token</code>.<br>When the user click on this link, the default page implemented with <code>Blaze</code> would appear.</p>
-<p>To work around this, you can change the link structure with the following snippet.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Accounts.emailTemplates.resetPassword = &#123;</span><br><span class="line">  <span class="keyword">from</span>: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"xxxx@test.com"</span>,</span><br><span class="line">  subject: <span class="function"><span class="params">()</span>=&gt;</span> <span class="string">"Reset Your Account Password"</span>,</span><br><span class="line">  text: <span class="function">(<span class="params">user, url</span>)=&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> newUrl = url.replace(<span class="string">"#/reset-password"</span>, <span class="string">"setpswd"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi,Click the Link below to reset your password:\n<span class="subst">$&#123;newUrl&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>In this way, the link sent to the user would become <code>domainName/setpswd/token</code>.<br>Now you can write your own version of password resetting page served on this address with whatever framework you like.<br>Then get the <code>token</code> from the the link address mentioned above as well as the new password and you are ready to go.<br>When you are done, invoke <code>Accounts.resetPassword(token, newPassword, [callback])</code> on the client side to reset the password for the user.</p>
+        <p>TLDR: Tired of manual conflict resolution? Run <code>git config rerere.enabled true</code> to enable the <strong>rerere</strong> feature which will remember conflict resolutions so you don’t have to resolve the same conflict over and over agin.</p>
+<hr>
+<p>Recently I came across a case of parallel development on two different repos originating from one common code base.<br>Things went well until conflicts started to arise like the follwing picture.<br><img src="/images/2020/rerere/1.png" alt="Initial State"><br>Initially conflicts were resolved manually.<br><img src="/images/2020/rerere/2.png" alt="Manually Reslotion"><br>As time passing by, conflicts started to show up in the same file repetitively and I got bored in resolving the same conflict over and over again.<br>I started to ask myself can I find a better way to eliminate these redundant work.<br><img src="/images/2020/rerere/3.png" alt="Initial State"><br>After some research, I found <strong>git rerere</strong>.<br>Basically it’s a feature built in git which will record the conflict merge results after being turned on so that no human intervention will be required to merge the code when the same conflict emerges again.<br>To use it, all you have to do is just run <code>git config rerere.enabled true</code> to turn it on. After that, all manually code merge would be recorded and reused later when meeting with same conflicts.</p>
 
       
     </div>
@@ -289,7 +288,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Meteor/" rel="tag">#Meteor</a>
+            <a href="/tags/Git/" rel="tag">#Git</a>
           
         </div>
       
@@ -298,13 +297,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/05/25/LeetCode-233-Number-of-Digit-One/" rel="next" title="[LeetCode 233, AC] Number of Digit One Done With DP">
+                <i class="fa fa-chevron-left"></i> [LeetCode 233, AC] Number of Digit One Done With DP
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/29/Clone-An-Existing-Linux-OS-To-Another-Disk-Without-Pain/" rel="prev" title="A Painless Way to Clone an Existing Linux OS to Another Disk">
-                A Painless Way to Clone an Existing Linux OS to Another Disk <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,9 +555,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blog-lotp-xyz';
-      var disqus_identifier = '2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/';
-      var disqus_title = "How to Customize Password Resetting Page in Meteor";
-      var disqus_url = 'http://blog.lotp.xyz/2016/08/29/How-to-Customize-Password-Resetting-Page-in-Meteor/';
+      var disqus_identifier = '2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/';
+      var disqus_title = "Speed Up Your Git Merge Flow With \'git rerere\'";
+      var disqus_url = 'http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

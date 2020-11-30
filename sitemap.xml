@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/</loc>
+    
+    <lastmod>2020-11-30T05:40:59.977Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2020/05/25/LeetCode-233-Number-of-Digit-One/</loc>
     
-    <lastmod>2020-05-25T10:06:05.395Z</lastmod>
+    <lastmod>2020-09-17T02:02:10.501Z</lastmod>
     
   </url>
   
