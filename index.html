@@ -213,8 +213,8 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/" itemprop="url">
-                  Speed Up Your Git Merge Flow With 'git rerere'
+                <a class="post-title-link" href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/" itemprop="url">
+                  Speed Up Your Git Wrokflow With 'git rerere'
                 </a>
               
             
@@ -238,8 +238,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/" itemprop="commentsCount"></span>
+                <a href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -266,7 +266,7 @@
           
             <p>TLDR: Tired of manual conflict resolution? Run <code>git config rerere.enabled true</code> to enable the <strong>rerere</strong> feature which will remember conflict resolutions so you don’t have to resolve the same conflict over and over agin.</p>
 <hr>
-<p>Recently I came across a case of parallel development on two different repos originating from one common code base.<br>Things went well until conflicts started to arise like the follwing picture.<br><img src="/images/2020/rerere/1.png" alt="Initial State"><br>Initially conflicts were resolved manually.<br><img src="/images/2020/rerere/2.png" alt="Manually Reslotion"><br>As time passing by, conflicts started to show up in the same file repetitively and I got bored in resolving the same conflict over and over again.<br>I started to ask myself can I find a better way to eliminate these redundant work.<br><img src="/images/2020/rerere/3.png" alt="Initial State"><br>After some research, I found <strong>git rerere</strong>.<br>Basically it’s a feature built in git which will record the conflict merge results after being turned on so that no human intervention will be required to merge the code when the same conflict emerges again.<br>To use it, all you have to do is just run <code>git config rerere.enabled true</code> to turn it on. After that, all manually code merge would be recorded and reused later when meeting with same conflicts.</p>
+<p>Recently I came across a case of parallel development on two different repos originating from one common code base.<br>Things went well until conflicts started to arise like the follwing picture.<br><img src="/images/2020/rerere/1.png" alt="Initial State"><br>Initially conflicts were resolved manually.<br><img src="/images/2020/rerere/2.png" alt="Manually Reslotion"><br>As time passing by, conflicts started to show up in the same file repetitively and I got bored in resolving the same conflict over and over again.<br>I started to ask myself can I find a better way to eliminate these redundant work.<br><img src="/images/2020/rerere/3.png" alt="Initial State"><br>After some research, I found <strong>git rerere</strong>.<br>Basically it’s a feature built in git which will record the conflict merge results after being turned on so that no human intervention will be required to merge the code when the same conflict emerges again.<br>To use it, all you have to do is to just run <code>git config rerere.enabled true</code> to turn it on. After that, all manually code merge would be recorded and reused later when meeting with same conflicts.</p>
 
           
         

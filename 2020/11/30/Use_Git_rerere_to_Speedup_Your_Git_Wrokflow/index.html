@@ -61,17 +61,17 @@
 <meta name="description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Speed Up Your Git Merge Flow With &#39;git rerere&#39;">
-<meta property="og:url" content="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/index.html">
+<meta property="og:title" content="Speed Up Your Git Wrokflow With &#39;git rerere&#39;">
+<meta property="og:url" content="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/index.html">
 <meta property="og:site_name" content="Lotp&#39;s Blog">
 <meta property="og:description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/1.png">
 <meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/2.png">
 <meta property="og:image" content="http://blog.lotp.xyz/images/2020/rerere/3.png">
-<meta property="og:updated_time" content="2020-11-30T05:40:59.977Z">
+<meta property="og:updated_time" content="2020-11-30T06:12:51.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Speed Up Your Git Merge Flow With &#39;git rerere&#39;">
+<meta name="twitter:title" content="Speed Up Your Git Wrokflow With &#39;git rerere&#39;">
 <meta name="twitter:description" content="TLDR: Tired of manual conflict resolution? Run git config rerere.enabled true to enable the rerere feature which will remember conflict resolutions so you don’t have to resolve the same conflict over">
 <meta name="twitter:image" content="http://blog.lotp.xyz/images/2020/rerere/1.png">
 
@@ -94,9 +94,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/"/>
+  <link rel="canonical" href="http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/"/>
 
-  <title> Speed Up Your Git Merge Flow With 'git rerere' | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Speed Up Your Git Wrokflow With 'git rerere' | Lotp's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -216,7 +216,7 @@
             
             
               
-                Speed Up Your Git Merge Flow With 'git rerere'
+                Speed Up Your Git Wrokflow With 'git rerere'
               
             
           </h1>
@@ -239,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/" itemprop="commentsCount"></span>
+                <a href="/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -265,7 +265,7 @@
       
         <p>TLDR: Tired of manual conflict resolution? Run <code>git config rerere.enabled true</code> to enable the <strong>rerere</strong> feature which will remember conflict resolutions so you don’t have to resolve the same conflict over and over agin.</p>
 <hr>
-<p>Recently I came across a case of parallel development on two different repos originating from one common code base.<br>Things went well until conflicts started to arise like the follwing picture.<br><img src="/images/2020/rerere/1.png" alt="Initial State"><br>Initially conflicts were resolved manually.<br><img src="/images/2020/rerere/2.png" alt="Manually Reslotion"><br>As time passing by, conflicts started to show up in the same file repetitively and I got bored in resolving the same conflict over and over again.<br>I started to ask myself can I find a better way to eliminate these redundant work.<br><img src="/images/2020/rerere/3.png" alt="Initial State"><br>After some research, I found <strong>git rerere</strong>.<br>Basically it’s a feature built in git which will record the conflict merge results after being turned on so that no human intervention will be required to merge the code when the same conflict emerges again.<br>To use it, all you have to do is just run <code>git config rerere.enabled true</code> to turn it on. After that, all manually code merge would be recorded and reused later when meeting with same conflicts.</p>
+<p>Recently I came across a case of parallel development on two different repos originating from one common code base.<br>Things went well until conflicts started to arise like the follwing picture.<br><img src="/images/2020/rerere/1.png" alt="Initial State"><br>Initially conflicts were resolved manually.<br><img src="/images/2020/rerere/2.png" alt="Manually Reslotion"><br>As time passing by, conflicts started to show up in the same file repetitively and I got bored in resolving the same conflict over and over again.<br>I started to ask myself can I find a better way to eliminate these redundant work.<br><img src="/images/2020/rerere/3.png" alt="Initial State"><br>After some research, I found <strong>git rerere</strong>.<br>Basically it’s a feature built in git which will record the conflict merge results after being turned on so that no human intervention will be required to merge the code when the same conflict emerges again.<br>To use it, all you have to do is to just run <code>git config rerere.enabled true</code> to turn it on. After that, all manually code merge would be recorded and reused later when meeting with same conflicts.</p>
 
       
     </div>
@@ -555,9 +555,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blog-lotp-xyz';
-      var disqus_identifier = '2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/';
-      var disqus_title = "Speed Up Your Git Merge Flow With \'git rerere\'";
-      var disqus_url = 'http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Merge_Wrokflow/';
+      var disqus_identifier = '2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/';
+      var disqus_title = "Speed Up Your Git Wrokflow With \'git rerere\'";
+      var disqus_url = 'http://blog.lotp.xyz/2020/11/30/Use_Git_rerere_to_Speedup_Your_Git_Wrokflow/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
