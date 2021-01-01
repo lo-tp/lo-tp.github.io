@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lotp.xyz/2021/01/01/LeetCode-887-Super-Egg-Drop/</loc>
+    
+    <lastmod>2021-01-01T15:04:16.170Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.lotp.xyz/2020/05/25/LeetCode-233-Number-of-Digit-One/</loc>
     
     <lastmod>2020-09-17T02:02:10.501Z</lastmod>
