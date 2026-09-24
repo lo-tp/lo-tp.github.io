@@ -2,120 +2,120 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</loc>
+    <loc>https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/dp/</loc>
+    <loc>https://blog.lotp.xyz/tags/dp/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/leetcode/</loc>
+    <loc>https://blog.lotp.xyz/tags/leetcode/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/</loc>
+    <loc>https://blog.lotp.xyz/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/</loc>
+    <loc>https://blog.lotp.xyz/posts/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/</loc>
+    <loc>https://blog.lotp.xyz/tags/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</loc>
+    <loc>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</loc>
     <lastmod>2020-05-25T19:39:16+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/algorithm/</loc>
+    <loc>https://blog.lotp.xyz/tags/algorithm/</loc>
     <lastmod>2020-05-25T19:39:16+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/reading-notes/</loc>
+    <loc>https://blog.lotp.xyz/tags/reading-notes/</loc>
     <lastmod>2020-01-17T20:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/reading-notes-how-google-works/</loc>
+    <loc>https://blog.lotp.xyz/posts/reading-notes-how-google-works/</loc>
     <lastmod>2020-01-17T20:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</loc>
+    <loc>https://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</loc>
     <lastmod>2019-01-20T16:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/a-simple-but-effective-spaced-repitition-algorithm-ms/</loc>
+    <loc>https://blog.lotp.xyz/posts/a-simple-but-effective-spaced-repitition-algorithm-ms/</loc>
     <lastmod>2018-08-12T08:56:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/learn/</loc>
+    <loc>https://blog.lotp.xyz/tags/learn/</loc>
     <lastmod>2018-08-12T08:56:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/es7/</loc>
+    <loc>https://blog.lotp.xyz/tags/es7/</loc>
     <lastmod>2017-01-05T13:56:47+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/mocha/</loc>
+    <loc>https://blog.lotp.xyz/tags/mocha/</loc>
     <lastmod>2017-01-05T13:56:47+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/my-first-try-at-tdd-how-i-test-asynchronous-code-in-mocha-with-async-await-syntax/</loc>
+    <loc>https://blog.lotp.xyz/posts/my-first-try-at-tdd-how-i-test-asynchronous-code-in-mocha-with-async-await-syntax/</loc>
     <lastmod>2017-01-05T13:56:47+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/tdd/</loc>
+    <loc>https://blog.lotp.xyz/tags/tdd/</loc>
     <lastmod>2017-01-05T13:56:47+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/test/</loc>
+    <loc>https://blog.lotp.xyz/tags/test/</loc>
     <lastmod>2017-01-05T13:56:47+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</loc>
+    <loc>https://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</loc>
     <lastmod>2016-12-13T14:22:33+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/bit-operation/</loc>
+    <loc>https://blog.lotp.xyz/tags/bit-operation/</loc>
     <lastmod>2016-12-13T14:22:33+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/dfs/</loc>
+    <loc>https://blog.lotp.xyz/tags/dfs/</loc>
     <lastmod>2016-12-13T14:22:33+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</loc>
+    <loc>https://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</loc>
     <lastmod>2016-12-10T01:49:42+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/greedy/</loc>
+    <loc>https://blog.lotp.xyz/tags/greedy/</loc>
     <lastmod>2016-12-10T01:49:42+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</loc>
+    <loc>https://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</loc>
     <lastmod>2016-12-01T06:57:44+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/iframe/</loc>
+    <loc>https://blog.lotp.xyz/tags/iframe/</loc>
     <lastmod>2016-12-01T06:57:44+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/postmessage/</loc>
+    <loc>https://blog.lotp.xyz/tags/postmessage/</loc>
     <lastmod>2016-12-01T06:57:44+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/react/</loc>
+    <loc>https://blog.lotp.xyz/tags/react/</loc>
     <lastmod>2016-12-01T06:57:44+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</loc>
+    <loc>https://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</loc>
     <lastmod>2016-11-26T09:39:16+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/bfs/</loc>
+    <loc>https://blog.lotp.xyz/tags/bfs/</loc>
     <lastmod>2016-11-26T09:39:16+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/functional-programming/</loc>
+    <loc>https://blog.lotp.xyz/tags/functional-programming/</loc>
     <lastmod>2016-11-06T06:26:22+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/how-to-write-your-redux-action-in-a-more-concise-style/</loc>
+    <loc>https://blog.lotp.xyz/posts/how-to-write-your-redux-action-in-a-more-concise-style/</loc>
     <lastmod>2016-11-06T06:26:22+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/redux/</loc>
+    <loc>https://blog.lotp.xyz/tags/redux/</loc>
     <lastmod>2016-11-06T06:26:22+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/</loc>
+    <loc>https://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/</loc>
     <lastmod>2016-09-07T04:46:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/ux/</loc>
+    <loc>https://blog.lotp.xyz/tags/ux/</loc>
     <lastmod>2016-09-07T04:46:00+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</loc>
+    <loc>https://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</loc>
     <lastmod>2016-08-29T09:08:11+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/linux/</loc>
+    <loc>https://blog.lotp.xyz/tags/linux/</loc>
     <lastmod>2016-08-29T09:08:11+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/posts/how-to-customize-password-resetting-page-in-meteor/</loc>
+    <loc>https://blog.lotp.xyz/posts/how-to-customize-password-resetting-page-in-meteor/</loc>
     <lastmod>2016-08-29T07:24:48+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/tags/meteor/</loc>
+    <loc>https://blog.lotp.xyz/tags/meteor/</loc>
     <lastmod>2016-08-29T07:24:48+00:00</lastmod>
   </url><url>
-    <loc>http://blog.lotp.xyz/categories/</loc>
+    <loc>https://blog.lotp.xyz/categories/</loc>
   </url>
 </urlset>

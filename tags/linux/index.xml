@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Linux on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/linux/</link>
+		<link>https://blog.lotp.xyz/tags/linux/</link>
 		<description>Recent content in Linux on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Mon, 29 Aug 2016 09:08:11 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>A Painless Way to Clone an Existing Linux OS to Another Disk</title>
-				<link>http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</link>
+				<link>https://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</link>
 				<pubDate>Mon, 29 Aug 2016 09:08:11 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</guid>
+				<guid>https://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/</guid>
 				<description>&lt;p&gt;We all know that installing operation system is a toil.&#xA;&lt;strong&gt;So let&amp;rsquo;s say no to restinalling OS.&lt;/strong&gt;&#xA;Recently, I bought a larger SSD and intended to use it to replace the older one.&#xA;In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one.&#xA;Luckily I succeeded.&lt;/p&gt;</description>
 			</item>
 	</channel>

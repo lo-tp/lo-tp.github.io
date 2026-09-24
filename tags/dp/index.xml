@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>DP on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/dp/</link>
+		<link>https://blog.lotp.xyz/tags/dp/</link>
 		<description>Recent content in DP on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,19 +12,19 @@
 		
 			<lastBuildDate>Fri, 01 Jan 2021 20:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/dp/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</link>
 				<pubDate>Fri, 01 Jan 2021 20:00:00 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</guid>
-				<description>&lt;p&gt;&lt;img src=&#34;http://blog.lotp.xyz/images/2020/superEggDrop/cover.png&#34; alt=&#34;Super Egg Drop&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/super-egg-drop/&#34;&gt;&amp;lsquo;Super Egg Drop&amp;rsquo;&lt;/a&gt; is a very classic &lt;strong&gt;DP&lt;/strong&gt; problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn&amp;rsquo;t much about the O(KN) solution and the rare posts about it aren&amp;rsquo;t very clear. The article you are reading now is an endeavor to fill this gap.&lt;/p&gt;&#xA;&lt;h1 id=&#34;check-out-the-problem&#34;&gt;Check Out The Problem&lt;/h1&gt;&#xA;&lt;p&gt;You are given &lt;code&gt;K&lt;/code&gt; eggs, and you have access to a building with &lt;code&gt;N&lt;/code&gt; floors from 1 to &lt;code&gt;N&lt;/code&gt;&lt;/p&gt;</description>
+				<guid>https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;https://blog.lotp.xyz/images/2020/superEggDrop/cover.png&#34; alt=&#34;Super Egg Drop&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/super-egg-drop/&#34;&gt;&amp;lsquo;Super Egg Drop&amp;rsquo;&lt;/a&gt; is a very classic &lt;strong&gt;DP&lt;/strong&gt; problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn&amp;rsquo;t much about the O(KN) solution and the rare posts about it aren&amp;rsquo;t very clear. The article you are reading now is an endeavor to fill this gap.&lt;/p&gt;&#xA;&lt;h1 id=&#34;check-out-the-problem&#34;&gt;Check Out The Problem&lt;/h1&gt;&#xA;&lt;p&gt;You are given &lt;code&gt;K&lt;/code&gt; eggs, and you have access to a building with &lt;code&gt;N&lt;/code&gt; floors from 1 to &lt;code&gt;N&lt;/code&gt;&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>[LeetCode 233, AC] Number of Digit One Done With DP</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</link>
 				<pubDate>Mon, 25 May 2020 19:39:16 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</guid>
+				<guid>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</guid>
 				<description>&lt;pre&gt;&lt;code&gt;Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.&#xA;&#xA;Example:&#xA;&#xA;Input: 13&#xA;Output: 6 &#xA;Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s try to solve &lt;a href=&#34;https://leetcode.com/problems/number-of-digit-one/&#34;&gt;this problem&lt;/a&gt; by dividing it into smaller quizzes:&lt;/p&gt;&#xA;&lt;p&gt;For example, to caculate the result for 2954:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;count(2954)=count(2000)+count(954)&lt;/li&gt;&#xA;&lt;li&gt;count(954)=count(900)+count(54)&lt;/li&gt;&#xA;&lt;li&gt;count(54)=count(50)+count(4)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Now we got the conclusion that &lt;code&gt;count(2954)=count(2000)+count(900)+count(50)+count(4)&lt;/code&gt;, which is leading us to the question of how to get &lt;code&gt;count(i*10^j)&lt;/code&gt;&lt;/p&gt;</description>
 			</item>
 	</channel>

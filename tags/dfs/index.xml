@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>DFS on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/dfs/</link>
+		<link>https://blog.lotp.xyz/tags/dfs/</link>
 		<description>Recent content in DFS on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Tue, 13 Dec 2016 14:22:33 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/dfs/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/dfs/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>[LeetCode 417, AC] Pacific Atlantic Water Flow</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</link>
 				<pubDate>Tue, 13 Dec 2016 14:22:33 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</guid>
+				<guid>https://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/</guid>
 				<description>&lt;p&gt;Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the &amp;ldquo;Pacific ocean&amp;rdquo; touches the left and top edges of the matrix and the &amp;ldquo;Atlantic ocean&amp;rdquo; touches the right and bottom edges.&lt;/p&gt;&#xA;&lt;p&gt;Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.&lt;/p&gt;&#xA;&lt;p&gt;Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.&lt;/p&gt;</description>
 			</item>
 	</channel>

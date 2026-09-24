@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Algorithm on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/algorithm/</link>
+		<link>https://blog.lotp.xyz/tags/algorithm/</link>
 		<description>Recent content in Algorithm on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,26 +12,26 @@
 		
 			<lastBuildDate>Mon, 25 May 2020 19:39:16 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>[LeetCode 233, AC] Number of Digit One Done With DP</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</link>
 				<pubDate>Mon, 25 May 2020 19:39:16 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</guid>
+				<guid>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</guid>
 				<description>&lt;pre&gt;&lt;code&gt;Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.&#xA;&#xA;Example:&#xA;&#xA;Input: 13&#xA;Output: 6 &#xA;Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s try to solve &lt;a href=&#34;https://leetcode.com/problems/number-of-digit-one/&#34;&gt;this problem&lt;/a&gt; by dividing it into smaller quizzes:&lt;/p&gt;&#xA;&lt;p&gt;For example, to caculate the result for 2954:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;count(2954)=count(2000)+count(954)&lt;/li&gt;&#xA;&lt;li&gt;count(954)=count(900)+count(54)&lt;/li&gt;&#xA;&lt;li&gt;count(54)=count(50)+count(4)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Now we got the conclusion that &lt;code&gt;count(2954)=count(2000)+count(900)+count(50)+count(4)&lt;/code&gt;, which is leading us to the question of how to get &lt;code&gt;count(i*10^j)&lt;/code&gt;&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>[LeetCode 455, AC] Assign Cookies</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</link>
 				<pubDate>Sat, 10 Dec 2016 01:49:42 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</guid>
+				<guid>https://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</guid>
 				<description>&lt;p&gt;Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj &amp;gt;= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>[LeetCode 126, TLE] Word Ladder II</title>
-				<link>http://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</link>
+				<link>https://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</link>
 				<pubDate>Sat, 26 Nov 2016 09:39:16 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</guid>
+				<guid>https://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/</guid>
 				<description>&lt;p&gt;If you come here for a solution to the problem, you are in a wrong place.&#xA;Because &lt;strong&gt;my code for this quiz wasn&amp;rsquo;t accepted yet&lt;/strong&gt; and the purpose of this post is to make a summary about what I have learnt about BFS from doing this exercise.&#xA;I will share my code at the end of this post and any ideas on where my code is wrong would be greatly appreciated.&lt;/p&gt;</description>
 			</item>
 	</channel>

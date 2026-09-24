@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>React on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/react/</link>
+		<link>https://blog.lotp.xyz/tags/react/</link>
 		<description>Recent content in React on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Thu, 01 Dec 2016 06:57:44 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/react/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/react/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>How to Use Postmessage to Communicate with iframe in React</title>
-				<link>http://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</link>
+				<link>https://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</link>
 				<pubDate>Thu, 01 Dec 2016 06:57:44 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</guid>
+				<guid>https://blog.lotp.xyz/posts/how-to-use-postmessage-to-communicate-with-iframe-in-react/</guid>
 				<description>&lt;p&gt;We all know that we should avert the use of iframe, but sometimes, we have no choice but to use it.&#xA;This article is about how to use postmessage to communicate with an iframe using React.&#xA;Assumptions were made that you know what is postmessage and how to use it, so if you are not familiar with it, read this this &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage&#34;&gt;introduction to postmessage&lt;/a&gt; before moving on.&#xA;At first I want you to know as we need to run js on websites within and outside the child iframe so this method can only be used when you have administration privilege on both sides.&lt;/p&gt;</description>
 			</item>
 	</channel>

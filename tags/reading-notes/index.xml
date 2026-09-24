@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Reading Notes on Lotp&#39;s Blog</title>
-		<link>http://blog.lotp.xyz/tags/reading-notes/</link>
+		<link>https://blog.lotp.xyz/tags/reading-notes/</link>
 		<description>Recent content in Reading Notes on Lotp&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,19 +12,19 @@
 		
 			<lastBuildDate>Fri, 17 Jan 2020 20:30:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://blog.lotp.xyz/tags/reading-notes/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://blog.lotp.xyz/tags/reading-notes/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Reading Notes: How Google Works</title>
-				<link>http://blog.lotp.xyz/posts/reading-notes-how-google-works/</link>
+				<link>https://blog.lotp.xyz/posts/reading-notes-how-google-works/</link>
 				<pubDate>Fri, 17 Jan 2020 20:30:00 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/reading-notes-how-google-works/</guid>
+				<guid>https://blog.lotp.xyz/posts/reading-notes-how-google-works/</guid>
 				<description>&lt;h2 id=&#34;definitions&#34;&gt;Definitions&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Technical insights&lt;/p&gt;&#xA;&lt;p&gt;A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;What is a good product&lt;/p&gt;&#xA;&lt;p&gt;The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;A Successful Product Is The One Fails To Fail&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Reading Notes: The Checklist Manifesto</title>
-				<link>http://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</link>
+				<link>https://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</link>
 				<pubDate>Sun, 20 Jan 2019 16:30:00 +0000</pubDate>
-				<guid>http://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</guid>
+				<guid>https://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/</guid>
 				<description>&lt;p&gt;&lt;a href=&#34;https://www.amazon.com/Checklist-Manifesto-How-Things-Right/dp/0312430000&#34;&gt;The Checklist Manifesto&lt;/a&gt; is a book from &lt;a href=&#34;https://en.wikipedia.org/wiki/Atul_Gawande&#34;&gt;Atul Gawande&lt;/a&gt;. I learned the following three points from this book.&lt;/p&gt;&#xA;&lt;h4 id=&#34;all-tasks-can-be-divided-into-3-groups&#34;&gt;All Tasks Can Be Divided into 3 Groups&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;simple ones:&lt;/p&gt;&#xA;&lt;p&gt;Simple problems are ones like baking a cake from a mix. There is a recipe. Sometimes there are a few basic techniques to learn. But once these are mastered, following the recipe brings a high likelihood of success.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;complicated ones:&lt;/p&gt;&#xA;&lt;p&gt;Ones like launcing a rocket. They can sometimes be broken down into a series of simple problems. Once you learn how to send a rocket to the moon, you can repeat the process with other rockets and perfect it.&lt;/p&gt;</description>
 			</item>
 	</channel>
