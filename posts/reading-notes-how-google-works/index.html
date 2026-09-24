@@ -1,0 +1,316 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Reading Notes: How Google Works - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Definitions
+
+
+Technical insights
+A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.
+
+
+What is a good product
+The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.
+
+
+A Successful Product Is The One Fails To Fail" />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="Reading Notes: How Google Works">
+	<meta itemprop="description" content="Definitions Technical insights
+A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.
+What is a good product
+The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.
+A Successful Product Is The One Fails To Fail">
+	<meta itemprop="datePublished" content="2020-01-17T20:30:00+00:00">
+	<meta itemprop="dateModified" content="2020-01-17T20:30:00+00:00">
+	<meta itemprop="wordCount" content="710">
+	<meta itemprop="keywords" content="Reading Notes"><meta property="og:url" content="http://blog.lotp.xyz/posts/reading-notes-how-google-works/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="Reading Notes: How Google Works">
+	<meta property="og:description" content="Definitions Technical insights
+A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.
+What is a good product
+The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.
+A Successful Product Is The One Fails To Fail">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-01-17T20:30:00+00:00">
+		<meta property="article:modified_time" content="2020-01-17T20:30:00+00:00">
+		<meta property="article:tag" content="Reading Notes">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Reading Notes: How Google Works">
+	<meta name="twitter:description" content="Definitions Technical insights
+A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.
+What is a good product
+The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.
+A Successful Product Is The One Fails To Fail">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/reading-notes-how-google-works/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Reading Notes: How Google Works</h1><div class="text-xs antialiased opacity-60"><time>Jan 17, 2020</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><h2 id="definitions">Definitions</h2>
+<ul>
+<li>
+<p>Technical insights</p>
+<p>A technical insight is a new way of applying technology or design that either drives down the cost or increases the functions and usability of the product by a significant factor.</p>
+</li>
+<li>
+<p>What is a good product</p>
+<p>The best products are still the ones that are based on technical insights, those unique ideas that apply one or more technologies in a new way to solve big problems.</p>
+</li>
+<li>
+<p>A Successful Product Is The One Fails To Fail</p>
+</li>
+<li>
+<p>Elevator Pitch</p>
+<p>Elevator pitch” is venture capital–speak for “you have thirty seconds to impress me with your business idea.”</p>
+<p>Elevator pitch should explain what you are working on, the technical insight that’s driving it, how you are measuring your success (particularly customer benefit), and perhaps how it fits into the big picture.</p>
+</li>
+<li>
+<p>The 70/20/10 Rule</p>
+<p>70 percent of resources dedicated to the core business, 20 percent on emerging, and 10 percent on new.</p>
+</li>
+<li>
+<p>Jobs attractive to the Smart Creatives</p>
+<p>Flying an F-16 at Mach 2 over a boulder-strewn landscape, two meters off the ground. Plus, if you crash it’s just like a video game at the arcade, and we have lots of quarters.”</p>
+</li>
+<li>
+<p>Hippo(the Highest-Paid Person’s Opinion)</p>
+</li>
+</ul>
+<h2 id="suggestions-from-google">Suggestions From Google</h2>
+<ul>
+<li>
+<p>Process Is A Friend To Small Companies But An Enemy To Big Ones</p>
+<p>Process is a great thing. It is the art and science of taking something that needs to be done and reducing it to a documented set of steps, often supported by information tools and systems. With process comes scale; you absolutely need process to grow a company profitably.</p>
+<p>At some point, though, process starts to take over. It becomes so entrenched that it can trump common sense and cause executives to, as our head of business operations, Kristen Gil, says, “lose muscle memory.” People stop thinking and instead just depend on the process to make decisions for them.</p>
+<p>The antidote to these issues is to break your own processes. This usually requires “air cover” from a senior leader in the company, someone who says it’s OK not to follow the rules and has the power and authority to fend off the antibodies who will attack the rule-breaker.</p>
+</li>
+<li>
+<p>BU(Business Unit) is not a good thing</p>
+<p>We believe in staying functionally organized—with separate departments such as engineering, products, finance, and sales reporting directly to the CEO—as long as possible, because organizing around business divisions or product lines can lead to the formation of silos, which usually stifle the free flow of information and people. Having separate P&amp;Ls seems like a good way to measure performance, but it can have the unfortunate side effect of skewing behavior:
+The leaders of a business unit are motivated to prioritize their unit’s P&amp;L over the company’s.</p>
+</li>
+<li>
+<p>Googles&rsquo; overall strategy</p>
+<p>Bet on technical insights that help solve a big problem in a novel way, optimize for scale, not for revenue, and let great products grow the market for everyone.</p>
+</li>
+<li>
+<p>Hire no incorrect people rather than hiring more correct people</p>
+<p>This is why we would rather our hiring process generate more false negatives (people we should have hired but didn’t) than false positives (we shouldn’t have hired, but did).</p>
+</li>
+<li>
+<p>Checklist for Meeting Organizers</p>
+<ul>
+<li>Every Meeting need a owner</li>
+<li>Every meeting should have a clear purpose</li>
+<li>Meeting need a clear time-box</li>
+<li>Owners&rsquo; responsibilities before the metting are to schedue the time and let all attendances know in advance. After the meeting the owner is expected to sumaarize the decisions or conclusions reached at the metting.</li>
+</ul>
+</li>
+<li>
+<p>How to End an Argument:</p>
+<ul>
+<li>Say that You are both right</li>
+<li>Then, after reassuring the argument’s losers and articulating what needs to be done, the decision-maker must ensure that every loser does one of two things: disagree but commit, or escalate publicly.</li>
+</ul>
+</li>
+</ul>
+<h2 id="mottos">Mottos</h2>
+<ul>
+<li>
+<p>Never stop learning</p>
+<p>Henry Ford said that “anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young. The greatest thing in life is to keep your mind young.”</p>
+</li>
+<li>
+<p>Incrementalism Leads To Irrelevance</p>
+<p>It’s also true that many companies get comfortable doing what they have always done, with a few incremental changes. This kind of incrementalism leads to irrelevance over time, especially in technology, because change tends to be revolutionary not evolutionary.</p>
+</li>
+<li>
+<p>Googlers also work on the weekend like when doing 20 percent project</p>
+</li>
+</ul>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/reading-notes"
+      >Reading Notes</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>[LeetCode 233, AC] Number of Digit One Done With DP</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/reading-notes-the-checklist-manifesto/"
+      ><span>Reading Notes: The Checklist Manifesto</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

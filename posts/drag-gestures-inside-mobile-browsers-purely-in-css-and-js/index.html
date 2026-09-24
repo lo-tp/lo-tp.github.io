@@ -1,0 +1,277 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="
+Drag gesture, like the image above, is a very good interaction model for touch devices.
+This article is about the implementation of drag gesture on mobile browsers.
+I use react to simplify the code. However you can accomplish it without any framework.
+The basic idea is to make a scrollable widget comprised by two component.
+The first component is always visible while the second one(named drag-btn in this article) can only be seen after scrolling." />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
+	<meta itemprop="description" content="Drag gesture, like the image above, is a very good interaction model for touch devices. This article is about the implementation of drag gesture on mobile browsers.
+I use react to simplify the code. However you can accomplish it without any framework.
+The basic idea is to make a scrollable widget comprised by two component. The first component is always visible while the second one(named drag-btn in this article) can only be seen after scrolling.">
+	<meta itemprop="datePublished" content="2016-09-07T04:46:00+00:00">
+	<meta itemprop="dateModified" content="2016-09-07T04:46:00+00:00">
+	<meta itemprop="wordCount" content="252">
+	<meta itemprop="keywords" content="UX"><meta property="og:url" content="http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
+	<meta property="og:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices. This article is about the implementation of drag gesture on mobile browsers.
+I use react to simplify the code. However you can accomplish it without any framework.
+The basic idea is to make a scrollable widget comprised by two component. The first component is always visible while the second one(named drag-btn in this article) can only be seen after scrolling.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-09-07T04:46:00+00:00">
+		<meta property="article:modified_time" content="2016-09-07T04:46:00+00:00">
+		<meta property="article:tag" content="UX">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS">
+	<meta name="twitter:description" content="Drag gesture, like the image above, is a very good interaction model for touch devices. This article is about the implementation of drag gesture on mobile browsers.
+I use react to simplify the code. However you can accomplish it without any framework.
+The basic idea is to make a scrollable widget comprised by two component. The first component is always visible while the second one(named drag-btn in this article) can only be seen after scrolling.">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS</h1><div class="text-xs antialiased opacity-60"><time>Sep 7, 2016</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><p><img src="/images/swipteToDelete.gif" alt="Swipe To Delete">
+Drag gesture, like the image above, is a very good interaction model for touch devices.
+This article is about the implementation of drag gesture on mobile browsers.</p>
+<p>I use react to simplify the code. However you can accomplish it without any framework.</p>
+<p>The basic idea is to make a scrollable widget comprised by two component.
+The first component is always visible while the second one(named <strong>drag-btn</strong> in this article) can only be seen after scrolling.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">li</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onClick</span> <span style="color:#f92672">=</span> {<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">click</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>)}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ref</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">e</span>=&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">li</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+</span></span><span style="display:flex;"><span>  }}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;menu__item&#34;</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onScroll</span> <span style="color:#f92672">=</span> {<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">onScroll</span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;text&#34;</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">text</span> <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      {<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">text</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/text&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ref</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">e</span>=&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragBtn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+</span></span><span style="display:flex;"><span>    }}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">`drag-btn </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">dragClass</span>[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">text</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">drag</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/text&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/li&gt;</span>
+</span></span></code></pre></div><p>We use <code>onscroll</code> to monitor the scrolling.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">onScroll</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scroll</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">li</span>.<span style="color:#a6e22e">scrollLeft</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scrollThreshhold</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragBtn</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`drag-btn </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">dragClass</span>[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragBtn</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`drag-btn </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">dragClass</span>[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span></code></pre></div><p>When the user scrolls to certain position, we have to tell the user that the drag action is about to be triggered.This is fulfilled by adding another class to drag-btn component to change its color.</p>
+<p>When the user stops scrolling, a <strong>touchend</strong> event is emitted which can be utilized to check if drag action should be executed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">onTouchEnd</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scroll</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">li</span>.<span style="color:#a6e22e">scrollLeft</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scrollThreshhold</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">drag</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>)();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">li</span>.<span style="color:#a6e22e">scrollLeft</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scroll</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>},
+</span></span></code></pre></div><p>In order to keep it concise, only the most pertinent code was demonstrated in this article.
+For more details, check this <a href="https://github.com/lo-tp/DragInBrowsers">repo</a>.</p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/ux"
+      >UX</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://blog.lotp.xyz/posts/how-to-write-your-redux-action-in-a-more-concise-style/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>How-to-Write-Your-Redux-Action-in-a-More-Concise-Style</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/"
+      ><span>A Painless Way to Clone an Existing Linux OS to Another Disk</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

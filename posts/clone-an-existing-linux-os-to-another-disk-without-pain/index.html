@@ -1,0 +1,260 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>A Painless Way to Clone an Existing Linux OS to Another Disk - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="We all know that installing operation system is a toil.
+So let&rsquo;s say no to restinalling OS.
+Recently, I bought a larger SSD and intended to use it to replace the older one.
+In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one.
+Luckily I succeeded." />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="A Painless Way to Clone an Existing Linux OS to Another Disk">
+	<meta itemprop="description" content="We all know that installing operation system is a toil. So let’s say no to restinalling OS. Recently, I bought a larger SSD and intended to use it to replace the older one. In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one. Luckily I succeeded.">
+	<meta itemprop="datePublished" content="2016-08-29T09:08:11+00:00">
+	<meta itemprop="dateModified" content="2016-08-29T09:08:11+00:00">
+	<meta itemprop="wordCount" content="546">
+	<meta itemprop="keywords" content="Linux"><meta property="og:url" content="http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="A Painless Way to Clone an Existing Linux OS to Another Disk">
+	<meta property="og:description" content="We all know that installing operation system is a toil. So let’s say no to restinalling OS. Recently, I bought a larger SSD and intended to use it to replace the older one. In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one. Luckily I succeeded.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-08-29T09:08:11+00:00">
+		<meta property="article:modified_time" content="2016-08-29T09:08:11+00:00">
+		<meta property="article:tag" content="Linux">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="A Painless Way to Clone an Existing Linux OS to Another Disk">
+	<meta name="twitter:description" content="We all know that installing operation system is a toil. So let’s say no to restinalling OS. Recently, I bought a larger SSD and intended to use it to replace the older one. In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one. Luckily I succeeded.">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/clone-an-existing-linux-os-to-another-disk-without-pain/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">A Painless Way to Clone an Existing Linux OS to Another Disk</h1><div class="text-xs antialiased opacity-60"><time>Aug 29, 2016</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><p>We all know that installing operation system is a toil.
+<strong>So let&rsquo;s say no to restinalling OS.</strong>
+Recently, I bought a larger SSD and intended to use it to replace the older one.
+In order to circumvent all the dull jobs I have to do with the reinstalling thing, I decided to clone the existing Ubuntu Mate 14.04 from my older SSD to the newly bought one.
+Luckily I succeeded.</p>
+<h3 id="cautions">Cautions</h3>
+<p>Make sure the size of the destination disk is equal to or larger than the that of the original one.</p>
+<h3 id="using-dd-to-clone-the-disk">Using <code>dd</code> To Clone the Disk</h3>
+<p>Plug in the new disk to your computer and check the corressponding dev files of the disks.
+In my case, the old disk is <em>/dev/sda</em> and the new disk is <em>/dev/sdb</em>.
+Run the following command to fully transfer the content(<strong>Please pay extra attention when using dd</strong>).
+<code>dd if=/dev/sda of=/dev/sdb</code>.</p>
+<h3 id="change-uuid">Change UUID</h3>
+<p>Using <code>dd</code>, the UUID of partitions on the two disks will be the same.
+This may lead to some conflict, so we have to change the UUID of the partitions on the new disk.
+In my case, I got two new partitions: sdb1 and sdb2.
+And I changed UUID using this command:
+<code>tune2fs /dev/sdbX -U `uuidgen` </code>.
+Now shutdown your PC, install the new disk to the port of the older one and restart your PC to enjoy your new system.</p>
+<h3 id="extend-the-partition-and-file-system-of-the-new-disk">Extend the Partition and File System of the New Disk</h3>
+<p>With <code>dd</code>, you get an exact copy of your older disk.
+That is to say, the space of the partition on the new disk is also the same as the older one.
+You know in most circumstances, we would buy a larger disk to replace the older one.
+So if we leave it as it is now, there would be a waste disk space.</p>
+<p>Fortunately, we could work around this problem.
+Boot your PC from the older disk with the new one also on your machine.</p>
+<ol>
+<li>Use <code>fdisk</code> to remove the partitions on the new disk.</li>
+<li>Use <code>fdisk</code> to recreate the partition with the desirable size(Be careful here to make sure that the <strong>First sector</strong> is the same as that of the removed partition).</li>
+<li>Use <code>fsck</code> to check everything you&rsquo;ve done to your partition is ok.</li>
+<li>Use <code>resize2fs</code> to resize the file system.</li>
+</ol>
+<p>If you need furture help about how to extend, check <a href="https://geekpeek.net/resize-filesystem-fdisk-resize2fs/">this post</a>.</p>
+<h3 id="repair-grub">Repair Grub</h3>
+<p>If your plan is to use the new disk in a port different to the original one, then there will be some more work to do.</p>
+<p>As I&rsquo;ve mention before, <code>dd</code> copys every thing from the original disk to the new one exactly.
+Of no exception is the boot files</p>
+<p>To solve this problem, you&rsquo;ll have to repair your boot files.
+Luckily, we can accomplish this mission with the benefit of a software called <em>boot-repair</em> made by some kind people(Cheers).
+All you have to do is to download the [image][bootRepair] of <em>boot-repair</em> and burn the image to a usb stick to make a bootable usb disk.
+Boot your computer from the newly created usb disk and a wizard like this would appear.</p>
+<p>![wizard][wizard]
+[bootRepair]:http://sourceforge.net/projects/boot-repair-cd/
+[wizard]:http://ww4.sinaimg.cn/mw690/005N6Qx8gw1eyovjprve4j31050kqgth.jpg</p>
+<p>Choose recommended repair and wait for a while.
+After a quick reboot, your computer would be ready to use with the new disk properly configured.</p></section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/linux"
+      >Linux</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/how-to-customize-password-resetting-page-in-meteor/"
+      ><span>How to Customize Password Resetting Page in Meteor</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

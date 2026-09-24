@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Greedy on Lotp&#39;s Blog</title>
+		<link>http://blog.lotp.xyz/tags/greedy/</link>
+		<description>Recent content in Greedy on Lotp&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 10 Dec 2016 01:49:42 +0000</lastBuildDate>
+		
+			<atom:link href="http://blog.lotp.xyz/tags/greedy/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>[LeetCode 455, AC] Assign Cookies</title>
+				<link>http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</link>
+				<pubDate>Sat, 10 Dec 2016 01:49:42 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/</guid>
+				<description>&lt;p&gt;Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj &amp;gt;= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

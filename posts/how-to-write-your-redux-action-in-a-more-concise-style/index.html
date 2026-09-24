@@ -1,0 +1,282 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>How-to-Write-Your-Redux-Action-in-a-More-Concise-Style - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Let&rsquo;s say you are working on a project about article writing and now you are about to write actions to create and update articles.
+To create an article, you would need an action creator like this.
+export const createArticle = title =&gt; {
+    return {
+        type: ARTICLE,
+        operation: CREATE,
+        title
+    }
+}
+When it comes to article updating, you need another action creator.
+export const updateArticle = ( newTitle, title) =&gt; {
+    return {
+        type: ARTICLE,
+        operation: UPDATE,
+        title,
+        newTitle
+    }
+}
+These two functions looks like each other very much.
+Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs." />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
+	<meta itemprop="description" content="Let’s say you are working on a project about article writing and now you are about to write actions to create and update articles. To create an article, you would need an action creator like this.
+export const createArticle = title =&gt; { return { type: ARTICLE, operation: CREATE, title } } When it comes to article updating, you need another action creator.
+export const updateArticle = ( newTitle, title) =&gt; { return { type: ARTICLE, operation: UPDATE, title, newTitle } } These two functions looks like each other very much. Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs.">
+	<meta itemprop="datePublished" content="2016-11-06T06:26:22+00:00">
+	<meta itemprop="dateModified" content="2016-11-06T06:26:22+00:00">
+	<meta itemprop="wordCount" content="311">
+	<meta itemprop="keywords" content="Redux,Functional Programming"><meta property="og:url" content="http://blog.lotp.xyz/posts/how-to-write-your-redux-action-in-a-more-concise-style/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
+	<meta property="og:description" content="Let’s say you are working on a project about article writing and now you are about to write actions to create and update articles. To create an article, you would need an action creator like this.
+export const createArticle = title =&gt; { return { type: ARTICLE, operation: CREATE, title } } When it comes to article updating, you need another action creator.
+export const updateArticle = ( newTitle, title) =&gt; { return { type: ARTICLE, operation: UPDATE, title, newTitle } } These two functions looks like each other very much. Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-11-06T06:26:22+00:00">
+		<meta property="article:modified_time" content="2016-11-06T06:26:22+00:00">
+		<meta property="article:tag" content="Redux">
+		<meta property="article:tag" content="Functional Programming">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="How-to-Write-Your-Redux-Action-in-a-More-Concise-Style">
+	<meta name="twitter:description" content="Let’s say you are working on a project about article writing and now you are about to write actions to create and update articles. To create an article, you would need an action creator like this.
+export const createArticle = title =&gt; { return { type: ARTICLE, operation: CREATE, title } } When it comes to article updating, you need another action creator.
+export const updateArticle = ( newTitle, title) =&gt; { return { type: ARTICLE, operation: UPDATE, title, newTitle } } These two functions looks like each other very much. Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs.">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/how-to-write-your-redux-action-in-a-more-concise-style/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">How-to-Write-Your-Redux-Action-in-a-More-Concise-Style</h1><div class="text-xs antialiased opacity-60"><time>Nov 6, 2016</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><p>Let&rsquo;s say you are working on a project about article writing and now you are about to write actions to create and update articles.
+To create an article, you would need an action creator like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createArticle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">title</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ARTICLE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">operation</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">CREATE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When it comes to article updating, you need another action creator.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">updateArticle</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">newTitle</span>, <span style="color:#a6e22e">title</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ARTICLE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">operation</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">UPDATE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newTitle</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>These two functions looks like each other very much.
+Tasks like these are tedious and you may wonder if there is a way to get rid of these repetitive jobs.</p>
+<p>Of course yes, but you need some extra help.
+I highly recommend you to read the wiki page of <a href="https://en.wikipedia.org/wiki/Functional_programming">functional programming</a> if it&rsquo;s new to you.
+Otherwise the following snippets may be very strange to you.</p>
+<p>To do functional programming, you may need some help of libraries such as <a href="http://ramdajs.com/">Ramda</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">R</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;ramda&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">actionArg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">curry</span>((<span style="color:#a6e22e">type</span>, <span style="color:#a6e22e">operation</span>, <span style="color:#a6e22e">newTitle</span>, <span style="color:#a6e22e">title</span>)=&gt; (
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">type</span>, <span style="color:#a6e22e">operation</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">newTitle</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">actionOfArticle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">actionArg</span>(<span style="color:#a6e22e">ARTICLE</span>);
+</span></span></code></pre></div><p>With the above snippet, basically you are defining a function called <code>actionArg</code> that would return another function.
+The function returned by <code>actionArg</code> would return an object describing the action you are creating.
+At the last line you are making an action to deal with all the article related stuff.</p>
+<p>Here comes the magic.
+Now, to create an article, you just need to define an one line function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createArticle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">actionOfArticle</span>(<span style="color:#a6e22e">CREATE</span>,<span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">__</span>)
+</span></span></code></pre></div><p>Also it becomes easier if you want to update the title of an existing article.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">updateArticle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">actionOfArticle</span>(<span style="color:#a6e22e">UPDATE</span>,<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">__</span>,<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">__</span>)
+</span></span></code></pre></div><p>This may not seem to be useful when you are only dealing with simple actions.
+However when actions become complex, you can save a lot of time by writing actions in this way.</p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/redux"
+      >Redux</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/functional-programming"
+      >Functional Programming</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>[LeetCode 126, TLE] Word Ladder II</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/"
+      ><span>Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

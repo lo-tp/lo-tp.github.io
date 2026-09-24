@@ -1,0 +1,336 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>[LeetCode 417, AC] Pacific Atlantic Water Flow - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the &ldquo;Pacific ocean&rdquo; touches the left and top edges of the matrix and the &ldquo;Atlantic ocean&rdquo; touches the right and bottom edges.
+Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
+Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean." />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="[LeetCode 417, AC] Pacific Atlantic Water Flow">
+	<meta itemprop="description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.
+Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
+Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.">
+	<meta itemprop="datePublished" content="2016-12-13T14:22:33+00:00">
+	<meta itemprop="dateModified" content="2016-12-13T14:22:33+00:00">
+	<meta itemprop="wordCount" content="588">
+	<meta itemprop="keywords" content="LeetCode,DFS,Bit Operation"><meta property="og:url" content="http://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="[LeetCode 417, AC] Pacific Atlantic Water Flow">
+	<meta property="og:description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.
+Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
+Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-12-13T14:22:33+00:00">
+		<meta property="article:modified_time" content="2016-12-13T14:22:33+00:00">
+		<meta property="article:tag" content="LeetCode">
+		<meta property="article:tag" content="DFS">
+		<meta property="article:tag" content="Bit Operation">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="[LeetCode 417, AC] Pacific Atlantic Water Flow">
+	<meta name="twitter:description" content="Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.
+Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
+Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/leetcode-417-ac-pacific-atlantic-water-flow/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">[LeetCode 417, AC] Pacific Atlantic Water Flow</h1><div class="text-xs antialiased opacity-60"><time>Dec 13, 2016</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><p>Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the &ldquo;Pacific ocean&rdquo; touches the left and top edges of the matrix and the &ldquo;Atlantic ocean&rdquo; touches the right and bottom edges.</p>
+<p>Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.</p>
+<p>Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The order of returned grid coordinates does not matter.</li>
+<li>Both m and n are less than 150.</li>
+</ol>
+<h4 id="example">Example:</h4>
+<pre tabindex="0"><code>Given the following 5x5 matrix:
+
+  Pacific ~   ~   ~   ~   ~ 
+       ~  1   2   2   3  (5) *
+       ~  3   2   3  (4) (4) *
+       ~  2   4  (5)  3   1  *
+       ~ (6) (7)  1   4   5  *
+       ~ (5)  1   1   2   4  *
+          *   *   *   *   * Atlantic
+
+Return:
+
+[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
+</code></pre><hr>
+<p>If you try to do a DFS or BFS on each grid to see if it can reach both Pacific and Atlantic ocean, you will get a time out error.</p>
+<p>Luckily, we can solve this problem if we think in a contrary way.
+We can deduce which grids can reach Atlantic ocean and which can reach Pacific ocean, then the intersection of the two set is the answer.</p>
+<p>In this way, the number of iterations can be greatly reduced to the sum of of the 4 edges&rsquo; grids, thus averting the time out error.</p>
+<p>It&rsquo;s straightforward to use two vectors to separately store the connectivities of Atlantic ocean and Pacific ocean, but there is an optimization with which you only need one vector to store the same data.That is bit mask( All credits belong to <a href="https://discuss.leetcode.com/topic/62314/very-concise-c-solution-using-dfs-and-bit-mask">zyoppy008</a>).
+Since the data we are trying to maintain are basically two boolean states, two bits in one int are totally enough.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stack&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  vector<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> pacificAtlantic(vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;&amp;</span> matrix)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> ret;
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> s1;
+</span></span><span style="display:flex;"><span>    stack <span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> s2;
+</span></span><span style="display:flex;"><span>    vector <span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> intermidiate;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> hSize, vSize;
+</span></span><span style="display:flex;"><span>    vSize <span style="color:#f92672">=</span> matrix.size();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (vSize)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      hSize <span style="color:#f92672">=</span> matrix[<span style="color:#ae81ff">0</span>].size();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (hSize)
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        intermidiate.resize(vSize, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(hSize, <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; index <span style="color:#f92672">&lt;</span> vSize; index<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(index, <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>          s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>, INT_MIN));
+</span></span><span style="display:flex;"><span>          s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(index, hSize <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>          s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">2</span>, INT_MIN));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; index <span style="color:#f92672">&lt;</span> hSize; index<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">0</span>, index));
+</span></span><span style="display:flex;"><span>          s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>, INT_MIN));
+</span></span><span style="display:flex;"><span>          s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(vSize <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, index));
+</span></span><span style="display:flex;"><span>          s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">2</span>, INT_MIN));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>s1.empty())
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pos <span style="color:#f92672">=</span> s1.top(), meta <span style="color:#f92672">=</span> s2.top();
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">int</span> vPos <span style="color:#f92672">=</span> pos.first, hPos <span style="color:#f92672">=</span> pos.second, previousValue <span style="color:#f92672">=</span> meta.second, flag <span style="color:#f92672">=</span> meta.first;
+</span></span><span style="display:flex;"><span>          s1.pop();
+</span></span><span style="display:flex;"><span>          s2.pop();
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (vPos <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> vPos <span style="color:#f92672">&lt;</span> vSize <span style="color:#f92672">&amp;&amp;</span> hPos <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> hPos <span style="color:#f92672">&lt;</span> hSize <span style="color:#f92672">&amp;&amp;</span> matrix[vPos][hPos] <span style="color:#f92672">&gt;=</span> previousValue <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>              (intermidiate[vPos][hPos]<span style="color:#f92672">&amp;</span>flag) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>          {
+</span></span><span style="display:flex;"><span>            intermidiate[vPos][hPos] <span style="color:#f92672">=</span> intermidiate[vPos][hPos] <span style="color:#f92672">|</span> flag;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (intermidiate[vPos][hPos] <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              cout <span style="color:#f92672">&lt;&lt;</span> vPos <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">&lt;&lt;</span> hPos <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>              ret.push_back(pos);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(vPos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, hPos));
+</span></span><span style="display:flex;"><span>            s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(flag, matrix[vPos][hPos]));
+</span></span><span style="display:flex;"><span>            s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(vPos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, hPos));
+</span></span><span style="display:flex;"><span>            s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(flag, matrix[vPos][hPos]));
+</span></span><span style="display:flex;"><span>            s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(vPos, hPos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>            s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(flag, matrix[vPos][hPos]));
+</span></span><span style="display:flex;"><span>            s1.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(vPos, hPos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>            s2.push(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(flag, matrix[vPos][hPos]));
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ret;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  vector <span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> testData <span style="color:#f92672">=</span> {{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>}, {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>}, {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>}, {<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}, {<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>}};
+</span></span><span style="display:flex;"><span>  Solution s;
+</span></span><span style="display:flex;"><span>  s.pacificAtlantic(testData);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/leetcode"
+      >LeetCode</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/dfs"
+      >DFS</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/bit-operation"
+      >Bit Operation</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="http://blog.lotp.xyz/posts/my-first-try-at-tdd-how-i-test-asynchronous-code-in-mocha-with-async-await-syntax/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>My First Try at TDD: How I Test Asynchronous Code in Mocha With async/await Syntax</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/leetcode-455-ac-assign-cookies/"
+      ><span>[LeetCode 455, AC] Assign Cookies</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

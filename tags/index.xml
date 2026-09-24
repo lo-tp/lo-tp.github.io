@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Tags on Lotp&#39;s Blog</title>
+		<link>http://blog.lotp.xyz/tags/</link>
+		<description>Recent content in Tags on Lotp&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 01 Jan 2021 20:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://blog.lotp.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>DP</title>
+				<link>http://blog.lotp.xyz/tags/dp/</link>
+				<pubDate>Fri, 01 Jan 2021 20:00:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/dp/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>LeetCode</title>
+				<link>http://blog.lotp.xyz/tags/leetcode/</link>
+				<pubDate>Fri, 01 Jan 2021 20:00:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/leetcode/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Algorithm</title>
+				<link>http://blog.lotp.xyz/tags/algorithm/</link>
+				<pubDate>Mon, 25 May 2020 19:39:16 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/algorithm/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Reading Notes</title>
+				<link>http://blog.lotp.xyz/tags/reading-notes/</link>
+				<pubDate>Fri, 17 Jan 2020 20:30:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/reading-notes/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Learn</title>
+				<link>http://blog.lotp.xyz/tags/learn/</link>
+				<pubDate>Sun, 12 Aug 2018 08:56:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/learn/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>ES7</title>
+				<link>http://blog.lotp.xyz/tags/es7/</link>
+				<pubDate>Thu, 05 Jan 2017 13:56:47 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/es7/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mocha</title>
+				<link>http://blog.lotp.xyz/tags/mocha/</link>
+				<pubDate>Thu, 05 Jan 2017 13:56:47 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/mocha/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>TDD</title>
+				<link>http://blog.lotp.xyz/tags/tdd/</link>
+				<pubDate>Thu, 05 Jan 2017 13:56:47 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/tdd/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Test</title>
+				<link>http://blog.lotp.xyz/tags/test/</link>
+				<pubDate>Thu, 05 Jan 2017 13:56:47 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/test/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bit Operation</title>
+				<link>http://blog.lotp.xyz/tags/bit-operation/</link>
+				<pubDate>Tue, 13 Dec 2016 14:22:33 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/bit-operation/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>DFS</title>
+				<link>http://blog.lotp.xyz/tags/dfs/</link>
+				<pubDate>Tue, 13 Dec 2016 14:22:33 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/dfs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Greedy</title>
+				<link>http://blog.lotp.xyz/tags/greedy/</link>
+				<pubDate>Sat, 10 Dec 2016 01:49:42 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/greedy/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Iframe</title>
+				<link>http://blog.lotp.xyz/tags/iframe/</link>
+				<pubDate>Thu, 01 Dec 2016 06:57:44 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/iframe/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Postmessage</title>
+				<link>http://blog.lotp.xyz/tags/postmessage/</link>
+				<pubDate>Thu, 01 Dec 2016 06:57:44 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/postmessage/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>React</title>
+				<link>http://blog.lotp.xyz/tags/react/</link>
+				<pubDate>Thu, 01 Dec 2016 06:57:44 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/react/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bfs</title>
+				<link>http://blog.lotp.xyz/tags/bfs/</link>
+				<pubDate>Sat, 26 Nov 2016 09:39:16 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/bfs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Functional Programming</title>
+				<link>http://blog.lotp.xyz/tags/functional-programming/</link>
+				<pubDate>Sun, 06 Nov 2016 06:26:22 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/functional-programming/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Redux</title>
+				<link>http://blog.lotp.xyz/tags/redux/</link>
+				<pubDate>Sun, 06 Nov 2016 06:26:22 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/redux/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>UX</title>
+				<link>http://blog.lotp.xyz/tags/ux/</link>
+				<pubDate>Wed, 07 Sep 2016 04:46:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/ux/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Linux</title>
+				<link>http://blog.lotp.xyz/tags/linux/</link>
+				<pubDate>Mon, 29 Aug 2016 09:08:11 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/linux/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Meteor</title>
+				<link>http://blog.lotp.xyz/tags/meteor/</link>
+				<pubDate>Mon, 29 Aug 2016 07:24:48 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/tags/meteor/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>UX on Lotp&#39;s Blog</title>
+		<link>http://blog.lotp.xyz/tags/ux/</link>
+		<description>Recent content in UX on Lotp&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 07 Sep 2016 04:46:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://blog.lotp.xyz/tags/ux/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Drag Gestures Inside Mobile Browsers Implemented Purely by CSS and JS</title>
+				<link>http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/</link>
+				<pubDate>Wed, 07 Sep 2016 04:46:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/posts/drag-gestures-inside-mobile-browsers-purely-in-css-and-js/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;http://blog.lotp.xyz/images/swipteToDelete.gif&#34; alt=&#34;Swipe To Delete&#34;&gt;&#xA;Drag gesture, like the image above, is a very good interaction model for touch devices.&#xA;This article is about the implementation of drag gesture on mobile browsers.&lt;/p&gt;&#xA;&lt;p&gt;I use react to simplify the code. However you can accomplish it without any framework.&lt;/p&gt;&#xA;&lt;p&gt;The basic idea is to make a scrollable widget comprised by two component.&#xA;The first component is always visible while the second one(named &lt;strong&gt;drag-btn&lt;/strong&gt; in this article) can only be seen after scrolling.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

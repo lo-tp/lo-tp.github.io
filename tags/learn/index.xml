@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Learn on Lotp&#39;s Blog</title>
+		<link>http://blog.lotp.xyz/tags/learn/</link>
+		<description>Recent content in Learn on Lotp&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 12 Aug 2018 08:56:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://blog.lotp.xyz/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>A Simple but Effective Learning Algorithm: MS Syntax</title>
+				<link>http://blog.lotp.xyz/posts/a-simple-but-effective-spaced-repitition-algorithm-ms/</link>
+				<pubDate>Sun, 12 Aug 2018 08:56:00 +0000</pubDate>
+				<guid>http://blog.lotp.xyz/posts/a-simple-but-effective-spaced-repitition-algorithm-ms/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;http://blog.lotp.xyz/images/2018/08/learnFast.jpg&#34; alt=&#34;Sample Image Added via Markdown&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Personally I have been using spaced repetition algorithm in my study for many years. There are many different kinds of this algorithm and the one I have used is invented by BlueRaja called &lt;a href=&#34;http://www.blueraja.com/blog/477/a-better-spaced-repetition-learning-algorithm-sm2&#34;&gt;SM2+&lt;/a&gt;. Based on this algorithm I have written a lib called &lt;a href=&#34;https://github.com/lo-tp/sm2-plus&#34;&gt;sm2-plus&lt;/a&gt; and I liked it a lot. However, SM2+ has its own problem.&lt;/p&gt;&#xA;&lt;p&gt;In this post I will show you what problems SM2+ algorithm has and provide a new algorithm named Memory Scheduler that I find quite helpful in my learning.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

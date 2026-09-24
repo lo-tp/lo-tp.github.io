@@ -1,0 +1,285 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39; - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="
+&lsquo;Super Egg Drop&rsquo; is a very classic DP problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn&rsquo;t much about the O(KN) solution and the rare posts about it aren&rsquo;t very clear. The article you are reading now is an endeavor to fill this gap.
+Check Out The Problem
+You are given K eggs, and you have access to a building with N floors from 1 to N" />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="http://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/c1e0a68b407dbcaccffe9f7bdf9b59fa?s=160&amp;d=identicon" />
+
+  <link rel="preload" as="image" href="http://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="http://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="http://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;">
+	<meta itemprop="description" content="‘Super Egg Drop’ is a very classic DP problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn’t much about the O(KN) solution and the rare posts about it aren’t very clear. The article you are reading now is an endeavor to fill this gap.
+Check Out The Problem You are given K eggs, and you have access to a building with N floors from 1 to N">
+	<meta itemprop="datePublished" content="2021-01-01T20:00:00+00:00">
+	<meta itemprop="dateModified" content="2021-01-01T20:00:00+00:00">
+	<meta itemprop="wordCount" content="779">
+	<meta itemprop="keywords" content="LeetCode,DP"><meta property="og:url" content="http://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;">
+	<meta property="og:description" content="‘Super Egg Drop’ is a very classic DP problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn’t much about the O(KN) solution and the rare posts about it aren’t very clear. The article you are reading now is an endeavor to fill this gap.
+Check Out The Problem You are given K eggs, and you have access to a building with N floors from 1 to N">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-01-01T20:00:00+00:00">
+		<meta property="article:modified_time" content="2021-01-01T20:00:00+00:00">
+		<meta property="article:tag" content="LeetCode">
+		<meta property="article:tag" content="DP">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;">
+	<meta name="twitter:description" content="‘Super Egg Drop’ is a very classic DP problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn’t much about the O(KN) solution and the rare posts about it aren’t very clear. The article you are reading now is an endeavor to fill this gap.
+Check Out The Problem You are given K eggs, and you have access to a building with N floors from 1 to N">
+
+  <link rel="canonical" href="http://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;</h1><div class="text-xs antialiased opacity-60"><time>Jan 1, 2021</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><p><img src="/images/2020/superEggDrop/cover.png" alt="Super Egg Drop"></p>
+<p><a href="https://leetcode.com/problems/super-egg-drop/">&lsquo;Super Egg Drop&rsquo;</a> is a very classic <strong>DP</strong> problem. Good articles explaining the O(KN*N) and the O(KN*logN) solutions can be easily found from the internet. Better than that, there is a solution of O(KN). However, there isn&rsquo;t much about the O(KN) solution and the rare posts about it aren&rsquo;t very clear. The article you are reading now is an endeavor to fill this gap.</p>
+<h1 id="check-out-the-problem">Check Out The Problem</h1>
+<p>You are given <code>K</code> eggs, and you have access to a building with <code>N</code> floors from 1 to <code>N</code></p>
+<p>Each egg is identical in function, and if an egg breaks, you cannot drop it again.</p>
+<p>You know that there exists a floor F with <code>0 &lt;= F &lt;= N</code> such that any egg dropped at a floor higher than <code>F</code> will break, and any egg dropped at or below floor <code>F</code> will not break.</p>
+<p>Each move, you may take an egg (if you have an unbroken one) and drop it from any floor <code>X (with 1 &lt;= X &lt;= N)</code>.</p>
+<p>Your goal is to know with certainty what the value of <code>F</code> is.</p>
+<p>What is the minimum number of moves that you need to know with certainty what <code>F</code> is, regardless of the initial value of <code>F</code></p>
+<h5 id="example">Example:</h5>
+<blockquote>
+<p>Input: K = 1, N = 2
+Output: 2
+Explanation:
+Drop the egg from floor 1.  If it breaks, we know with certainty that F = 0.
+Otherwise, drop the egg from floor 2.  If it breaks, we know with certainty that F = 1.
+If it didn&rsquo;t break, then we know with certainty F = 2.
+Hence, we needed 2 moves in the worst case to know what F is with certainty.</p>
+</blockquote>
+<h1 id="analysis">Analysis</h1>
+<p>Firstly Let&rsquo;s define dp(i,j) as the maximum number of floors we can surely find <strong>F</strong> from with i moves and j eggs. With this definition, the original question can be transformed into finding the minimum m whose <code>dp(m,K)</code> is larger than or equal to N.</p>
+<p>Secondly, it can be easily observed that the maximum number of floors we can find F from is equal to the number of moves we can take if there is only 1 egg. In a formula, <code>dp(i,1)=i</code>.</p>
+<p>Assuming that to get <code>dp(m,K)</code>, the first floor where we drop the egg is <code>dp(m-1, K-1)+1</code> floor (We will explain why choose this floor later). With this assumption in mind, there will be two different cases to analyse:</p>
+<ul>
+<li>
+<h4 id="the-first-egg-breaks">The first egg breaks</h4>
+</li>
+</ul>
+<p>From the breaking of the first egg, we know that the elusive <strong>F</strong> must be within first <code>dp(m-1,K-1)</code> floors. And with the poor broken first egg lost and the first move taken, we now can move <strong>m-1</strong> times with <strong>K-1</strong> eggs which is just enough for us to find <strong>F</strong> from the first <code>dp(m-1,K-1)</code> floors. At this moment, we can confidently say we could always find target <strong>F</strong> no matter how large the number <strong>N</strong> is.</p>
+<ul>
+<li>
+<h4 id="the-first-egg-remains-intact">The first egg remains intact</h4>
+</li>
+</ul>
+<p>Since the egg won&rsquo;t break from <code>dp(m-1,K-1)+1</code> floor we can conclude that <strong>F</strong> is not within the first <code>dp(m-1,K-1)</code> floors. With the initial move taken and the egg stay un-broken, we now have m-1 moves to make with K eggs. That is to say, we can check another at most<code>dp(m-1,K)</code> floors above the first <code>dp(m-1,K-1)+1</code> floors. At this case, the maximum number of floors we can find from is <code>dp(m-1,K-1)+1+dp(m-1,K)</code>.</p>
+<p>The proplem states we have to find the answer that we can be 100 percent confident about. In another word, we have to take the worst case into consideration ,i.e. the case of un-broken first egg. After all these analyses, we get the state transforming formula: <code>dp(m,K)=dp(m-1,K-1)+1+dp(m-1,K)</code>.</p>
+<p>Finally, let&rsquo;s write the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">superEggDrop</span>(self, K, N):
+</span></span><span style="display:flex;"><span>        m <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>(K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> dp[K] <span style="color:#f92672">&lt;</span> N:
+</span></span><span style="display:flex;"><span>            m <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            tmp <span style="color:#f92672">=</span> [m]<span style="color:#f92672">*</span>(K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>, K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>                tmp[k] <span style="color:#f92672">=</span> dp[k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>dp[k]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> tmp[k] <span style="color:#f92672">&gt;=</span> N:
+</span></span><span style="display:flex;"><span>                    tmp[K] <span style="color:#f92672">=</span> tmp[k]
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            dp <span style="color:#f92672">=</span> tmp
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m
+</span></span></code></pre></div><h3 id="why-drop-the-egg-from-the-dpm-1k-11-floor-at-the-first-place">Why Drop The Egg From the <code>dp(m-1,K-1)+1</code> Floor At The First Place?</h3>
+<p>To answer this question, we will have two scenarios to analyse:</p>
+<ul>
+<li>
+<h4 id="drop-the-first-egg-from-floor-higher-than-dpm-1-k-11">Drop the first egg from floor higher than <code>dp(m-1, K-1)+1</code></h4>
+</li>
+</ul>
+<p>Let&rsquo;s say the first egg is dropped from <code>dp(m-1,K-1)+2</code> floor and it breaks. Then we will have to find <strong>F</strong> from <code>dp(m-1,K-1)+1</code> floors. Unfortunately, the remaining m-1 moves and K-1 eggs only allow us to find <strong>F</strong> from <code>dp(m-1, K-1)</code> floors. At the this case, we will fail.</p>
+<ul>
+<li>
+<h4 id="drop-the-first-egg-from-floor-lower-than-dpm-1k-11">Drop the first egg from floor lower than <code>dp(m-1,K-1)+1</code></h4>
+</li>
+</ul>
+<p>Assuming we drop the first egg at floor <code>dp(m-1,K-1)</code> and it doesn&rsquo;t break. Then the final maximum number of floors we will reach is <code>dp(m-1,K-1)-1+1+dp(m-1,K)=dp(m-1,K-1)+dp(m-1,K)</code> which is smaller than the number <code>dp(m-1,K-1)+1+dp(m-1,K)</code> we can get from the <code>dp(m-1,K-1)+1</code> floor.</p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/leetcode"
+      >LeetCode</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://blog.lotp.xyz/tags/dp"
+      >DP</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="http://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/"
+      ><span>[LeetCode 233, AC] Number of Digit One Done With DP</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
