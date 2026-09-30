@@ -10,9 +10,37 @@
 		
 		
 		
-			<lastBuildDate>Fri, 01 Jan 2021 20:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://blog.lotp.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Coding Agent</title>
+				<link>https://blog.lotp.xyz/tags/coding-agent/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/tags/coding-agent/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>LLM</title>
+				<link>https://blog.lotp.xyz/tags/llm/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/tags/llm/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Notion</title>
+				<link>https://blog.lotp.xyz/tags/notion/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/tags/notion/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Skill</title>
+				<link>https://blog.lotp.xyz/tags/skill/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/tags/skill/</guid>
+				<description></description>
+			</item>
 			<item>
 				<title>DP</title>
 				<link>https://blog.lotp.xyz/tags/dp/</link>

@@ -1,0 +1,336 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned. - Lotp&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="
+The Problem
+I manage my tasks in Notion. That&rsquo;s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was&hellip; tedious. I&rsquo;d have to open Notion, click around, find the right database, edit the card. I&rsquo;d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
+What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. &ldquo;Add a task: fix the login bug, due tomorrow.&rdquo; &ldquo;What&rsquo;s on my plate today?&rdquo; &ldquo;Start a timer on the auth refactor.&rdquo; Done. No GUI." />
+  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="https://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
+
+  
+  <link rel="preload" as="image" href="https://blog.lotp.xyz/theme.png" />
+
+  <link rel="preload" as="image" href="https://blog.lotp.xyz/portrait.jpeg" />
+
+  <link rel="preload" as="image" href="https://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/linkedin.svg" />
+
+  <script
+    defer
+    src="https://blog.lotp.xyz/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://blog.lotp.xyz/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://blog.lotp.xyz/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.166.0">
+	<meta itemprop="name" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta itemprop="description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
+What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+	<meta itemprop="datePublished" content="2026-09-30T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-09-30T00:00:00+00:00">
+	<meta itemprop="wordCount" content="836">
+	<meta itemprop="keywords" content="Coding Agent,Notion,Skill,LLM"><meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta property="og:description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
+What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:tag" content="Coding Agent">
+		<meta property="article:tag" content="Notion">
+		<meta property="article:tag" content="Skill">
+		<meta property="article:tag" content="LLM">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta name="twitter:description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
+What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+
+  <link rel="canonical" href="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://blog.lotp.xyz/"
+      >Lotp&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/lo__tp"
+        target="_blank"
+        rel="me"
+      >twitter</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lo-tp"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.</h1><div class="text-xs antialiased opacity-60"><time>Sep 30, 2026</time><span class="mx-1">&middot;</span>
+      <span>lotp</span></div></header>
+
+  <section><img src="/images/demo-video/demo.gif" alt="notion-todo demo" width="720" />
+<h2 id="the-problem">The Problem</h2>
+<p>I manage my tasks in Notion. That&rsquo;s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was&hellip; tedious. I&rsquo;d have to open Notion, click around, find the right database, edit the card. I&rsquo;d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was <em>brutal</em>.</p>
+<p>What I wanted was simple: <strong>talk to my agent in natural language, and it manages my Notion tasks for me.</strong> &ldquo;Add a task: fix the login bug, due tomorrow.&rdquo; &ldquo;What&rsquo;s on my plate today?&rdquo; &ldquo;Start a timer on the auth refactor.&rdquo; Done. No GUI.</p>
+<h2 id="the-architecture">The Architecture</h2>
+<p>The solution is <a href="https://github.com/lo-tp/notion-todo">notion-todo</a> — a coding agent skill with three layers:</p>
+<ol>
+<li><strong>Notion</strong> is the source of truth. The human UI. Where cards live.</li>
+<li><strong>A local SQLite mirror</strong> keeps a fast, queryable copy. The agent reads from this, not from the API.</li>
+<li><strong>A CLI script</strong> (<code>notion_cards.py</code>) handles all mutations — create, modify, delete, time tracking, comments. Every mutation auto-syncs the mirror.</li>
+</ol>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
+│  User (natural language)                                     │
+└─────────────────────────────┬───────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Agent (LLM) — interprets intent, picks the right action    │
+│  guided by SKILL.md (prompt)                                │
+└─────────────────────────────┬───────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  CLI Script (deterministic) — notion_cards.py               │
+│  handles CRUD, time tracking, comments, sync                │
+└──────────┬──────────────────────────┬───────────────────────┘
+           │                          │
+           ▼                          ▼
+┌──────────────────────┐    ┌──────────────────────────┐
+│  Notion (source of   │◄──►│  SQLite Mirror (fast     │
+│  truth, human UI)    │    │  reads, agent queries)   │
+└──────────────────────┘    └──────────────────────────┘
+</code></pre><h2 id="the-challenge-i-wasnt-writing-scripts">The Challenge: I Wasn&rsquo;t Writing Scripts</h2>
+<p><strong>At first, I didn&rsquo;t write any scripts.</strong> I just gave the agent a description of my Notion databases and told it &ldquo;here&rsquo;s how the Notion API works, go create a card.&rdquo; The agent had to figure out the HTTP calls, construct the JSON payloads, handle relations, deal with the mirror sync — all on its own, every time.</p>
+<p>It <em>almost</em> worked. But the failure rate was high. The agent would miss a property, use the wrong database ID, construct a malformed relation, forget to sync the mirror. Each mistake meant a retry, which meant more tokens, more latency, more chance of cascading failure. It was like giving someone a complex tool without the manual — they <em>can</em> use it, but they&rsquo;ll fumble.</p>
+<p><strong>The fix was simple in hindsight: write scripts for the deterministic parts.</strong></p>
+<p>I built a CLI (<code>notion_cards.py</code>) that handles all CRUD operations, time tracking, comments, and sync. The agent no longer needs to know how Notion&rsquo;s API works. It just runs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash scripts/run.sh notion_cards create <span style="color:#e6db74">&#34;Fix login bug&#34;</span> --status <span style="color:#e6db74">&#34;Today&#34;</span> --priority <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><p>The success rate went from &ldquo;flaky&rdquo; to &ldquo;consistently correct.&rdquo; The agent&rsquo;s job became what it&rsquo;s actually good at: interpreting natural language and deciding <em>which</em> command to run.</p>
+<h3 id="the-principle-scripts-for-determinism-prompts-for-flexibility">The Principle: Scripts for Determinism, Prompts for Flexibility</h3>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Script it</strong></th>
+					<th><strong>Prompt it</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>CRUD operations</td>
+					<td>Interpreting natural language</td>
+			</tr>
+			<tr>
+					<td>Sync logic</td>
+					<td>Resolving ambiguous references</td>
+			</tr>
+			<tr>
+					<td>Time tracking state</td>
+					<td>Choosing which query to run</td>
+			</tr>
+			<tr>
+					<td>File I/O, schema migrations</td>
+					<td>Deciding when to confirm vs. act</td>
+			</tr>
+	</tbody>
+</table>
+<p>The skill file is your prompt engineering. The scripts are your deterministic backbone. Without the scripts, the agent is reinventing the wheel every call and failing often enough to destroy the user&rsquo;s trust in the whole system.</p>
+<h2 id="the-second-challenge-folder-resolution">The Second Challenge: Folder Resolution</h2>
+<p>My project has a <code>.venv</code>, a <code>mirror.sqlite</code>, and a <code>scripts/</code> directory, but the agent doesn&rsquo;t know where &ldquo;project root&rdquo; is. It would look for <code>.venv</code> in the current working directory, find nothing, and give up. The fix was a <code>run.sh</code> wrapper that resolves everything relative to its own file location — the agent just runs <code>bash &lt;root&gt;/scripts/run.sh notion_cards ...</code> and the wrapper figures out the rest. The skill file tells the agent: &ldquo;walk up from cwd to find the directory containing <code>pyproject.toml</code> and <code>.venv</code> — that&rsquo;s the root.&rdquo;</p>
+<h2 id="what-id-tell-someone-building-their-own-skill">What I&rsquo;d Tell Someone Building Their Own Skill</h2>
+<ol>
+<li><strong>Your skill file IS the prompt.</strong> Write it for the agent, not for humans. Be precise about invariants, confirmations, and edge cases.</li>
+<li><strong>Don&rsquo;t make the agent do what a script can do.</strong> If the operation is deterministic, script it. The agent&rsquo;s job is to decide <em>what</em> to do, not <em>how</em>.</li>
+<li><strong>Fuzzy matching is what makes it feel natural.</strong> Let the agent say &ldquo;the login one&rdquo; instead of requiring exact names. A unique-substring resolver is 20 lines of Python and worth its weight in gold.</li>
+</ol>
+<h2 id="the-result">The Result</h2>
+<p>My agent now manages my tasks the same way it manages my code. &ldquo;Start a timer.&rdquo; &ldquo;Stop it.&rdquo; &ldquo;How much time did I spend this week?&rdquo; It&rsquo;s fast, it&rsquo;s reliable, and I stay in flow. The GUI is still there if I need it — but I rarely reach for it.</p>
+<p>If you use a coding agent and keep your tasks in Notion, <a href="https://github.com/lo-tp/notion-todo">notion-todo</a> is open source and MIT licensed. Getting started takes about a minute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g notion-todo
+</span></span></code></pre></div><p>Then link the skill into your agent:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Agent</th>
+					<th>Command</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Claude Code</strong></td>
+					<td><code>ln -s &quot;$(npm root -g)/notion-todo/skills/notion-todo&quot; ~/.claude/skills/notion-todo</code></td>
+			</tr>
+			<tr>
+					<td><strong>Codex</strong></td>
+					<td><code>ln -s &quot;$(npm root -g)/notion-todo/skills/notion-todo&quot; ~/.codex/skills/notion-todo</code></td>
+			</tr>
+			<tr>
+					<td><strong>Pi</strong></td>
+					<td><code>pi install notion-todo</code></td>
+			</tr>
+			<tr>
+					<td><strong>Any Agent-Skills agent</strong></td>
+					<td><code>ln -s &quot;$(npm root -g)/notion-todo/skills/notion-todo&quot; ~/.agents/skills/notion-todo</code></td>
+			</tr>
+	</tbody>
+</table>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://blog.lotp.xyz/tags/coding-agent"
+      >Coding Agent</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://blog.lotp.xyz/tags/notion"
+      >Notion</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://blog.lotp.xyz/tags/skill"
+      >Skill</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://blog.lotp.xyz/tags/llm"
+      >LLM</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/"
+      ><span>An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="https://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

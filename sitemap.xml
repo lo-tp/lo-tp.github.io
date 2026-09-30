@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.lotp.xyz/tags/coding-agent/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/tags/llm/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/tags/notion/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/posts/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/tags/skill/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.lotp.xyz/tags/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
@@ -9,15 +33,6 @@
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.lotp.xyz/tags/leetcode/</loc>
-    <lastmod>2021-01-01T20:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.lotp.xyz/</loc>
-    <lastmod>2021-01-01T20:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.lotp.xyz/posts/</loc>
-    <lastmod>2021-01-01T20:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.lotp.xyz/tags/</loc>
     <lastmod>2021-01-01T20:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.lotp.xyz/posts/leetcode-233-number-of-digit-one/</loc>
