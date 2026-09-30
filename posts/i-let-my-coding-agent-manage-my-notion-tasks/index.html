@@ -56,16 +56,15 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
 
   <meta name="generator" content="Hugo 0.166.0">
 	<meta itemprop="name" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta itemprop="description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
-What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+	<meta itemprop="description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
 	<meta itemprop="datePublished" content="2026-09-30T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-09-30T00:00:00+00:00">
 	<meta itemprop="wordCount" content="836">
+	<meta itemprop="image" content="https://blog.lotp.xyz/images/demo-video/notion-agent-cover.jpg">
 	<meta itemprop="keywords" content="Coding Agent,Notion,Skill,LLM"><meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
 	<meta property="og:site_name" content="Lotp&#39;s Blog">
 	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta property="og:description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
-What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+	<meta property="og:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
 	<meta property="og:locale" content="en">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
@@ -75,11 +74,12 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
 		<meta property="article:tag" content="Notion">
 		<meta property="article:tag" content="Skill">
 		<meta property="article:tag" content="LLM">
+		<meta property="og:image" content="https://blog.lotp.xyz/images/demo-video/notion-agent-cover.jpg">
 
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://blog.lotp.xyz/images/demo-video/notion-agent-cover.jpg">
 	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta name="twitter:description" content="The Problem I manage my tasks in Notion. That’s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was… tedious. I’d have to open Notion, click around, find the right database, edit the card. I’d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
-What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. “Add a task: fix the login bug, due tomorrow.” “What’s on my plate today?” “Start a timer on the auth refactor.” Done. No GUI.">
+	<meta name="twitter:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
 
   <link rel="canonical" href="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/" />
 </head>
@@ -88,6 +88,27 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
   ><header
   class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
 >
+  <meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta property="og:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:tag" content="Coding Agent">
+		<meta property="article:tag" content="Notion">
+		<meta property="article:tag" content="Skill">
+		<meta property="article:tag" content="LLM">
+		<meta property="og:image" content="https://blog.lotp.xyz/images/demo-video/notion-agent-cover.jpg">
+
+  
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://blog.lotp.xyz/images/demo-video/notion-agent-cover.jpg">
+	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta name="twitter:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
+
   <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
     <a
       class="-translate-y-[1px] text-2xl font-medium"
