@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Notion on Lotp的博客</title>
+		<link>https://blog.lotp.xyz/zh/tags/notion/</link>
+		<description>Recent content in Notion on Lotp的博客</description>
+		<generator>Hugo</generator>
+		<language>zh</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://blog.lotp.xyz/zh/tags/notion/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>我让 Coding Agent 帮我管 Notion 任务，学到了什么</title>
+				<link>https://blog.lotp.xyz/zh/posts/i-let-my-coding-agent-manage-my-notion-tasks/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/posts/i-let-my-coding-agent-manage-my-notion-tasks/</guid>
+				<description>&lt;img src=&#34;https://blog.lotp.xyz/images/demo-video/demo.gif&#34; alt=&#34;notion-todo demo&#34; width=&#34;720&#34; /&gt;&#xA;&lt;h2 id=&#34;问题&#34;&gt;问题&lt;/h2&gt;&#xA;&lt;p&gt;我的任务都放在 Notion 里。那算是我的第二个大脑——任务、项目、时间追踪，全都串在一起。可通过图形界面去折腾它……挺费劲。我得先打开 Notion，点来点去，找到对的数据库，再点开卡片改。往往正跟 Coding Agent 写代码写到一半，忽然想到该建一个后续任务，这一来一回的上下文切换&lt;em&gt;代价极大&lt;/em&gt;。&lt;/p&gt;&#xA;&lt;p&gt;我想要的其实很简单：&lt;strong&gt;用人话跟Agent说，它替我把 Notion 里的任务管好。&lt;/strong&gt;「加个任务：修登录那个 bug，明天截止。」「今天我手上都有什么？」「给 auth refactor 开个计时。」说完就完事，不用碰界面。&lt;/p&gt;&#xA;&lt;h2 id=&#34;架构&#34;&gt;架构&lt;/h2&gt;&#xA;&lt;p&gt;方案就是 &lt;a href=&#34;https://github.com/lo-tp/notion-todo&#34;&gt;notion-todo&lt;/a&gt;——一个给 Coding Agent 用的 skill，分三层：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Notion&lt;/strong&gt; 是唯一的数据源头来源，也是给人看的界面，卡片本来就住在里面。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;本地一个 SQLite 镜像&lt;/strong&gt;存一份又快又能查的副本。代理读的是这个，不是 API。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;一个 CLI 脚本&lt;/strong&gt;（&lt;code&gt;notion_cards.py&lt;/code&gt;）包掉所有写入操作——创建、修改、删除、时间追踪、评论。每写一次，镜像自动跟着同步。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;┌─────────────────────────────────────────────────────────────┐&#xA;│  User (natural language)                                     │&#xA;└─────────────────────────────┬───────────────────────────────┘&#xA;                              │&#xA;                              ▼&#xA;┌─────────────────────────────────────────────────────────────┐&#xA;│  Agent (LLM) — interprets intent, picks the right action    │&#xA;│  guided by SKILL.md (prompt)                                │&#xA;└─────────────────────────────┬───────────────────────────────┘&#xA;                              │&#xA;                              ▼&#xA;┌─────────────────────────────────────────────────────────────┐&#xA;│  CLI Script (deterministic) — notion_cards.py               │&#xA;│  handles CRUD, time tracking, comments, sync                │&#xA;└──────────┬──────────────────────────┬───────────────────────┘&#xA;           │                          │&#xA;           ▼                          ▼&#xA;┌──────────────────────┐    ┌──────────────────────────┐&#xA;│  Notion (source of   │◄──►│  SQLite Mirror (fast     │&#xA;│  truth, human UI)    │    │  reads, agent queries)   │&#xA;└──────────────────────┘    └──────────────────────────┘&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;第一个坎我压根没写脚本&#34;&gt;第一个坎：我压根没写脚本&lt;/h2&gt;&#xA;&lt;p&gt;一开始我一个脚本都没写。只是把 Notion 数据库长什么样讲给代理听，告诉它「Notion API 是这样用的，你去建一张卡」。于是每一次它都得自己去搞 HTTP 请求、拼 JSON payload、处理 relation，还得顾上镜像同步——全靠自己。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

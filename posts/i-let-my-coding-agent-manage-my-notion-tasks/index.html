@@ -1,213 +1,204 @@
-<!doctype html>
+<!doctype html><html class="not-ready" lang="en">
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f2f3f4" />
 
+<title>I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned. ·Lotp&#39;s Blog</title><meta name="description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls." />
+<meta name="author" content="lotp" /><meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta property="og:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-09-30T00:00:00+00:00">
+		<meta property="article:tag" content="Coding Agent">
+		<meta property="article:tag" content="Notion">
+		<meta property="article:tag" content="Skill">
+		<meta property="article:tag" content="LLM">
+		<meta property="og:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
 
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
+	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
+	<meta name="twitter:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
 
-
-
-
-
-<html
-  class="not-ready lg:text-base"
-  style="--bg:#faf8f1"
-  lang="en"
-  dir="ltr"
-><head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned. - Lotp&#39;s Blog</title>
-
-  
-  <meta name="theme-color" />
-
-  <meta name="description" content="
-The Problem
-I manage my tasks in Notion. That&rsquo;s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was&hellip; tedious. I&rsquo;d have to open Notion, click around, find the right database, edit the card. I&rsquo;d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was brutal.
-What I wanted was simple: talk to my agent in natural language, and it manages my Notion tasks for me. &ldquo;Add a task: fix the login bug, due tomorrow.&rdquo; &ldquo;What&rsquo;s on my plate today?&rdquo; &ldquo;Start a timer on the auth refactor.&rdquo; Done. No GUI." />
-  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="https://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
-
-  
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/theme.png" />
-
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/portrait.jpeg" />
-
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/linkedin.svg" />
-
-  <script
-    defer
-    src="https://blog.lotp.xyz/highlight.min.js"
-    onload="hljs.initHighlightingOnLoad()"
-  ></script>
-
-  
-  <link
-    rel="icon"
-    href="https://blog.lotp.xyz/favicon.ico"
-  />
-  <link
-    rel="apple-touch-icon"
-    href="https://blog.lotp.xyz/apple-touch-icon.png"
-  />
-
-  <meta name="generator" content="Hugo 0.166.0">
 	<meta itemprop="name" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
 	<meta itemprop="description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
 	<meta itemprop="datePublished" content="2026-09-30T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-09-30T00:00:00+00:00">
 	<meta itemprop="wordCount" content="836">
 	<meta itemprop="image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
-	<meta itemprop="keywords" content="Coding Agent,Notion,Skill,LLM"><meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
-	<meta property="og:site_name" content="Lotp&#39;s Blog">
-	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta property="og:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2026-09-30T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-09-30T00:00:00+00:00">
-		<meta property="article:tag" content="Coding Agent">
-		<meta property="article:tag" content="Notion">
-		<meta property="article:tag" content="Skill">
-		<meta property="article:tag" content="LLM">
-		<meta property="og:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
-
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
-	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta name="twitter:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
-
-  <link rel="canonical" href="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/" />
-</head>
-<body
-    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
-  ><header
-  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+	<meta itemprop="keywords" content="Coding Agent,Notion,Skill,LLM"><link
+  rel="preload"
+  as="style"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/>
+<link
+  rel="stylesheet"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/><link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="https://blog.lotp.xyz/fonts/archivo-narrow-latin.woff2"
+  crossorigin
+/><link rel="canonical" href="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/" /><link rel="icon" href="https://blog.lotp.xyz/favicon.ico" /><link rel="apple-touch-icon" href="https://blog.lotp.xyz/apple-touch-icon.png" /><meta name="generator" content="Hugo 0.166.0"></head>
+  <body>
+    <script>
+      
+      
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("dark");
+        } catch (e) {}
+        var prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (stored !== null ? stored === "true" : prefersDark) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script><header class="sheet masthead-band">
+  <a class="visually-hidden-focusable" href="#contents">Skip to contents</a>
+  <div class="frontmatter frontmatter--part"><a class="masthead masthead--part" href="https://blog.lotp.xyz/">
+      <span class="masthead__name">Lotp</span>
+      <span class="masthead__part">Blog</span>
+    </a><div class="imprint">
+      <nav class="frontmatter-controls" aria-label="Profile·Edition"><nav class="social" aria-label="Profile"><a
+            data-social="github"
+            style="--url: url(https://blog.lotp.xyz/github.svg)"
+            href="https://github.com/lo-tp"
+            target="_blank"
+            rel="me noopener"
+          >GitHub</a><a
+            data-social="twitter"
+            style="--url: url(https://blog.lotp.xyz/twitter.svg)"
+            href="https://x.com/lo__tp"
+            target="_blank"
+            rel="me noopener"
+          >X</a><a
+            data-social="linkedin"
+            style="--url: url(https://blog.lotp.xyz/linkedin.svg)"
+            href="https://www.linkedin.com/in/shiqi-yang-6bbb73127"
+            target="_blank"
+            rel="me noopener"
+          >LinkedIn</a></nav><nav class="lang-switch" data-lang-switch><a class="btn not-prose" hreflang="zh" href="https://blog.lotp.xyz/zh/posts/i-let-my-coding-agent-manage-my-notion-tasks/"
+    >中文</a
+  ></nav><span
+  class="btn-dark"
+  role="button"
+  tabindex="0"
+  aria-label="Switch between the day and night editions"
 >
-  <meta property="og:url" content="https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/">
-	<meta property="og:site_name" content="Lotp&#39;s Blog">
-	<meta property="og:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta property="og:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2026-09-30T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-09-30T00:00:00+00:00">
-		<meta property="article:tag" content="Coding Agent">
-		<meta property="article:tag" content="Notion">
-		<meta property="article:tag" content="Skill">
-		<meta property="article:tag" content="LLM">
-		<meta property="og:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle class="dial" cx="12" cy="12" r="8.5" />
+    <path class="shade" d="M12 3.5a8.5 8.5 0 0 1 0 17z" />
+  </svg>
+</span>
 
-  
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://blog.lotp.xyz/images/notion-agent-cover.jpg">
-	<meta name="twitter:title" content="I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.">
-	<meta name="twitter:description" content="I gave my coding agent a CLI to manage my Notion tasks. The lesson: scripts for the deterministic parts, prompts for the judgment calls.">
-
-  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
-    <a
-      class="-translate-y-[1px] text-2xl font-medium"
-      href="https://blog.lotp.xyz/"
-      >Lotp&#39;s Blog</a
-    >
-    <div
-      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
-      role="button"
-      aria-label="Dark"
-    ></div>
+</nav>
+    </div>
   </div>
-
-  <div
-    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
-    role="button"
-    aria-label="Menu"
-  ></div>
 
   <script>
     
     const htmlClass = document.documentElement.classList;
     setTimeout(() => {
-      htmlClass.remove('not-ready');
+      htmlClass.remove("not-ready");
     }, 10);
 
     
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
+    
+    
+    const band = document.querySelector(".masthead-band .frontmatter");
+    const publishBandHeight = () => {
+      if (band) {
+        document.documentElement.style.setProperty(
+          "--band-h",
+          band.getBoundingClientRect().height + "px",
+        );
+      }
+    };
+    publishBandHeight();
+    addEventListener("resize", publishBandHeight);
+    addEventListener("load", publishBandHeight);
 
     
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const paper = "#f2f3f4";
+    const slate = "#141719";
     const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
+      metaTheme.setAttribute("content", isDark ? slate : paper);
+      htmlClass[isDark ? "add" : "remove"]("dark");
+      try {
+        localStorage.setItem("dark", isDark);
+      } catch (e) {}
     };
 
     
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
+    const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (htmlClass.contains("dark")) {
       setDark(true);
     } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+      const darkVal = localStorage.getItem("dark");
+      setDark(darkVal ? darkVal === "true" : darkScheme.matches);
     }
 
     
-    darkScheme.addEventListener('change', (event) => {
+    darkScheme.addEventListener("change", (event) => {
       setDark(event.matches);
     });
 
     
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
+    
+    const btnDark = document.querySelectorAll(".btn-dark");
+    btnDark.forEach((node) => {
+      node.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setDark(localStorage.getItem("dark") !== "true");
+        }
+      });
     });
   </script>
-
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
-  ><nav
-      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
-    >
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./twitter.svg)"
-        href="https://twitter.com/lo__tp"
-        target="_blank"
-        rel="me"
-      >twitter</a>
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href="https://github.com/lo-tp"
-        target="_blank"
-        rel="me"
-      >github</a>
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./linkedin.svg)"
-        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
-        target="_blank"
-        rel="me"
-      >linkedin</a>
-    </nav>
-  </div>
 </header>
-<main
-      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
-    ><article>
-  <header class="mb-14">
-    <h1 class="my-0! pb-2.5">I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.</h1><div class="text-xs antialiased opacity-60"><time>Sep 30, 2026</time><span class="mx-1">&middot;</span>
-      <span>lotp</span></div></header>
-
-  <section><img src="/images/demo-video/demo.gif" alt="notion-todo demo" width="720" />
+<main class="sheet page"><article class="record record--indexed">
+  <header class="record__head">
+    <h1 class="record__title">I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.</h1>
+    <div class="meta">
+      <time datetime="2026-09-30">Sep 30, 2026</time>
+      <span>English</span><ul class="meta__tags"><li>
+          <a href="https://blog.lotp.xyz/tags/coding-agent">Coding Agent</a>
+        </li><li>
+          <a href="https://blog.lotp.xyz/tags/notion">Notion</a>
+        </li><li>
+          <a href="https://blog.lotp.xyz/tags/skill">Skill</a>
+        </li><li>
+          <a href="https://blog.lotp.xyz/tags/llm">LLM</a>
+        </li></ul></div>
+  </header><div class="record__toc">
+    <h2 class="label record__toc__title">Contents</h2><nav aria-label="Contents">
+  <ul>
+    <li><a href="#the-problem">The Problem</a></li>
+    <li><a href="#the-architecture">The Architecture</a></li>
+    <li><a href="#the-challenge-i-wasnt-writing-scripts">The Challenge: I Wasn&rsquo;t Writing Scripts</a>
+      <ul>
+        <li><a href="#the-principle-scripts-for-determinism-prompts-for-flexibility">The Principle: Scripts for Determinism, Prompts for Flexibility</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-second-challenge-folder-resolution">The Second Challenge: Folder Resolution</a></li>
+    <li><a href="#what-id-tell-someone-building-their-own-skill">What I&rsquo;d Tell Someone Building Their Own Skill</a></li>
+    <li><a href="#the-result">The Result</a></li>
+  </ul>
+</nav></div><section class="record__body"><img src="/images/demo-video/demo.gif" alt="notion-todo demo" width="720" />
 <h2 id="the-problem">The Problem</h2>
 <p>I manage my tasks in Notion. That&rsquo;s my brain — tasks, projects, time tracking, all connected. But interacting with it through the GUI was&hellip; tedious. I&rsquo;d have to open Notion, click around, find the right database, edit the card. I&rsquo;d be in the middle of a coding session with my agent, realize I need to create a follow-up task, and the context switch was <em>brutal</em>.</p>
 <p>What I wanted was simple: <strong>talk to my agent in natural language, and it manages my Notion tasks for me.</strong> &ldquo;Add a task: fix the login bug, due tomorrow.&rdquo; &ldquo;What&rsquo;s on my plate today?&rdquo; &ldquo;Start a timer on the auth refactor.&rdquo; Done. No GUI.</p>
@@ -244,7 +235,7 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
 <p>It <em>almost</em> worked. But the failure rate was high. The agent would miss a property, use the wrong database ID, construct a malformed relation, forget to sync the mirror. Each mistake meant a retry, which meant more tokens, more latency, more chance of cascading failure. It was like giving someone a complex tool without the manual — they <em>can</em> use it, but they&rsquo;ll fumble.</p>
 <p><strong>The fix was simple in hindsight: write scripts for the deterministic parts.</strong></p>
 <p>I built a CLI (<code>notion_cards.py</code>) that handles all CRUD operations, time tracking, comments, and sync. The agent no longer needs to know how Notion&rsquo;s API works. It just runs:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash scripts/run.sh notion_cards create <span style="color:#e6db74">&#34;Fix login bug&#34;</span> --status <span style="color:#e6db74">&#34;Today&#34;</span> --priority <span style="color:#ae81ff">5</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash scripts/run.sh notion_cards create <span class="s2">&#34;Fix login bug&#34;</span> --status <span class="s2">&#34;Today&#34;</span> --priority <span class="m">5</span>
 </span></span></code></pre></div><p>The success rate went from &ldquo;flaky&rdquo; to &ldquo;consistently correct.&rdquo; The agent&rsquo;s job became what it&rsquo;s actually good at: interpreting natural language and deciding <em>which</em> command to run.</p>
 <h3 id="the-principle-scripts-for-determinism-prompts-for-flexibility">The Principle: Scripts for Determinism, Prompts for Flexibility</h3>
 <table>
@@ -285,7 +276,7 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
 <h2 id="the-result">The Result</h2>
 <p>My agent now manages my tasks the same way it manages my code. &ldquo;Start a timer.&rdquo; &ldquo;Stop it.&rdquo; &ldquo;How much time did I spend this week?&rdquo; It&rsquo;s fast, it&rsquo;s reliable, and I stay in flow. The GUI is still there if I need it — but I rarely reach for it.</p>
 <p>If you use a coding agent and keep your tasks in Notion, <a href="https://github.com/lo-tp/notion-todo">notion-todo</a> is open source and MIT licensed. Getting started takes about a minute:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g notion-todo
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -g notion-todo
 </span></span></code></pre></div><p>Then link the skill into your agent:</p>
 <table>
 	<thead>
@@ -313,45 +304,69 @@ What I wanted was simple: talk to my agent in natural language, and it manages m
 			</tr>
 	</tbody>
 </table>
-</section>
+</section><nav class="edition-switch" aria-label="Edition">
+    <a
+      class="edition-switch__link"
+      hreflang="zh"
+      href="/zh/posts/i-let-my-coding-agent-manage-my-notion-tasks/"
+    >
+      <span class="label">Read this record in</span>
+      <span class="edition-switch__language">中文</span>
+    </a>
+  </nav><nav class="adjacent" aria-label="Contents">
+    <a href="/posts/clone-an-existing-linux-os-to-another-disk-without-pain/">
+      <span class="label">Later record</span>
+      <span>A Painless Way to Clone an Existing Linux OS to Another Disk</span>
+    </a>
+  </nav></article><script>
+  (function () {
+    const toc = document.querySelector(".record__toc");
+    if (!toc) return;
+    const entries = [];
+    toc.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const ref = link.getAttribute("href").slice(1);
+      let id = ref;
+      try {
+        id = decodeURIComponent(ref);
+      } catch (e) {}
+      const target = document.getElementById(id);
+      if (target) entries.push({ link, target });
+    });
+    if (entries.length < 2) return;
 
-  <footer class="mt-12 flex flex-wrap"><a
-      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="https://blog.lotp.xyz/tags/coding-agent"
-      >Coding Agent</a
-    ><a
-      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="https://blog.lotp.xyz/tags/notion"
-      >Notion</a
-    ><a
-      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="https://blog.lotp.xyz/tags/skill"
-      >Skill</a
-    ><a
-      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
-      href="https://blog.lotp.xyz/tags/llm"
-      >LLM</a
-    ></footer><nav
-    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
-  ><a
-      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
-      href="https://blog.lotp.xyz/posts/leetcode-887-super-egg-drop/"
-      ><span>An Articulation of the O(KN) Solution to &#39;Leetcode 887: Super Egg Drop&#39;</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
-    ></nav></article></main><footer
-  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
->
-  <div class="mr-auto">&copy;2026
-    <a class="link" href="https://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >powered by hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >hugo-paper</a
-  >
+    let on = null;
+    let frame = null;
+    const mark = (entry) => {
+      if (entry === on) return;
+      if (on) on.link.removeAttribute("aria-current");
+      on = entry || null;
+      if (on) on.link.setAttribute("aria-current", "true");
+    };
+    const measure = () => {
+      frame = null;
+      const band = document.querySelector(".masthead-band .frontmatter");
+      const line = (band ? band.getBoundingClientRect().bottom : 0) + 24;
+      let active = null;
+      for (const entry of entries) {
+        if (entry.target.getBoundingClientRect().top <= line) active = entry;
+      }
+      mark(active);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    addEventListener("scroll", schedule, { passive: true });
+    addEventListener("resize", schedule);
+    measure();
+  })();
+</script></main><footer class="sheet">
+  <div class="colophon">
+    <span>©2026Lotp</span>
+    <span>Built with Hugo</span>
+    <span>icons from hugo-paper</span>
+    <span>Set in Archivo Narrow</span>
+    <span>2016 → 2026</span>
+  </div>
 </footer>
 </body>
 </html>

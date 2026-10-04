@@ -1,207 +1,309 @@
-<!doctype html>
+<!doctype html><html class="not-ready" lang="en">
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f2f3f4" />
 
+<title>Bfs ·Lotp&#39;s Blog</title><meta
+  name="description"
+  content="First-hand engineering notes by lotp: problems solved, the code that ran, and the decisions kept. English and Simplified Chinese."
+/>
+<meta name="author" content="lotp" /><meta property="og:url" content="https://blog.lotp.xyz/tags/bfs/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="Bfs">
+	<meta property="og:description" content="First-hand engineering notes by lotp: problems solved, the code that ran, and the decisions kept. English and Simplified Chinese.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
 
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Bfs">
+	<meta name="twitter:description" content="First-hand engineering notes by lotp: problems solved, the code that ran, and the decisions kept. English and Simplified Chinese.">
 
-
-
-
-
-<html
-  class="not-ready lg:text-base"
-  style="--bg:#faf8f1"
-  lang="en"
-  dir="ltr"
-><head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>Bfs - Lotp&#39;s Blog</title>
-
-  
-  <meta name="theme-color" />
-
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
-  <meta name="author" content="lotp" /><link rel="preload stylesheet" as="style" href="https://blog.lotp.xyz/main.min.0d4b67b40dc4bc1881be7f1baa2f8a4c119701f7943e390e1a8963084b2b742b.css" integrity="sha256-DUtntA3EvBiBvn8bqi&#43;KTBGXAfeUPjkOGoljCEsrdCs=" />
-
-  
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/theme.png" />
-
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/portrait.jpeg" />
-
-  <link rel="preload" as="image" href="https://blog.lotp.xyz/twitter.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/github.svg" /><link rel="preload" as="image" href="https://blog.lotp.xyz/linkedin.svg" />
-
-  
-
-  
-  <link
-    rel="icon"
-    href="https://blog.lotp.xyz/favicon.ico"
-  />
-  <link
-    rel="apple-touch-icon"
-    href="https://blog.lotp.xyz/apple-touch-icon.png"
-  />
-
-  <meta name="generator" content="Hugo 0.166.0">
 	<meta itemprop="name" content="Bfs">
+	<meta itemprop="description" content="First-hand engineering notes by lotp: problems solved, the code that ran, and the decisions kept. English and Simplified Chinese.">
 	<meta itemprop="datePublished" content="2016-11-26T09:39:16+00:00">
-	<meta itemprop="dateModified" content="2016-11-26T09:39:16+00:00"><meta property="og:url" content="https://blog.lotp.xyz/tags/bfs/">
-	<meta property="og:site_name" content="Lotp&#39;s Blog">
-	<meta property="og:title" content="Bfs">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="website">
-
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Bfs">
+	<meta itemprop="dateModified" content="2016-11-26T09:39:16+00:00"><link
+  rel="preload"
+  as="style"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/>
 <link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="https://blog.lotp.xyz/tags/bfs/index.xml"
-    title="Lotp&#39;s Blog"
-  />
-  <link rel="canonical" href="https://blog.lotp.xyz/tags/bfs/" />
-</head>
-<body
-    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
-  ><header
-  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+  rel="stylesheet"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/><link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="https://blog.lotp.xyz/fonts/archivo-narrow-latin.woff2"
+  crossorigin
+/><link rel="alternate" type="application/rss&#43;xml" href="https://blog.lotp.xyz/tags/bfs/index.xml" /><link rel="canonical" href="https://blog.lotp.xyz/tags/bfs/" /><link rel="icon" href="https://blog.lotp.xyz/favicon.ico" /><link rel="apple-touch-icon" href="https://blog.lotp.xyz/apple-touch-icon.png" /><meta name="generator" content="Hugo 0.166.0"></head>
+  <body>
+    <script>
+      
+      
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("dark");
+        } catch (e) {}
+        var prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (stored !== null ? stored === "true" : prefersDark) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script><header class="sheet masthead-band">
+  <a class="visually-hidden-focusable" href="#contents">Skip to contents</a>
+  <div class="frontmatter frontmatter--part"><h1 class="masthead masthead--part">Bfs</h1><div class="imprint">
+      <nav class="frontmatter-controls" aria-label="Profile·Edition"><nav class="social" aria-label="Profile"><a
+            data-social="github"
+            style="--url: url(https://blog.lotp.xyz/github.svg)"
+            href="https://github.com/lo-tp"
+            target="_blank"
+            rel="me noopener"
+          >GitHub</a><a
+            data-social="twitter"
+            style="--url: url(https://blog.lotp.xyz/twitter.svg)"
+            href="https://x.com/lo__tp"
+            target="_blank"
+            rel="me noopener"
+          >X</a><a
+            data-social="linkedin"
+            style="--url: url(https://blog.lotp.xyz/linkedin.svg)"
+            href="https://www.linkedin.com/in/shiqi-yang-6bbb73127"
+            target="_blank"
+            rel="me noopener"
+          >LinkedIn</a></nav><span
+  class="btn-dark"
+  role="button"
+  tabindex="0"
+  aria-label="Switch between the day and night editions"
 >
-  <meta property="og:url" content="https://blog.lotp.xyz/tags/bfs/">
-	<meta property="og:site_name" content="Lotp&#39;s Blog">
-	<meta property="og:title" content="Bfs">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="website">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle class="dial" cx="12" cy="12" r="8.5" />
+    <path class="shade" d="M12 3.5a8.5 8.5 0 0 1 0 17z" />
+  </svg>
+</span>
 
-  
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Bfs">
-
-  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
-    <a
-      class="-translate-y-[1px] text-2xl font-medium"
-      href="https://blog.lotp.xyz/"
-      >Lotp&#39;s Blog</a
-    >
-    <div
-      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
-      role="button"
-      aria-label="Dark"
-    ></div>
+</nav>
+    </div>
   </div>
-
-  <div
-    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
-    role="button"
-    aria-label="Menu"
-  ></div>
 
   <script>
     
     const htmlClass = document.documentElement.classList;
     setTimeout(() => {
-      htmlClass.remove('not-ready');
+      htmlClass.remove("not-ready");
     }, 10);
 
     
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
+    
+    
+    const band = document.querySelector(".masthead-band .frontmatter");
+    const publishBandHeight = () => {
+      if (band) {
+        document.documentElement.style.setProperty(
+          "--band-h",
+          band.getBoundingClientRect().height + "px",
+        );
+      }
+    };
+    publishBandHeight();
+    addEventListener("resize", publishBandHeight);
+    addEventListener("load", publishBandHeight);
 
     
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const paper = "#f2f3f4";
+    const slate = "#141719";
     const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
+      metaTheme.setAttribute("content", isDark ? slate : paper);
+      htmlClass[isDark ? "add" : "remove"]("dark");
+      try {
+        localStorage.setItem("dark", isDark);
+      } catch (e) {}
     };
 
     
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
+    const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (htmlClass.contains("dark")) {
       setDark(true);
     } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+      const darkVal = localStorage.getItem("dark");
+      setDark(darkVal ? darkVal === "true" : darkScheme.matches);
     }
 
     
-    darkScheme.addEventListener('change', (event) => {
+    darkScheme.addEventListener("change", (event) => {
       setDark(event.matches);
     });
 
     
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
+    
+    const btnDark = document.querySelectorAll(".btn-dark");
+    btnDark.forEach((node) => {
+      node.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setDark(localStorage.getItem("dark") !== "true");
+        }
+      });
     });
   </script>
-
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
-  ><nav
-      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
-    >
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./twitter.svg)"
-        href="https://twitter.com/lo__tp"
-        target="_blank"
-        rel="me"
-      >twitter</a>
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href="https://github.com/lo-tp"
-        target="_blank"
-        rel="me"
-      >github</a>
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./linkedin.svg)"
-        href="https://linkedin.com/in/shiqi-yang-6bbb73127"
-        target="_blank"
-        rel="me"
-      >linkedin</a>
-    </nav>
-  </div>
 </header>
-<main
-      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
-    ><h1 class="mb-14">#Bfs</h1>
+<main class="sheet page"><div class="spread"><nav class="index"data-isolated="true"aria-label="Index">
+  <div class="index__block">
+    <ul class="index__list"><li>
+        <a href="https://blog.lotp.xyz/tags/leetcode">LeetCode</a>
+        <span class="index__count">5</span>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/algorithm">Algorithm</a>
+        <span class="index__count">3</span>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/dp">DP</a>
+        <span class="index__count">2</span>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/reading-notes">Reading Notes</a>
+        <span class="index__count">2</span>
+      </li></ul><ul class="index__singles"><li>
+        <a href="https://blog.lotp.xyz/tags/bfs" aria-current="true">Bfs</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/bit-operation">Bit Operation</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/coding-agent">Coding Agent</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/dfs">DFS</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/es7">ES7</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/functional-programming">Functional Programming</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/greedy">Greedy</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/iframe">iframe</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/learn">Learn</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/linux">Linux</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/llm">LLM</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/meteor">Meteor</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/mocha">Mocha</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/notion">Notion</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/postmessage">postmessage</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/react">React</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/redux">Redux</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/skill">Skill</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/tdd">TDD</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/test">Test</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/ux">UX</a>
+      </li></ul><p class="index__more">
+      <a href="https://blog.lotp.xyz/tags/">All techniques</a>
+    </p>
+  </div>
 
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0"><h2 class="my-0!">[LeetCode 126, TLE] Word Ladder II</h2>
-  <time class="text-xs antialiased opacity-60"
-    >Nov 26, 2016</time
-  >
-  <a class="absolute inset-0 text-[0px]" href="https://blog.lotp.xyz/posts/leetcode-126-word-ladder-ii/"
-    >[LeetCode 126, TLE] Word Ladder II</a
-  >
-</section></main><footer
-  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
->
-  <div class="mr-auto">&copy;2026
-    <a class="link" href="https://blog.lotp.xyz/">Lotp&#39;s Blog</a></div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >powered by hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >hugo-paper</a
-  >
+  <div class="index__block">
+    <h2 class="index__title">Years</h2>
+    <ul class="years"><li>
+        <a href="#y2026"
+          >2026&nbsp;<span class="index__count">1</span></a
+        >
+      </li><li>
+        <a href="#y2021"
+          >2021&nbsp;<span class="index__count">1</span></a
+        >
+      </li><li>
+        <a href="#y2020"
+          >2020&nbsp;<span class="index__count">2</span></a
+        >
+      </li><li>
+        <a href="#y2019"
+          >2019&nbsp;<span class="index__count">1</span></a
+        >
+      </li><li>
+        <a href="#y2018"
+          >2018&nbsp;<span class="index__count">1</span></a
+        >
+      </li><li>
+        <a href="#y2017"
+          >2017&nbsp;<span class="index__count">1</span></a
+        >
+      </li><li>
+        <a href="#y2016"
+          >2016&nbsp;<span class="index__count">8</span></a
+        >
+      </li></ul>
+  </div>
+
+  <div class="index__block index__block--author">
+    <div class="author"><figure class="author__portrait">
+        <img src="https://blog.lotp.xyz/portrait.jpeg" alt="Lotp" width="64" height="64" />
+      </figure><div>
+        <p class="author__name">Lotp</p><p class="author__bio">Every Day in Life Is a First Time</p><ul class="author__links"><li>
+            <a href="https://github.com/lo-tp" target="_blank" rel="me noopener">
+              <span>GitHub</span><span>lo-tp</span>
+            </a>
+          </li><li>
+            <a href="https://x.com/lo__tp" target="_blank" rel="me noopener">
+              <span>X</span><span>lo__tp</span>
+            </a>
+          </li><li>
+            <a href="https://www.linkedin.com/in/shiqi-yang-6bbb73127" target="_blank" rel="me noopener">
+              <span>LinkedIn</span><span>Shiqi Yang</span>
+            </a>
+          </li></ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="contents" id="contents" aria-label="Contents"><div class="year" id="y2016">
+    <h3 class="year__mark">
+      <span class="year__num">2016</span>
+      <span class="year__count">1 blog</span>
+    </h3>
+    <ul class="year__rows"><li class="rec">
+  <time
+    class="rec__date"
+    datetime="2016-11-26"
+    >2016-11-26</time>
+
+  <div class="rec__main">
+    <h3 class="rec__title">
+      <a href="/posts/leetcode-126-word-ladder-ii/">[LeetCode 126, TLE] Word Ladder II</a>
+    </h3><ul class="rec__tags"><li>
+        <a href="https://blog.lotp.xyz/tags/leetcode">LeetCode</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/bfs">Bfs</a>
+      </li><li>
+        <a href="https://blog.lotp.xyz/tags/algorithm">Algorithm</a>
+      </li></ul></div>
+
+</li>
+</ul>
+  </div></section>
+</div></main><footer class="sheet">
+  <div class="colophon">
+    <span>©2026Lotp</span>
+    <span>Built with Hugo</span>
+    <span>icons from hugo-paper</span>
+    <span>Set in Archivo Narrow</span>
+    <span>2016 → 2026</span>
+  </div>
 </footer>
 </body>
 </html>

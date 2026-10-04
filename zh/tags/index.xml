@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Tags on Lotp的博客</title>
+		<link>https://blog.lotp.xyz/zh/tags/</link>
+		<description>Recent content in Tags on Lotp的博客</description>
+		<generator>Hugo</generator>
+		<language>zh</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://blog.lotp.xyz/zh/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Coding Agent</title>
+				<link>https://blog.lotp.xyz/zh/tags/coding-agent/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/tags/coding-agent/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>LLM</title>
+				<link>https://blog.lotp.xyz/zh/tags/llm/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/tags/llm/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Notion</title>
+				<link>https://blog.lotp.xyz/zh/tags/notion/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/tags/notion/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Skill</title>
+				<link>https://blog.lotp.xyz/zh/tags/skill/</link>
+				<pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/tags/skill/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>
