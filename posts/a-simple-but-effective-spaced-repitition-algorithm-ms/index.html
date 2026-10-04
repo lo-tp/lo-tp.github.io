@@ -51,15 +51,13 @@ In this post I will show you what problems SM2&#43; algorithm has and provide a 
     <script>
       
       
+      
       (function () {
         var stored = null;
         try {
           stored = localStorage.getItem("dark");
         } catch (e) {}
-        var prefersDark =
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (stored !== null ? stored === "true" : prefersDark) {
+        if (stored === "true") {
           document.documentElement.classList.add("dark");
         }
       })();
@@ -127,42 +125,38 @@ In this post I will show you what problems SM2&#43; algorithm has and provide a 
     addEventListener("load", publishBandHeight);
 
     
+    
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     const paper = "#f2f3f4";
     const slate = "#141719";
-    const setDark = (isDark) => {
-      metaTheme.setAttribute("content", isDark ? slate : paper);
-      htmlClass[isDark ? "add" : "remove"]("dark");
+    let isDark = htmlClass.contains("dark"); 
+    const setDark = (next) => {
+      isDark = next;
+      metaTheme.setAttribute("content", next ? slate : paper);
+      htmlClass[next ? "add" : "remove"]("dark");
       try {
-        localStorage.setItem("dark", isDark);
+        localStorage.setItem("dark", next);
       } catch (e) {}
     };
 
     
-    const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (htmlClass.contains("dark")) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem("dark");
-      setDark(darkVal ? darkVal === "true" : darkScheme.matches);
-    }
-
     
-    darkScheme.addEventListener("change", (event) => {
-      setDark(event.matches);
-    });
+    
+    try {
+      setDark(localStorage.getItem("dark") === "true");
+    } catch (e) {}
 
     
     
     const btnDark = document.querySelectorAll(".btn-dark");
     btnDark.forEach((node) => {
       node.addEventListener("click", () => {
-        setDark(localStorage.getItem("dark") !== "true");
+        setDark(!isDark);
       });
       node.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          setDark(localStorage.getItem("dark") !== "true");
+          setDark(!isDark);
         }
       });
     });
