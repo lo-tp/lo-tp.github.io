@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Thu, 15 Oct 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://blog.lotp.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes</title>
+				<link>https://blog.lotp.xyz/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/</link>
+				<pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; If you ask an LLM for structured JSON and you have met &lt;code&gt;502 structured_output_failed&lt;/code&gt;, the culprit is&#xA;probably not your code. It is a single backslash: a lone &lt;code&gt;\&lt;/code&gt; inside a JSON string that the server will&#xA;generate for you and then refuse to parse. The fix is not a tidier prompt: turn strict mode off and do&#xA;the schema and type checking yourself.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-error&#34;&gt;The error&lt;/h2&gt;&#xA;&lt;p&gt;A pipeline that generates text with an LLM is usually a chain of calls, and most of them have to answer&#xA;in JSON we can parse — a list of what to write next, a list of items, a list of questions. The clean way&#xA;to ask for that is &lt;em&gt;structured output&lt;/em&gt;: hand the model a JSON schema and let the server enforce it&#xA;(in LangGraph that is a &lt;code&gt;with_structured_output&lt;/code&gt; call on the model; OpenAI-compatible servers take it as&#xA;&lt;code&gt;response_format: {&amp;quot;type&amp;quot;: &amp;quot;json_schema&amp;quot;, &amp;quot;strict&amp;quot;: true}&lt;/code&gt;). On a maths-heavy call, this is what came&#xA;back:&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>I Let My Coding Agent Manage My Notion Tasks. Here&#39;s What I Learned.</title>
 				<link>https://blog.lotp.xyz/posts/i-let-my-coding-agent-manage-my-notion-tasks/</link>

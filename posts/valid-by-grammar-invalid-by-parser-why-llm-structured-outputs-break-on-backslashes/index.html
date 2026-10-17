@@ -1,0 +1,368 @@
+<!doctype html><html class="not-ready" lang="en">
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f2f3f4" />
+
+<title>Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes ·Lotp&#39;s Blog</title><meta name="description" content="I lost a whole batch of generated work to one character, and the fix was not a better prompt: strict mode off, and the schema and type checking done by hand. The quieter half of this bug is worse than the 502 — nothing fails, and a macro is stored as a form feed." />
+<meta name="author" content="lotp" /><meta property="og:url" content="https://blog.lotp.xyz/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/">
+	<meta property="og:site_name" content="Lotp&#39;s Blog">
+	<meta property="og:title" content="Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes">
+	<meta property="og:description" content="I lost a whole batch of generated work to one character, and the fix was not a better prompt: strict mode off, and the schema and type checking done by hand. The quieter half of this bug is worse than the 502 — nothing fails, and a macro is stored as a form feed.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-15T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-10-15T00:00:00+00:00">
+		<meta property="article:tag" content="LLM">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes">
+	<meta name="twitter:description" content="I lost a whole batch of generated work to one character, and the fix was not a better prompt: strict mode off, and the schema and type checking done by hand. The quieter half of this bug is worse than the 502 — nothing fails, and a macro is stored as a form feed.">
+
+	<meta itemprop="name" content="Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes">
+	<meta itemprop="description" content="I lost a whole batch of generated work to one character, and the fix was not a better prompt: strict mode off, and the schema and type checking done by hand. The quieter half of this bug is worse than the 502 — nothing fails, and a macro is stored as a form feed.">
+	<meta itemprop="datePublished" content="2026-10-15T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-10-15T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1096">
+	<meta itemprop="keywords" content="LLM"><link
+  rel="preload"
+  as="style"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/>
+<link
+  rel="stylesheet"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/><link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="https://blog.lotp.xyz/fonts/archivo-narrow-latin.woff2"
+  crossorigin
+/><link rel="canonical" href="https://blog.lotp.xyz/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/" /><link rel="icon" href="https://blog.lotp.xyz/favicon.ico" /><link rel="apple-touch-icon" href="https://blog.lotp.xyz/apple-touch-icon.png" /><meta name="generator" content="Hugo 0.166.0"></head>
+  <body>
+    <script>
+      
+      
+      
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("dark");
+        } catch (e) {}
+        if (stored === "true") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script><header class="sheet masthead-band">
+  <a class="visually-hidden-focusable" href="#contents">Skip to contents</a>
+  <div class="frontmatter frontmatter--part"><a class="masthead masthead--part" href="https://blog.lotp.xyz/">
+      <span class="masthead__name">Lotp</span>
+      <span class="masthead__part">Blog</span>
+    </a><div class="imprint">
+      <nav class="frontmatter-controls" aria-label="Profile·Edition"><nav class="social" aria-label="Profile"><a
+            data-social="github"
+            style="--url: url(https://blog.lotp.xyz/github.svg)"
+            href="https://github.com/lo-tp"
+            target="_blank"
+            rel="me noopener"
+          >GitHub</a><a
+            data-social="twitter"
+            style="--url: url(https://blog.lotp.xyz/twitter.svg)"
+            href="https://x.com/lo__tp"
+            target="_blank"
+            rel="me noopener"
+          >X</a><a
+            data-social="linkedin"
+            style="--url: url(https://blog.lotp.xyz/linkedin.svg)"
+            href="https://www.linkedin.com/in/shiqi-yang-6bbb73127"
+            target="_blank"
+            rel="me noopener"
+          >LinkedIn</a></nav><span
+  class="btn-dark"
+  role="button"
+  tabindex="0"
+  aria-label="Switch between the day and night editions"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle class="dial" cx="12" cy="12" r="8.5" />
+    <path class="shade" d="M12 3.5a8.5 8.5 0 0 1 0 17z" />
+  </svg>
+</span>
+
+</nav>
+    </div>
+  </div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove("not-ready");
+    }, 10);
+
+    
+    
+    
+    const band = document.querySelector(".masthead-band .frontmatter");
+    const publishBandHeight = () => {
+      if (band) {
+        document.documentElement.style.setProperty(
+          "--band-h",
+          band.getBoundingClientRect().height + "px",
+        );
+      }
+    };
+    publishBandHeight();
+    addEventListener("resize", publishBandHeight);
+    addEventListener("load", publishBandHeight);
+
+    
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const paper = "#f2f3f4";
+    const slate = "#141719";
+    let isDark = htmlClass.contains("dark"); 
+    const setDark = (next) => {
+      isDark = next;
+      metaTheme.setAttribute("content", next ? slate : paper);
+      htmlClass[next ? "add" : "remove"]("dark");
+      try {
+        localStorage.setItem("dark", next);
+      } catch (e) {}
+    };
+
+    
+    
+    
+    try {
+      setDark(localStorage.getItem("dark") === "true");
+    } catch (e) {}
+
+    
+    
+    const btnDark = document.querySelectorAll(".btn-dark");
+    btnDark.forEach((node) => {
+      node.addEventListener("click", () => {
+        setDark(!isDark);
+      });
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setDark(!isDark);
+        }
+      });
+    });
+  </script>
+</header>
+<main class="sheet page"><article class="record record--indexed">
+  <header class="record__head">
+    <h1 class="record__title">Valid by Grammar, Invalid by Parser: Why LLM Structured Outputs Break on Backslashes</h1>
+    <div class="meta">
+      <time datetime="2026-10-15">Oct 15, 2026</time>
+      <span>English</span><ul class="meta__tags"><li>
+          <a href="https://blog.lotp.xyz/tags/llm">LLM</a>
+        </li></ul></div>
+  </header><div class="record__toc">
+    <h2 class="label record__toc__title">Contents</h2><nav aria-label="Contents">
+  <ul>
+    <li><a href="#the-error">The error</a></li>
+    <li><a href="#what-i-ruled-out">What I ruled out</a></li>
+    <li><a href="#why-it-happens-a-grammar-and-a-parser-that-disagree">Why it happens: a grammar and a parser that disagree</a></li>
+    <li><a href="#the-failure-mode-that-reports-nothing">The failure mode that reports nothing</a></li>
+    <li><a href="#the-fix-turn-strict-mode-off-and-do-the-schema-and-type-checking-yourself">The fix: turn strict mode off and do the schema and type checking yourself</a></li>
+    <li><a href="#what-i-learned">What I learned</a></li>
+  </ul>
+</nav></div><section class="record__body"><p><strong>TLDR:</strong> If you ask an LLM for structured JSON and you have met <code>502 structured_output_failed</code>, the culprit is
+probably not your code. It is a single backslash: a lone <code>\</code> inside a JSON string that the server will
+generate for you and then refuse to parse. The fix is not a tidier prompt: turn strict mode off and do
+the schema and type checking yourself.</p>
+<h2 id="the-error">The error</h2>
+<p>A pipeline that generates text with an LLM is usually a chain of calls, and most of them have to answer
+in JSON we can parse — a list of what to write next, a list of items, a list of questions. The clean way
+to ask for that is <em>structured output</em>: hand the model a JSON schema and let the server enforce it
+(in LangGraph that is a <code>with_structured_output</code> call on the model; OpenAI-compatible servers take it as
+<code>response_format: {&quot;type&quot;: &quot;json_schema&quot;, &quot;strict&quot;: true}</code>). On a maths-heavy call, this is what came
+back:</p>
+<pre tabindex="0"><code>openai.InternalServerError: Error code: 502
+{ &#34;error&#34;: {
+    &#34;type&#34;: &#34;structured_output_failed&#34;,
+    &#34;code&#34;: &#34;structured_output_failed&#34;,
+    &#34;message&#34;: &#34;model did not return valid JSON: Invalid \escape: line 20 column 48 (char 1595)&#34;
+}}
+</code></pre><p>Nothing in my code caught that class of error, so it propagated as &ldquo;this generation failed&rdquo; — and the
+unit that failed was not one field, it was a whole batch of work. The mechanism that makes this so
+expensive is easy to miss and worth stating plainly: <strong>the server had already generated the answer. The
+refusal withholds it.</strong> A refusal is not a partial result you can salvage; it is the completion, thrown
+away.</p>
+<h2 id="what-i-ruled-out">What I ruled out</h2>
+<p>My first guess was &ldquo;the model writes bad JSON on a hard prompt.&rdquo; That was wrong, and the way it was
+wrong is the useful part. I replayed the same call at <code>temperature=0</code> and changed one variable at a
+time:</p>
+<table>
+	<thead>
+			<tr>
+					<th>request</th>
+					<th>result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>today&rsquo;s path (<code>json_schema</code>), <code>max_tokens=8192</code></td>
+					<td><strong>502 <code>Invalid \escape</code></strong> (positions vary: <code>line 9 col 28</code>, <code>line 20 col 48</code>)</td>
+			</tr>
+			<tr>
+					<td>today&rsquo;s path, <code>max_tokens=65536</code></td>
+					<td><strong>502, same failure</strong> — the output cap is not involved</td>
+			</tr>
+			<tr>
+					<td>no <code>response_format</code> at all</td>
+					<td>the completion contains <strong>21–22 invalid escapes</strong>; free-form output is just as bad, it simply is not validated server-side</td>
+			</tr>
+			<tr>
+					<td>those escapes doubled, then parsed and validated locally</td>
+					<td>✅ parses; every item passes its schema</td>
+			</tr>
+			<tr>
+					<td><code>method=&quot;json_mode&quot;</code></td>
+					<td>fails differently: the model echoed the <em>schema</em> instead of an instance</td>
+			</tr>
+			<tr>
+					<td><code>method=&quot;function_calling&quot;</code></td>
+					<td>✅ 2/2 runs ok, 13.4 s and 15.7 s</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li><strong>The token cap was not the cause.</strong> At default temperature the output length looked causal; at
+<code>temperature=0</code>, 8192 and 65536 failed identically at the same position. That was sampling variance
+masquerading as a cause.</li>
+<li><strong>The text was almost fine.</strong> Doubling the backslashes and parsing locally was enough. Nothing was
+wrong with the <em>answer</em> — only with how the backslashes inside it were encoded.</li>
+<li><strong>The model was not bad at JSON.</strong> <code>json_mode</code> failed in a different way (echoing the schema rather
+than producing an instance), and <code>function_calling</code> succeeded twice. The model was following
+instructions; the instructions and the transport disagreed.</li>
+</ul>
+<h2 id="why-it-happens-a-grammar-and-a-parser-that-disagree">Why it happens: a grammar and a parser that disagree</h2>
+<p><strong>1. The transport.</strong> <code>with_structured_output</code> defaults to <code>method=&quot;json_schema&quot;</code>, so the call sends a
+strict JSON schema. My server, llama.cpp, compiles that schema into a GBNF grammar, and here is the
+trap: <strong>the grammar enforces JSON <em>structure</em> but permits a lone backslash inside a string.</strong> The grammar happily
+generates the token — and then the server parses the completion itself, and a backslash before a letter
+is not a legal JSON escape. So the server answers 502 about text it generated itself.</p>
+<p>The general shape of the bug: <strong>the thing that generated the text and the thing that validated it did
+not agree.</strong> &ldquo;Valid by the grammar&rdquo; is not &ldquo;parsable by the parser.&rdquo;</p>
+<p><strong>2. A prompt that mandates backslashes.</strong> One of my system prompts says, in the outputs that must come
+back as JSON: <em>&ldquo;Use LaTeX for math.&rdquo;</em> That is where <code>\frac</code>, <code>\int</code>, <code>\left</code> and <code>\,</code> come from.</p>
+<p>&ldquo;LaTeX&rdquo; is only the name this arrived under. A code sample containing <code>\n</code>, a regex with
+<code>\d</code>, a Windows path — any of them hit the same wall.</p>
+<h2 id="the-failure-mode-that-reports-nothing">The failure mode that reports nothing</h2>
+<p>The same cause has a second symptom, and it is the worse one because it never fails.</p>
+<p>Some backslash sequences <em>are</em> legal JSON escapes — and they decode into the wrong character. Verified
+against <code>json.loads</code>:</p>
+<table>
+	<thead>
+			<tr>
+					<th>the model wrote</th>
+					<th>what is stored</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>\frac{d}{dx}</code></td>
+					<td><code>U+000C</code> (form feed) + <code>rac{d}{dx}</code></td>
+			</tr>
+			<tr>
+					<td><code>\nu</code></td>
+					<td>a newline</td>
+			</tr>
+			<tr>
+					<td><code>\times</code></td>
+					<td>a tab</td>
+			</tr>
+	</tbody>
+</table>
+<p>These pass every schema, so they reach the stored text as corruption that looks like a fragment of the
+original. Nothing logs them. A call that ends on <code>finish_reason=&quot;length&quot;</code> — the model spent its whole
+output allowance and returned nothing useful — is unreported in the same way. <strong>The 502 is the failure
+you debug; the form feed is the failure you ship.</strong></p>
+<h2 id="the-fix-turn-strict-mode-off-and-do-the-schema-and-type-checking-yourself">The fix: turn strict mode off and do the schema and type checking yourself</h2>
+<p>The fix in one line: when the server refuses, ask the same question <strong>with strict mode off</strong> and do the
+schema and type checking by hand. It does not ask the model to write tidier JSON, and it does not ban
+LaTeX. Strict mode stays for the calls that pass — the fallback is only paid when the strict path fails.</p>
+<ol>
+<li><strong>Recognise the refusal.</strong> A 5xx whose body says <code>structured_output_failed</code> / &ldquo;model did not return
+valid JSON&rdquo; is a known shape, so treat it as one.</li>
+<li><strong>Re-ask with strict mode off.</strong> Same messages, same reasoning budget, same output allowance — only
+the enforcement removed. Nothing new is invented.</li>
+<li><strong>Repair the escapes in one pass.</strong> Double every backslash that is not already part of a legal escape
+pair; leave <code>\n</code>, <code>\t</code>, <code>\r</code>, <code>\uXXXX</code>, <code>\&quot;</code>, <code>\\</code>, <code>\/</code> alone. One judgement call: treat <code>\f</code> and
+<code>\b</code> as the start of a macro rather than as form-feed and backspace, because in this corpus they are
+overwhelmingly <code>\frac</code>, <code>\beta</code> and <code>\bar</code>. A repair rule has to know what the text is <em>about</em>.</li>
+<li><strong>Do the schema and type checking by hand.</strong> Validate the parsed answer against the same schema the
+server would have enforced — same acceptance bar, just held locally instead of delegated.</li>
+</ol>
+<h2 id="what-i-learned">What I learned</h2>
+<ul>
+<li><strong>Don&rsquo;t name the bug after the content that tripped it.</strong> &ldquo;It broke on LaTeX&rdquo; kept me reading prompts
+for an hour. &ldquo;It breaks on a lone backslash inside a JSON string&rdquo; pointed straight at the transport.</li>
+<li><strong>&ldquo;Valid by the grammar&rdquo; is not &ldquo;parsable by the parser.&rdquo;</strong> When a constrained-output call fails,
+check whether the generator and the validator agree — the gap between them is where this class lives.</li>
+</ul>
+</section><nav class="adjacent" aria-label="Contents">
+    <a href="/posts/clone-an-existing-linux-os-to-another-disk-without-pain/">
+      <span class="label">Later record</span>
+      <span>A Painless Way to Clone an Existing Linux OS to Another Disk</span>
+    </a>
+  </nav></article><script>
+  (function () {
+    const toc = document.querySelector(".record__toc");
+    if (!toc) return;
+    const entries = [];
+    toc.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const ref = link.getAttribute("href").slice(1);
+      let id = ref;
+      try {
+        id = decodeURIComponent(ref);
+      } catch (e) {}
+      const target = document.getElementById(id);
+      if (target) entries.push({ link, target });
+    });
+    if (entries.length < 2) return;
+
+    let on = null;
+    let frame = null;
+    const mark = (entry) => {
+      if (entry === on) return;
+      if (on) on.link.removeAttribute("aria-current");
+      on = entry || null;
+      if (on) on.link.setAttribute("aria-current", "true");
+    };
+    const measure = () => {
+      frame = null;
+      const band = document.querySelector(".masthead-band .frontmatter");
+      const line = (band ? band.getBoundingClientRect().bottom : 0) + 24;
+      let active = null;
+      for (const entry of entries) {
+        if (entry.target.getBoundingClientRect().top <= line) active = entry;
+      }
+      mark(active);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    addEventListener("scroll", schedule, { passive: true });
+    addEventListener("resize", schedule);
+    measure();
+  })();
+</script></main><footer class="sheet">
+  <div class="colophon">
+    <span>©2026Lotp</span>
+    <span>Built with Hugo</span>
+    <span>icons from hugo-paper</span>
+    <span>Set in Archivo Narrow</span>
+    <span>2016 → 2026</span>
+  </div>
+</footer>
+</body>
+</html>
