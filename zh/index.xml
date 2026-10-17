@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Thu, 15 Oct 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://blog.lotp.xyz/zh/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑</title>
+				<link>https://blog.lotp.xyz/zh/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/</link>
+				<pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+				<guid>https://blog.lotp.xyz/zh/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;太长不读:&lt;/strong&gt; 如果你让 LLM 输出结构化 JSON，遇到报错 &lt;code&gt;502 structured_output_failed&lt;/code&gt;，元凶多半不在你的代码里。而是一个反斜杠：JSON 字符串里孤零零的一个 &lt;code&gt;\&lt;/code&gt;——服务器自己把它生成出来，却无法解析它。修复也不是把改写 prompt 而是：关掉 strict mode，schema 和类型检查自己做。&lt;/p&gt;&#xA;&lt;h2 id=&#34;报错&#34;&gt;报错&lt;/h2&gt;&#xA;&lt;p&gt;一个用 LLM 生成文本的流程通常就是一串调用，其中大多数Response都是JSON。要 JSON Response 的最通用的做法就是&lt;em&gt;结构化输出&lt;/em&gt;（structured output）：把一份 JSON schema 交给模型，让服务器去生成 Response 并根据 JSON Schema校验（在 LangGraph 里就是对模型调一次 &lt;code&gt;with_structured_output&lt;/code&gt;；OpenAI 兼容的服务器收到的就是 &lt;code&gt;response_format: {&amp;quot;type&amp;quot;: &amp;quot;json_schema&amp;quot;, &amp;quot;strict&amp;quot;: true}&lt;/code&gt;）。有一次调用时牵扯到很多数学公式公式，导致了如下的报错：&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;openai.InternalServerError: Error code: 502&#xA;{ &amp;#34;error&amp;#34;: {&#xA;    &amp;#34;type&amp;#34;: &amp;#34;structured_output_failed&amp;#34;,&#xA;    &amp;#34;code&amp;#34;: &amp;#34;structured_output_failed&amp;#34;,&#xA;    &amp;#34;message&amp;#34;: &amp;#34;model did not return valid JSON: Invalid \escape: line 20 column 48 (char 1595)&amp;#34;&#xA;}}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我的代码里没有任何地方处理这类报错，于是它一路往上冒，导致整个 workflow 都挂掉。耐人寻味的是：&lt;strong&gt;服务器其实已经把 Response 生成出来了，只是这个 Response 通过不过校验&lt;/strong&gt;。&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>我让 Coding Agent 帮我管 Notion 任务，学到了什么</title>
 				<link>https://blog.lotp.xyz/zh/posts/i-let-my-coding-agent-manage-my-notion-tasks/</link>

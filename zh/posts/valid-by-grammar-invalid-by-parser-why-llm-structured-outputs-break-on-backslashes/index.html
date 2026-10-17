@@ -1,0 +1,338 @@
+<!doctype html><html class="not-ready" lang="zh">
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f2f3f4" />
+
+<title>一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑 ·Lotp的博客</title><meta name="description" content="一个反斜杠让我整批生成好的东西全没了。修复跟把 prompt 写得更规矩没关系：把 strict mode 关掉，schema 和类型检查自己做。更麻烦的是这 bug 安静的那半——什么都不报错，宏被存成了一个换页符。" />
+<meta name="author" content="lotp" /><meta property="og:url" content="https://blog.lotp.xyz/zh/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/">
+	<meta property="og:site_name" content="Lotp的博客">
+	<meta property="og:title" content="一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑">
+	<meta property="og:description" content="一个反斜杠让我整批生成好的东西全没了。修复跟把 prompt 写得更规矩没关系：把 strict mode 关掉，schema 和类型检查自己做。更麻烦的是这 bug 安静的那半——什么都不报错，宏被存成了一个换页符。">
+	<meta property="og:locale" content="zh">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-15T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-10-15T00:00:00+00:00">
+		<meta property="article:tag" content="LLM">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑">
+	<meta name="twitter:description" content="一个反斜杠让我整批生成好的东西全没了。修复跟把 prompt 写得更规矩没关系：把 strict mode 关掉，schema 和类型检查自己做。更麻烦的是这 bug 安静的那半——什么都不报错，宏被存成了一个换页符。">
+
+	<meta itemprop="name" content="一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑">
+	<meta itemprop="description" content="一个反斜杠让我整批生成好的东西全没了。修复跟把 prompt 写得更规矩没关系：把 strict mode 关掉，schema 和类型检查自己做。更麻烦的是这 bug 安静的那半——什么都不报错，宏被存成了一个换页符。">
+	<meta itemprop="datePublished" content="2026-10-15T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-10-15T00:00:00+00:00">
+	<meta itemprop="wordCount" content="249">
+	<meta itemprop="keywords" content="LLM"><link
+  rel="preload"
+  as="style"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/>
+<link
+  rel="stylesheet"
+  href="https://blog.lotp.xyz/main.min.8e019afce84fc23111263b9b3bd989acc137300a6534d40ba38b402b664d02e7.css"
+  integrity="sha256-jgGa/OhPwjERJjubO9mJrME3MAplNNQLo4tAK2ZNAuc="
+/><link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="https://blog.lotp.xyz/fonts/archivo-narrow-latin.woff2"
+  crossorigin
+/><link rel="canonical" href="https://blog.lotp.xyz/zh/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/" /><link rel="icon" href="https://blog.lotp.xyz/favicon.ico" /><link rel="apple-touch-icon" href="https://blog.lotp.xyz/apple-touch-icon.png" /><meta name="generator" content="Hugo 0.166.0"></head>
+  <body>
+    <script>
+      
+      
+      
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("dark");
+        } catch (e) {}
+        if (stored === "true") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script><header class="sheet masthead-band">
+  <a class="visually-hidden-focusable" href="#contents">跳到目录</a>
+  <div class="frontmatter frontmatter--part"><a class="masthead masthead--part" href="https://blog.lotp.xyz/zh/">
+      <span class="masthead__name">Lotp</span>
+      <span class="masthead__part">博客</span>
+    </a><div class="imprint">
+      <nav class="frontmatter-controls" aria-label="作者·版本"><nav class="social" aria-label="作者"><a
+            data-social="github"
+            style="--url: url(https://blog.lotp.xyz/github.svg)"
+            href="https://github.com/lo-tp"
+            target="_blank"
+            rel="me noopener"
+          >GitHub</a><a
+            data-social="twitter"
+            style="--url: url(https://blog.lotp.xyz/twitter.svg)"
+            href="https://x.com/lo__tp"
+            target="_blank"
+            rel="me noopener"
+          >X</a><a
+            data-social="linkedin"
+            style="--url: url(https://blog.lotp.xyz/linkedin.svg)"
+            href="https://www.linkedin.com/in/shiqi-yang-6bbb73127"
+            target="_blank"
+            rel="me noopener"
+          >LinkedIn</a></nav><nav class="lang-switch" data-lang-switch><a class="btn not-prose" hreflang="en" href="https://blog.lotp.xyz/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/"
+    >English</a
+  ></nav><span
+  class="btn-dark"
+  role="button"
+  tabindex="0"
+  aria-label="在日间与夜间版本之间切换"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle class="dial" cx="12" cy="12" r="8.5" />
+    <path class="shade" d="M12 3.5a8.5 8.5 0 0 1 0 17z" />
+  </svg>
+</span>
+
+</nav>
+    </div>
+  </div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove("not-ready");
+    }, 10);
+
+    
+    
+    
+    const band = document.querySelector(".masthead-band .frontmatter");
+    const publishBandHeight = () => {
+      if (band) {
+        document.documentElement.style.setProperty(
+          "--band-h",
+          band.getBoundingClientRect().height + "px",
+        );
+      }
+    };
+    publishBandHeight();
+    addEventListener("resize", publishBandHeight);
+    addEventListener("load", publishBandHeight);
+
+    
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const paper = "#f2f3f4";
+    const slate = "#141719";
+    let isDark = htmlClass.contains("dark"); 
+    const setDark = (next) => {
+      isDark = next;
+      metaTheme.setAttribute("content", next ? slate : paper);
+      htmlClass[next ? "add" : "remove"]("dark");
+      try {
+        localStorage.setItem("dark", next);
+      } catch (e) {}
+    };
+
+    
+    
+    
+    try {
+      setDark(localStorage.getItem("dark") === "true");
+    } catch (e) {}
+
+    
+    
+    const btnDark = document.querySelectorAll(".btn-dark");
+    btnDark.forEach((node) => {
+      node.addEventListener("click", () => {
+        setDark(!isDark);
+      });
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setDark(!isDark);
+        }
+      });
+    });
+  </script>
+</header>
+<main class="sheet page"><article class="record record--indexed">
+  <header class="record__head">
+    <h1 class="record__title">一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑</h1>
+    <div class="meta">
+      <time datetime="2026-10-15">2026年10月15日</time>
+      <span>中文</span><ul class="meta__tags"><li>
+          <a href="https://blog.lotp.xyz/zh/tags/llm">LLM</a>
+        </li></ul></div>
+  </header><div class="record__toc">
+    <h2 class="label record__toc__title">目录</h2><nav aria-label="目录">
+  <ul>
+    <li><a href="#报错">报错</a></li>
+    <li><a href="#debug">Debug</a></li>
+    <li><a href="#为什么grammar-和-parser-会冲突">为什么：grammar 和 parser 会冲突</a></li>
+    <li><a href="#更隐蔽的问题">更隐蔽的问题</a></li>
+    <li><a href="#修复关掉-strict-modeschema-和类型检查自己做">修复：关掉 strict mode，schema 和类型检查自己做</a></li>
+    <li><a href="#我学到了什么">我学到了什么</a></li>
+  </ul>
+</nav></div><section class="record__body"><p><strong>太长不读:</strong> 如果你让 LLM 输出结构化 JSON，遇到报错 <code>502 structured_output_failed</code>，元凶多半不在你的代码里。而是一个反斜杠：JSON 字符串里孤零零的一个 <code>\</code>——服务器自己把它生成出来，却无法解析它。修复也不是把改写 prompt 而是：关掉 strict mode，schema 和类型检查自己做。</p>
+<h2 id="报错">报错</h2>
+<p>一个用 LLM 生成文本的流程通常就是一串调用，其中大多数Response都是JSON。要 JSON Response 的最通用的做法就是<em>结构化输出</em>（structured output）：把一份 JSON schema 交给模型，让服务器去生成 Response 并根据 JSON Schema校验（在 LangGraph 里就是对模型调一次 <code>with_structured_output</code>；OpenAI 兼容的服务器收到的就是 <code>response_format: {&quot;type&quot;: &quot;json_schema&quot;, &quot;strict&quot;: true}</code>）。有一次调用时牵扯到很多数学公式公式，导致了如下的报错：</p>
+<pre tabindex="0"><code>openai.InternalServerError: Error code: 502
+{ &#34;error&#34;: {
+    &#34;type&#34;: &#34;structured_output_failed&#34;,
+    &#34;code&#34;: &#34;structured_output_failed&#34;,
+    &#34;message&#34;: &#34;model did not return valid JSON: Invalid \escape: line 20 column 48 (char 1595)&#34;
+}}
+</code></pre><p>我的代码里没有任何地方处理这类报错，于是它一路往上冒，导致整个 workflow 都挂掉。耐人寻味的是：<strong>服务器其实已经把 Response 生成出来了，只是这个 Response 通过不过校验</strong>。</p>
+<h2 id="debug">Debug</h2>
+<p>我最初的猜测是「这个 prompt 太难，模型写出了不合格的 JSON」。于是我把同一个调用在 <code>temperature=0</code> 下重放，一次只改一个变量：</p>
+<table>
+	<thead>
+			<tr>
+					<th>请求</th>
+					<th>结果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>（<code>json_schema</code>），<code>max_tokens=8192</code></td>
+					<td><strong>502 <code>Invalid \escape</code></strong>（报错位置会变：<code>line 9 col 28</code>、<code>line 20 col 48</code>）</td>
+			</tr>
+			<tr>
+					<td><code>max_tokens=65536</code></td>
+					<td><strong>502，同一个错</strong>——跟输出上限没关系</td>
+			</tr>
+			<tr>
+					<td>完全不带 <code>response_format</code></td>
+					<td>生成结果里有 <strong>21–22 处非法转义</strong>；自由格式的输出一样糟，只是服务器不做校验</td>
+			</tr>
+			<tr>
+					<td>把这些反斜杠翻倍，然后在本地解析、本地校验</td>
+					<td>✅ 能解析；每一条都过 schema</td>
+			</tr>
+			<tr>
+					<td><code>method=&quot;json_mode&quot;</code></td>
+					<td>换一种方式失败：模型把 <em>schema</em> 原样抄了一遍，没有产出实例</td>
+			</tr>
+			<tr>
+					<td><code>method=&quot;function_calling&quot;</code></td>
+					<td>✅ 两次都成功</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li><strong>输出上限不是原因。</strong> 默认 temperature 下，输出长度看着就是原因；把 <code>temperature=0</code> 固定住之后，8192 和 65536 在同一个位置、以同样的方式失败。</li>
+<li><strong>模型写出来的东西基本是对的。</strong> 把反斜杠翻倍、然后在本地解析就不报错了。<em>Response</em>本身没有任何问题——错的只是它里面那些反斜杠的编码方式。</li>
+<li><strong>模型并不是不会写 JSON</strong>。模型一直在照着指令做；是 grammar 和 parser 冲突了。</li>
+</ul>
+<h2 id="为什么grammar-和-parser-会冲突">为什么：grammar 和 parser 会冲突</h2>
+<p>**1. ** <code>with_structured_output</code> 默认走 <code>method=&quot;json_schema&quot;</code>，所以每次调用参照 JSON schema 校验 Response。服务器 把 schema 编译成一个 GBNF grammar，坑就在这儿：<strong>grammar 管的是 JSON 的<em>结构</em>，它不 Care 字符串里一个孤立的反斜杠。</strong> grammar 高高兴兴把这个 token 生成了出来——然后服务器自己去解析，而一个字母前面的反斜杠并不是合法的 JSON 转义。于是服务器因为它自己生成的文本返回了一个 502。</p>
+<p>这个 bug 的一般形状：<strong>生成文本的那一方和校验文本的那一方没有达成一致。</strong>「grammar 里合法」不等于「parser 解析得了」。</p>
+<p><strong>2. 我的一个 system prompt</strong> 在一次 结构调用中写着：<em>“Use LaTeX for math.”</em> <code>\frac</code>、<code>\int</code>、<code>\left</code>、<code>\,</code> 就是从这儿来的。</p>
+<p>「LaTeX」只是导火索。一段含 <code>\n</code> 的代码示例、一个带 <code>\d</code> 的正则、一个 Windows 路径—-都会引发同样的错误。</p>
+<h2 id="更隐蔽的问题">更隐蔽的问题</h2>
+<p>有些反斜杠序列<em>是</em>合法的 JSON 转义——它们会解码成错误的字符。对着 <code>json.loads</code> 验过：</p>
+<table>
+	<thead>
+			<tr>
+					<th>模型写的</th>
+					<th>存下来的是</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>\frac{d}{dx}</code></td>
+					<td><code>U+000C</code>（换页符）+ <code>rac{d}{dx}</code></td>
+			</tr>
+			<tr>
+					<td><code>\nu</code></td>
+					<td>一个换行</td>
+			</tr>
+			<tr>
+					<td><code>\times</code></td>
+					<td>一个制表符</td>
+			</tr>
+	</tbody>
+</table>
+<p>它们全都能过 schema，会被以「看起来像原文剩下来的一截」的样子进了存下来的文本。渲染结果异常的。</p>
+<h2 id="修复关掉-strict-modeschema-和类型检查自己做">修复：关掉 strict mode，schema 和类型检查自己做</h2>
+<p>一句话说清修复：检测服务器 502 错误，把同一个问题再问一遍，<strong>但不开 strict mode</strong>，schema 和类型检查自己动手做。不需要模型把 JSON 写得更规矩，也不用禁掉 LaTeX。能过的调用照旧走 strict——fallback 只在 strict 这条路失败的时候才使用。</p>
+<ol>
+<li><strong>识别异常原因。</strong> body 里写着 <code>structured_output_failed</code> / “model did not return valid JSON”。</li>
+<li><strong>关掉 strict mode 再问一遍。</strong> 同样的消息、同样的 reasoning 预算、同样的输出额度——只把强制类型检查取消。</li>
+<li><strong>一遍把所有转义修好。</strong> 凡不属于合法转义对的反斜杠，统统翻倍；<code>\n</code>、<code>\t</code>、<code>\r</code>、<code>\uXXXX</code>、<code>\&quot;</code>、<code>\\</code>、<code>\/</code> 原样不动。</li>
+<li><strong>schema 和类型检查自己动手。</strong> 替服务器在本地做类型校验。</li>
+</ol>
+<h2 id="我学到了什么">我学到了什么</h2>
+<ul>
+<li><strong>别被错误引发的导火索迷了眼睛。</strong> 「 LaTeX 引发的错误」让我花了一小时去读 prompt；实际上 LaTex 只是导火索，根结在反斜杠。</li>
+<li><strong>「grammar 里合法」不等于「parser 解析得了」。</strong> 一个结构化调用失败时，去检查生成方和校验方是否有冲突。</li>
+</ul>
+</section><nav class="edition-switch" aria-label="版本">
+    <a
+      class="edition-switch__link"
+      hreflang="en"
+      href="/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/"
+    >
+      <span class="label">以该语言阅读这条记录</span>
+      <span class="edition-switch__language">English</span>
+    </a>
+  </nav><nav class="adjacent" aria-label="目录">
+    <a href="/zh/posts/valid-by-grammar-invalid-by-parser-why-llm-structured-outputs-break-on-backslashes/">
+      <span class="label">更新的记录</span>
+      <span>一个反斜杠导致结构化输出失败：LLM 生成 JSON 时最隐蔽的坑</span>
+    </a>
+  </nav></article><script>
+  (function () {
+    const toc = document.querySelector(".record__toc");
+    if (!toc) return;
+    const entries = [];
+    toc.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const ref = link.getAttribute("href").slice(1);
+      let id = ref;
+      try {
+        id = decodeURIComponent(ref);
+      } catch (e) {}
+      const target = document.getElementById(id);
+      if (target) entries.push({ link, target });
+    });
+    if (entries.length < 2) return;
+
+    let on = null;
+    let frame = null;
+    const mark = (entry) => {
+      if (entry === on) return;
+      if (on) on.link.removeAttribute("aria-current");
+      on = entry || null;
+      if (on) on.link.setAttribute("aria-current", "true");
+    };
+    const measure = () => {
+      frame = null;
+      const band = document.querySelector(".masthead-band .frontmatter");
+      const line = (band ? band.getBoundingClientRect().bottom : 0) + 24;
+      let active = null;
+      for (const entry of entries) {
+        if (entry.target.getBoundingClientRect().top <= line) active = entry;
+      }
+      mark(active);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    addEventListener("scroll", schedule, { passive: true });
+    addEventListener("resize", schedule);
+    measure();
+  })();
+</script></main><footer class="sheet">
+  <div class="colophon">
+    <span>©2026Lotp</span>
+    <span>由 Hugo 构建</span>
+    <span>图标来自 hugo-paper</span>
+    <span>字体 Archivo Narrow</span>
+    <span>2016 → 2026</span>
+  </div>
+</footer>
+</body>
+</html>
